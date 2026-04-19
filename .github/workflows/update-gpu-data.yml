@@ -2,8 +2,8 @@ name: Update GPU Data
 
 on:
   schedule:
-    # Every Sunday at 2am UTC
-    - cron: '0 2 * * 0'
+    # Every day at 2am UTC
+    - cron: '0 2 * * *'
   workflow_dispatch:
     # Manual trigger
 
@@ -33,7 +33,7 @@ jobs:
           echo "2. Compare with existing public/gpu-data.json"
           echo "3. Update if price change > 5%"
           echo ""
-          echo "For now, we update the timestamp to show last check"
+          echo "For now, we update the timestamp to show last check (runs daily)"
           TIMESTAMP=$(date -u +%Y-%m-%d)
           cat public/gpu-data.json | sed "s/\"lastUpdated\": \"[^\"]*\"/\"lastUpdated\": \"$TIMESTAMP\"/" > public/gpu-data.json.new
           mv public/gpu-data.json.new public/gpu-data.json

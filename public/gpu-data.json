@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-20",
-  "updateFrequency": "weekly",
+  "updateFrequency": "daily",
   "sources": ["AWS EC2", "Lambda GPU", "RunPod", "Vast.ai", "CoreWeave"],
   "gpus": [
     {
