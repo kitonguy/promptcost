@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#312e81" width="1200" height="630"/>
+  <text x="600" y="220" font-family="system-ui" font-size="48" fill="#c4b5fd" text-anchor="middle" font-weight="bold">Tokenization Explained</text>
+  <text x="600" y="300" font-family="system-ui" font-size="28" fill="#ddd6fe" text-anchor="middle">How AI Models Read Text</text>
+  <text x="600" y="360" font-family="system-ui" font-size="24" fill="#a78bfa" text-anchor="middle">1 Token = ~4 Characters</text>
+  <circle cx="400" cy="480" r="40" fill="#8b5cf6"/>
+  <text x="400" y="485" font-family="system-ui" font-size="14" fill="white" text-anchor="middle">Token</text>
+  <circle cx="500" cy="480" r="40" fill="#7c3aed"/>
+  <text x="500" y="485" font-family="system-ui" font-size="14" fill="white" text-anchor="middle">Token</text>
+  <circle cx="600" cy="480" r="40" fill="#6d28d9"/>
+  <text x="600" y="485" font-family="system-ui" font-size="14" fill="white" text-anchor="middle">Token</text>
+  <circle cx="700" cy="480" r="40" fill="#5b21b6"/>
+  <text x="700" y="485" font-family="system-ui" font-size="14" fill="white" text-anchor="middle">Token</text>
+  <circle cx="800" cy="480" r="40" fill="#4c1d95"/>
+  <text x="800" y="485" font-family="system-ui" font-size="14" fill="white" text-anchor="middle">...</text>
+</svg>

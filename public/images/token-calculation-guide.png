@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#1c1917" width="1200" height="630"/>
+  <text x="600" y="200" font-family="system-ui" font-size="48" fill="#fbbf24" text-anchor="middle" font-weight="bold">Token Calculator</text>
+  <text x="600" y="280" font-family="system-ui" font-size="28" fill="#fcd34d" text-anchor="middle">Real-time AI Cost Estimation</text>
+  <text x="600" y="340" font-family="system-ui" font-size="24" fill="#f59e0b" text-anchor="middle">Characters / 4 = Tokens</text>
+  <rect x="350" y="400" width="500" height="80" rx="12" fill="#d97706"/>
+  <text x="600" y="450" font-family="system-ui" font-size="24" fill="white" text-anchor="middle">1,000 Tokens = ~750 Words</text>
+</svg>

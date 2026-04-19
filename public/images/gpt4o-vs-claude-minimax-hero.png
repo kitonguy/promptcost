@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#1e1e2e" width="1200" height="630"/>
+  <text x="600" y="200" font-family="system-ui" font-size="42" fill="#a78bfa" text-anchor="middle" font-weight="bold">GPT-4o vs Claude 3.5</text>
+  <text x="600" y="260" font-family="system-ui" font-size="42" fill="#60a5fa" text-anchor="middle" font-weight="bold">vs Gemini 2.0</text>
+  <text x="600" y="350" font-family="system-ui" font-size="24" fill="#94a3b8" text-anchor="middle">Complete 2026 Model Comparison</text>
+  <rect x="300" y="400" width="200" height="60" rx="8" fill="#22c55e" opacity="0.8"/>
+  <text x="400" y="440" font-family="system-ui" font-size="18" fill="white" text-anchor="middle">GPT-4o</text>
+  <rect x="500" y="400" width="200" height="60" rx="8" fill="#f59e0b" opacity="0.8"/>
+  <text x="600" y="440" font-family="system-ui" font-size="18" fill="white" text-anchor="middle">Claude 3.5</text>
+  <rect x="700" y="400" width="200" height="60" rx="8" fill="#3b82f6" opacity="0.8"/>
+  <text x="800" y="440" font-family="system-ui" font-size="18" fill="white" text-anchor="middle">Gemini 2.0</text>
+</svg>

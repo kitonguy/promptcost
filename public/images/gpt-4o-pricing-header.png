@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#0f172a" width="1200" height="630"/>
+  <text x="600" y="250" font-family="system-ui" font-size="48" fill="#22c55e" text-anchor="middle" font-weight="bold">GPT-4o Cost Guide</text>
+  <text x="600" y="320" font-family="system-ui" font-size="28" fill="#94a3b8" text-anchor="middle">$2.50 per Million Tokens</text>
+  <text x="600" y="380" font-family="system-ui" font-size="22" fill="#64748b" text-anchor="middle">2026 Pricing Analysis</text>
+  <rect x="200" y="420" width="800" height="4" fill="#22c55e" opacity="0.3"/>
+</svg>

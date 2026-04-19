@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#172554" width="1200" height="630"/>
+  <text x="600" y="150" font-family="system-ui" font-size="42" fill="#3b82f6" text-anchor="middle" font-weight="bold">Prompt Compression</text>
+  <text x="600" y="220" font-family="system-ui" font-size="24" fill="#93c5fd" text-anchor="middle">40% Token Reduction</text>
+  <rect x="150" y="280" width="350" height="120" rx="8" fill="#1e40af"/>
+  <text x="325" y="330" font-family="system-ui" font-size="16" fill="#dbeafe" text-anchor="middle">Before: 1000 tokens</text>
+  <text x="325" y="360" font-family="system-ui" font-size="20" fill="white" text-anchor="middle">Please provide a detailed</text>
+  <rect x="700" y="280" width="350" height="120" rx="8" fill="#2563eb"/>
+  <text x="875" y="330" font-family="system-ui" font-size="16" fill="#bfdbfe" text-anchor="middle">After: 600 tokens</text>
+  <text x="875" y="360" font-family="system-ui" font-size="20" fill="white" text-anchor="middle">Detailed response needed</text>
+  <text x="600" y="480" font-family="system-ui" font-size="36" fill="#22c55e" text-anchor="middle">-40% tokens = -40% cost</text>
+</svg>
