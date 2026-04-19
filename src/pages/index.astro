@@ -166,6 +166,43 @@ const modelDataJson = JSON.stringify(models);
           </div>
         </div>
 
+        {/* Advanced Insights Toggle */}
+        <div class="mb-6">
+          <button
+            id="insightsToggle"
+            type="button"
+            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all w-full sm:w-auto justify-center"
+            aria-expanded="false"
+            aria-controls="advancedInsights"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span id="insightsToggleText">Show Professional Insights</span>
+          </button>
+        </div>
+
+        {/* Advanced Insights Panel */}
+        <div id="advancedInsights" class="hidden mb-8 space-y-6">
+          {/* VRAM & Hardware Info */}
+          <div id="hardwareInfo" class="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-5 border border-slate-200">
+            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+              Hardware Requirements
+            </h4>
+            <div id="hardwareDetails" class="grid sm:grid-cols-3 gap-4 text-sm"></div>
+          </div>
+
+          {/* Coffee Index */}
+          <div id="coffeeIndex" class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">☕</span>
+              <div>
+                <h4 class="text-sm font-bold text-amber-800 mb-1">Coffee Index</h4>
+                <p id="coffeeIndexText" class="text-amber-900 text-sm"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Model Lists */}
         <div id="modelResults" class="hidden space-y-8">
           {/* Cheaper Alternatives */}
@@ -397,6 +434,132 @@ const modelDataJson = JSON.stringify(models);
 
   // Initial calculation if URL has params
   if (savedText || savedModel) calc();
+
+  // ============ ADVANCED INSIGHTS ============
+
+  // GPU Catalog for matching
+  const GPU_CATALOG = [
+    { name: 'RTX 4090 24GB', vram_gb: 24, price_msrp: 1599 },
+    { name: 'RTX 4070 Ti Super 16GB', vram_gb: 16, price_msrp: 799 },
+    { name: 'RTX 4070 12GB', vram_gb: 12, price_msrp: 549 },
+    { name: 'RTX 3090 24GB', vram_gb: 24, price_msrp: 1499 },
+    { name: 'A100 80GB', vram_gb: 80, price_msrp: 10000 },
+    { name: 'A100 40GB', vram_gb: 40, price_msrp: 6999 },
+    { name: 'H100 80GB', vram_gb: 80, price_msrp: 20000 },
+  ];
+
+  // VRAM factors per 1B parameters
+  const VRAM_FACTORS = { '4-bit': 0.56, '8-bit': 1.0, '16-bit': 2.0 };
+
+  function extractParams(modelName) {
+    const match = modelName.match(/(\d+)[bB]\b/);
+    return match ? parseInt(match[1]) : null;
+  }
+
+  function calculateVRAM(model) {
+    const params = extractParams(model.name);
+    if (!params) return null;
+    // Assume 16-bit for API models (they use FP16 typically)
+    const vram = (params * VRAM_FACTORS['16-bit']) + 2.5;
+    return Math.ceil(vram * 10) / 10;
+  }
+
+  function findMatchingGPU(vramRequired) {
+    if (!vramRequired) return null;
+    return GPU_CATALOG.find(gpu => gpu.vram_gb >= vramRequired) || GPU_CATALOG[GPU_CATALOG.length - 1];
+  }
+
+  function calculateValueScore(model) {
+    const contextScore = Math.min(100, ((model.context_length || 128000) / 1000000) * 100);
+    const reasoningPatterns = ['claude', 'gpt-4', 'gemini-2', 'deepseek-r1', 'o1', 'o3', 'sonnet'];
+    const speedPatterns = ['mini', 'lite', 'fast', 'haiku', 'flash'];
+    const isReasoning = reasoningPatterns.some(p => model.id.toLowerCase().includes(p));
+    const isFast = speedPatterns.some(p => model.id.toLowerCase().includes(p));
+    const reasoningScore = isReasoning ? 85 : 50;
+    const speedScore = isFast ? 90 : 60;
+    const rawValue = ((contextScore * 0.4) + (reasoningScore * 0.3) + (speedScore * 0.3)) / Math.max(0.01, model.price);
+    return Math.min(100, Math.round(rawValue * 10) / 10);
+  }
+
+  function renderHardwareInfo(selectedModel) {
+    const vram = calculateVRAM(selectedModel);
+    const gpu = vram ? findMatchingGPU(vram) : null;
+    const params = extractParams(selectedModel.name);
+
+    if (!vram && !gpu) {
+      return '<p class="text-sm text-slate-500 col-span-3">Hardware data not available for this model type.</p>';
+    }
+
+    const tokens = Math.ceil(textInput.value.length / 4);
+    const responseTokens = parseInt(responseLength.value) || 500;
+    const perRunCost = (tokens / 1000000) * selectedModel.price + (responseTokens / 1000000) * selectedModel.price * 4;
+    const monthlyCost = perRunCost * 100 * 30;
+
+    let roiHtml = '';
+    if (gpu && monthlyCost > 0) {
+      const months = Math.ceil(gpu.price_msrp / monthlyCost);
+      roiHtml = `
+        <div class="mt-3 pt-3 border-t border-slate-200">
+          <p class="text-xs text-slate-500">ROI Break-even</p>
+          <p class="text-sm font-medium text-primary">At $${formatCost(monthlyCost)}/month, ${gpu.name} ($${gpu.price_msrp}) pays off in ${months} months</p>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <h5 class="font-semibold text-slate-800 mb-2">${selectedModel.name}</h5>
+        <dl class="space-y-1 text-sm">
+          <div class="flex justify-between"><dt class="text-slate-500">Parameters</dt><dd class="font-medium">${params ? params + 'B' : 'N/A'}</dd></div>
+          <div class="flex justify-between"><dt class="text-slate-500">Est. VRAM</dt><dd class="font-medium">${vram ? vram + ' GB' : 'N/A'}</dd></div>
+          ${gpu ? `<div class="flex justify-between"><dt class="text-slate-500">Min GPU</dt><dd class="font-medium text-primary">${gpu.name}</dd></div>` : ''}
+        </dl>
+        ${roiHtml}
+      </div>
+    `;
+  }
+
+  function renderCoffeeIndex(selectedModel) {
+    const tokens = Math.ceil(textInput.value.length / 4);
+    const responseTokens = parseInt(responseLength.value) || 500;
+    const perRunCost = (tokens / 1000000) * selectedModel.price + (responseTokens / 1000000) * selectedModel.price * 4;
+    const monthlyCost = perRunCost * 100 * 30;
+    const coffeeEquiv = Math.round(monthlyCost / 5 * 10) / 10;
+    const runs = 100;
+    return `Running ${runs}x/day for a month = <span class="font-bold">$${formatCost(monthlyCost)}</span> ≈ <span class="font-bold">${coffeeEquiv} lattes</span>`;
+  }
+
+  // Toggle functionality
+  const insightsToggle = document.getElementById('insightsToggle');
+  const advancedInsights = document.getElementById('advancedInsights');
+  const insightsToggleText = document.getElementById('insightsToggleText');
+
+  insightsToggle?.addEventListener('click', () => {
+    const isExpanded = insightsToggle.getAttribute('aria-expanded') === 'true';
+    insightsToggle.setAttribute('aria-expanded', String(!isExpanded));
+    advancedInsights.classList.toggle('hidden');
+    insightsToggleText.textContent = isExpanded ? 'Show Professional Insights' : 'Hide Professional Insights';
+  });
+
+  // Update advanced insights when model changes
+  const originalCalc = calc;
+  function updatedCalc() {
+    originalCalc();
+    const selectedModel = models.find(m => m.id === modelSearch.value);
+    if (selectedModel) {
+      document.getElementById('hardwareDetails').innerHTML = renderHardwareInfo(selectedModel);
+      document.getElementById('coffeeIndexText').innerHTML = renderCoffeeIndex(selectedModel);
+    }
+  }
+
+  // Override event listeners
+  textInput.removeEventListener('input', calc);
+  modelSearch.removeEventListener('change', calc);
+  responseLength.removeEventListener('input', calc);
+  textInput.addEventListener('input', updatedCalc);
+  modelSearch.addEventListener('change', updatedCalc);
+  responseLength.addEventListener('input', updatedCalc);
+  if (savedText || savedModel) updatedCalc();
 </script>
 
 <style>
