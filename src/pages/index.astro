@@ -166,12 +166,18 @@ const modelDataJson = JSON.stringify(models);
           </div>
         </div>
 
+        {/* Quick Cost Comparison Chart */}
+        <div id="costChart" class="hidden mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Top 3 Cheapest Models</h4>
+          <div id="chartBars" class="space-y-2"></div>
+        </div>
+
         {/* Advanced Insights Toggle */}
         <div class="mb-6">
           <button
             id="insightsToggle"
             type="button"
-            class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all w-full sm:w-auto justify-center"
+            class="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-lg shadow-md hover:shadow-lg transition-all w-full sm:w-auto justify-center"
             aria-expanded="false"
             aria-controls="advancedInsights"
           >
@@ -361,6 +367,16 @@ const modelDataJson = JSON.stringify(models);
     const outputCost = (responseTokens / 1000000) * (model.price * 4); // Output typically 4x price
     const totalCost = inputCost + outputCost;
 
+    // Calculate badges
+    const badges = [];
+    if (model.price < 0.1) badges.push({ type: 'value', label: 'Best Value', icon: '💎', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' });
+    const fastPatterns = ['mini', 'lite', 'fast', 'haiku', 'flash', 'turbo'];
+    if (fastPatterns.some(p => model.id.toLowerCase().includes(p))) badges.push({ type: 'speed', label: 'Fast', icon: '⚡', color: 'bg-amber-100 text-amber-700 border-amber-200' });
+    const deepPatterns = ['claude', 'gpt-4', 'o1', 'o3', 'deepseek-r1', 'sonnet'];
+    if (deepPatterns.some(p => model.id.toLowerCase().includes(p))) badges.push({ type: 'deep', label: 'Deep Logic', icon: '🧠', color: 'bg-violet-100 text-violet-700 border-violet-200' });
+
+    const badgeHtml = badges.length > 0 ? `<div class="flex flex-wrap gap-1 mt-1">${badges.map(b => `<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-xs font-medium border ${b.color}">${b.icon} ${b.label}</span>`).join('')}</div>` : '';
+
     return `
       <div class="flex items-center justify-between p-4 rounded-xl border ${isSelected ? 'border-primary bg-blue-50 ring-2 ring-primary/20' : 'border-slate-200 bg-white hover:border-primary/50'} transition-all cursor-pointer"
            onclick="document.getElementById('modelSearch').value='${model.id}'; calc();"
@@ -369,6 +385,7 @@ const modelDataJson = JSON.stringify(models);
            tabindex="0">
         <div>
           <p class="font-semibold text-slate-900">${model.name}</p>
+          ${badgeHtml}
           <p class="text-xs text-slate-500">${model.id}</p>
           ${model.context_length ? `<p class="text-xs text-slate-400 mt-1">Context: ${(model.context_length / 1000).toLocaleString()}K tokens</p>` : ''}
         </div>
@@ -452,8 +469,31 @@ const modelDataJson = JSON.stringify(models);
   const VRAM_FACTORS = { '4-bit': 0.56, '8-bit': 1.0, '16-bit': 2.0 };
 
   function extractParams(modelName) {
+    // Match patterns like "70B", "7B", "13B", "34B", "405B"
     const match = modelName.match(/(\d+)[bB]\b/);
-    return match ? parseInt(match[1]) : null;
+    if (match) return parseInt(match[1]);
+
+    // Fallback patterns for known model families
+    const nameLower = modelName.toLowerCase();
+    if (nameLower.includes('gpt-4o') || nameLower.includes('gpt-4-turbo')) return 1000;
+    if (nameLower.includes('gpt-4')) return 1000;
+    if (nameLower.includes('claude-3.5') || nameLower.includes('claude-3')) return 2000;
+    if (nameLower.includes('gemini-2') || nameLower.includes('gemini-1.5')) return 1000;
+    if (nameLower.includes('deepseek-v3') || nameLower.includes('deepseek-coder')) return 2360;
+    if (nameLower.includes('llama-3.1') || nameLower.includes('llama-3')) {
+      return nameLower.includes('70b') ? 70 : nameLower.includes('8b') ? 8 : 70;
+    }
+    if (nameLower.includes('mistral') || nameLower.includes('mixtral')) return 46;
+    if (nameLower.includes('qwen') || nameLower.includes('qwq')) return 72;
+
+    // Default fallback: assume 7B class with estimated flag
+    return 7;
+  }
+
+  function isEstimatedParams(modelName) {
+    // Returns true if params was guessed (not found via direct match)
+    const directMatch = modelName.match(/(\d+)[bB]\b/);
+    return !directMatch;
   }
 
   function calculateVRAM(model) {
@@ -485,10 +525,7 @@ const modelDataJson = JSON.stringify(models);
     const vram = calculateVRAM(selectedModel);
     const gpu = vram ? findMatchingGPU(vram) : null;
     const params = extractParams(selectedModel.name);
-
-    if (!vram && !gpu) {
-      return '<p class="text-sm text-slate-500 col-span-3">Hardware data not available for this model type.</p>';
-    }
+    const estimated = isEstimatedParams(selectedModel.name);
 
     const tokens = Math.ceil(textInput.value.length / 4);
     const responseTokens = parseInt(responseLength.value) || 500;
@@ -510,7 +547,7 @@ const modelDataJson = JSON.stringify(models);
       <div class="bg-white rounded-lg p-4 border border-slate-200">
         <h5 class="font-semibold text-slate-800 mb-2">${selectedModel.name}</h5>
         <dl class="space-y-1 text-sm">
-          <div class="flex justify-between"><dt class="text-slate-500">Parameters</dt><dd class="font-medium">${params ? params + 'B' : 'N/A'}</dd></div>
+          <div class="flex justify-between"><dt class="text-slate-500">Parameters</dt><dd class="font-medium">${params}B${estimated ? ' <span class="text-xs text-amber-600">(Est.)</span>' : ''}</dd></div>
           <div class="flex justify-between"><dt class="text-slate-500">Est. VRAM</dt><dd class="font-medium">${vram ? vram + ' GB' : 'N/A'}</dd></div>
           ${gpu ? `<div class="flex justify-between"><dt class="text-slate-500">Min GPU</dt><dd class="font-medium text-primary">${gpu.name}</dd></div>` : ''}
         </dl>
@@ -524,9 +561,52 @@ const modelDataJson = JSON.stringify(models);
     const responseTokens = parseInt(responseLength.value) || 500;
     const perRunCost = (tokens / 1000000) * selectedModel.price + (responseTokens / 1000000) * selectedModel.price * 4;
     const monthlyCost = perRunCost * 100 * 30;
-    const coffeeEquiv = Math.round(monthlyCost / 5 * 10) / 10;
     const runs = 100;
-    return `Running ${runs}x/day for a month = <span class="font-bold">$${formatCost(monthlyCost)}</span> ≈ <span class="font-bold">${coffeeEquiv} lattes</span>`;
+
+    // Fun expression for small values
+    let coffeeText;
+    if (monthlyCost < 1) {
+      coffeeText = 'less than an espresso shot';
+    } else if (monthlyCost < 3) {
+      coffeeText = 'about 1 small coffee';
+    } else if (monthlyCost < 5) {
+      coffeeText = `≈ ${Math.round(monthlyCost * 10) / 10} lattes`;
+    } else {
+      coffeeText = `≈ ${Math.round(monthlyCost / 5 * 10) / 10} lattes`;
+    }
+
+    return `Running ${runs}x/day for a month = <span class="font-bold">$${formatCost(monthlyCost)}</span> (${coffeeText})`;
+  }
+
+  function renderCostChart(selectedModel) {
+    const tokens = Math.ceil(textInput.value.length / 4);
+    const responseTokens = parseInt(responseLength.value) || 500;
+    const selectedCost = ((tokens / 1000000) * selectedModel.price + (responseTokens / 1000000) * selectedModel.price * 4);
+
+    // Get top 3 cheapest that have pricing data
+    const top3 = models.slice(0, 3).map(m => {
+      const cost = (tokens / 1000000) * m.price + (responseTokens / 1000000) * m.price * 4;
+      return { ...m, cost };
+    });
+
+    const maxCost = Math.max(...top3.map(m => m.cost), selectedCost);
+
+    const barsHtml = top3.map(m => {
+      const width = maxCost > 0 ? (m.cost / maxCost) * 100 : 0;
+      const isSelected = m.id === selectedModel.id;
+      return `
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-500 w-32 truncate">${m.name.split(' ')[0]}</span>
+          <div class="flex-1 h-5 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full rounded-full ${isSelected ? 'bg-primary' : 'bg-cheaper'}" style="width: ${width}%"></div>
+          </div>
+          <span class="text-xs font-medium ${isSelected ? 'text-primary' : 'text-slate-600'} w-16 text-right">$${formatCost(m.cost)}</span>
+        </div>
+      `;
+    }).join('');
+
+    document.getElementById('chartBars').innerHTML = barsHtml;
+    document.getElementById('costChart').classList.remove('hidden');
   }
 
   // Toggle functionality
@@ -549,6 +629,7 @@ const modelDataJson = JSON.stringify(models);
     if (selectedModel) {
       document.getElementById('hardwareDetails').innerHTML = renderHardwareInfo(selectedModel);
       document.getElementById('coffeeIndexText').innerHTML = renderCoffeeIndex(selectedModel);
+      renderCostChart(selectedModel);
     }
   }
 
