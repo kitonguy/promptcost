@@ -1,0 +1,183 @@
+{
+  "lastUpdated": "2026-04-20T02:00:00Z",
+  "providers": [
+    {
+      "id": "aws",
+      "name": "AWS",
+      "logo": "/providers/aws.svg",
+      "url": "https://aws.amazon.com/ec2/instance-types/",
+      "color": "#FF9900"
+    },
+    {
+      "id": "lambda",
+      "name": "Lambda Labs",
+      "logo": "/providers/lambda.svg",
+      "url": "https://lambdalabs.com/cloud",
+      "color": "#FF6B35"
+    },
+    {
+      "id": "runpod",
+      "name": "RunPod",
+      "logo": "/providers/runpod.svg",
+      "url": "https://runpod.io",
+      "color": "#2D3748"
+    },
+    {
+      "id": "vastai",
+      "name": "Vast.ai",
+      "logo": "/providers/vastai.svg",
+      "url": "https://vast.ai",
+      "color": "#00D1B2"
+    },
+    {
+      "id": "gcp",
+      "name": "Google Cloud",
+      "logo": "/providers/gcp.svg",
+      "url": "https://cloud.google.com/compute",
+      "color": "#4285F4"
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "logo": "/providers/azure.svg",
+      "url": "https://azure.microsoft.com",
+      "color": "#0078D4"
+    },
+    {
+      "id": "coreweave",
+      "name": "CoreWeave",
+      "logo": "/providers/coreweave.svg",
+      "url": "https://coreweave.com",
+      "color": "#7B68EE"
+    }
+  ],
+  "gpus": [
+    {
+      "id": "h100-80gb",
+      "model": "NVIDIA H100 80GB",
+      "vram_gb": 80,
+      "tflops": 989,
+      "tier": "flagship",
+      "useCases": ["Fine-tuning", "Inference", "Training"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 6.50, "spot": 4.50, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 5.50, "spot": 3.80, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 3.99, "spot": 2.49, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 2.75, "spot": 1.89, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 7.20, "spot": 5.10, "available": true, "region": "us-central1" },
+        { "provider": "azure", "ondemand": 6.80, "spot": 4.60, "available": true, "region": "eastus" },
+        { "provider": "coreweave", "ondemand": 4.29, "spot": 2.99, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "a100-80gb",
+      "model": "NVIDIA A100 80GB",
+      "vram_gb": 80,
+      "tflops": 312,
+      "tier": "enterprise",
+      "useCases": ["Fine-tuning", "Training", "Inference"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 4.25, "spot": 2.95, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 3.40, "spot": 2.40, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 2.49, "spot": 1.69, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 1.89, "spot": 1.25, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 4.50, "spot": 3.10, "available": true, "region": "us-central1" },
+        { "provider": "azure", "ondemand": 3.90, "spot": 2.70, "available": true, "region": "eastus" },
+        { "provider": "coreweave", "ondemand": 2.79, "spot": 1.89, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "a100-40gb",
+      "model": "NVIDIA A100 40GB",
+      "vram_gb": 40,
+      "tflops": 312,
+      "tier": "enterprise",
+      "useCases": ["Training", "Inference"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 3.67, "spot": 2.50, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 2.95, "spot": 2.00, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 1.89, "spot": 1.29, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 1.25, "spot": 0.89, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 3.85, "spot": 2.65, "available": true, "region": "us-central1" },
+        { "provider": "azure", "ondemand": 3.40, "spot": 2.30, "available": true, "region": "eastus" },
+        { "provider": "coreweave", "ondemand": 1.99, "spot": 1.39, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "rtx-4090-24gb",
+      "model": "NVIDIA RTX 4090 24GB",
+      "vram_gb": 24,
+      "tflops": 82.6,
+      "tier": "consumer",
+      "useCases": ["Inference", "Fine-tuning", "Local Development"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 2.10, "spot": 1.40, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 1.79, "spot": 1.19, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 0.69, "spot": 0.49, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 0.50, "spot": 0.35, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 2.40, "spot": 1.65, "available": false, "region": "us-central1" },
+        { "provider": "azure", "ondemand": 1.90, "spot": 1.30, "available": true, "region": "eastus" },
+        { "provider": "coreweave", "ondemand": 0.79, "spot": 0.55, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "rtx-3090-24gb",
+      "model": "NVIDIA RTX 3090 24GB",
+      "vram_gb": 24,
+      "tflops": 35.6,
+      "tier": "consumer",
+      "useCases": ["Inference", "Local Development"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 1.93, "spot": 1.25, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 1.50, "spot": 0.99, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 0.69, "spot": 0.45, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 0.45, "spot": 0.30, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 2.10, "spot": 1.45, "available": true, "region": "us-central1" },
+        { "provider": "azure", "ondemand": 1.70, "spot": 1.15, "available": true, "region": "eastus" },
+        { "provider": "coreweave", "ondemand": 0.69, "spot": 0.49, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "l40s-48gb",
+      "model": "NVIDIA L40S 48GB",
+      "vram_gb": 48,
+      "tflops": 73.5,
+      "tier": "midrange",
+      "useCases": ["Inference", "Training", "Rendering"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 2.30, "spot": 1.55, "available": true, "region": "us-east-1" },
+        { "provider": "lambda", "ondemand": 1.99, "spot": 1.35, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 0.89, "spot": 0.59, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 0.65, "spot": 0.45, "available": true, "region": "us-east-1" },
+        { "provider": "gcp", "ondemand": 2.50, "spot": 1.75, "available": true, "region": "us-central1" },
+        { "provider": "coreweave", "ondemand": 0.89, "spot": 0.59, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "rtx-4070-ti-super-16gb",
+      "model": "NVIDIA RTX 4070 Ti Super 16GB",
+      "vram_gb": 16,
+      "tflops": 52.2,
+      "tier": "budget",
+      "useCases": ["Local Development", "Small Inference"],
+      "rentals": [
+        { "provider": "lambda", "ondemand": 1.29, "spot": 0.89, "available": true, "region": "us-east-1" },
+        { "provider": "runpod", "ondemand": 0.49, "spot": 0.35, "available": true, "region": "us-east-1" },
+        { "provider": "vastai", "ondemand": 0.35, "spot": 0.25, "available": true, "region": "us-east-1" },
+        { "provider": "coreweave", "ondemand": 0.59, "spot": 0.39, "available": true, "region": "us-east" }
+      ]
+    },
+    {
+      "id": "mi300x-128gb",
+      "model": "AMD MI300X 128GB",
+      "vram_gb": 128,
+      "tflops": 163,
+      "tier": "flagship",
+      "useCases": ["Training", "Inference", "Frontier Models"],
+      "rentals": [
+        { "provider": "aws", "ondemand": 7.80, "spot": 5.50, "available": true, "region": "us-east-1" },
+        { "provider": "coreweave", "ondemand": 4.99, "spot": 3.49, "available": true, "region": "us-east" }
+      ]
+    }
+  ]
+}

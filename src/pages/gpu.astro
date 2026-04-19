@@ -1,0 +1,398 @@
+---
+import Layout from '../layouts/Layout.astro';
+import gpuData from '../data/gpu_market.json';
+
+export const prerender = true;
+
+const siteUrl = 'https://promptcost.org';
+const fullTitle = 'Global GPU Rental Index 2026 | Compare Cloud GPU Prices';
+const description = 'Compare hourly GPU rental prices for H100, A100, RTX 4090 across AWS, Lambda Labs, RunPod, Vast.ai, Google Cloud, Azure, and CoreWeave. Find the cheapest cloud GPU for AI training and inference.';
+
+// GPU market schema for SEO
+const gpuMarketSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Global GPU Rental Index 2026",
+  "description": "Real-time comparison of GPU rental prices across major cloud providers",
+  "keywords": "GPU rental, H100 price, A100 cost, cloud GPU, RTX 4090, AWS GPU, RunPod pricing",
+  "provider": {
+    "@type": "Organization",
+    "name": "PromptCost.org",
+    "url": siteUrl
+  },
+  "dateModified": gpuData.lastUpdated
+};
+---
+
+<Layout title={fullTitle} description={description} schema={gpuMarketSchema}>
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 py-16 sm:py-20 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm mb-6">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+        Updated {new Date(gpuData.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4">
+        Global <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">GPU Rental Index</span> 2026
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
+        Compare hourly rates for H100, A100, and RTX 4090 across all major cloud providers. Updated daily.
+      </p>
+
+      {/* Quick Filter */}
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
+        <input
+          type="text"
+          id="gpuSearch"
+          placeholder="Filter GPUs (e.g., H100, A100)..."
+          class="w-full sm:w-72 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        />
+        <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
+          <input type="checkbox" id="hideUnavailable" class="w-4 h-4 rounded bg-white/10 border-white/20" />
+          Hide unavailable
+        </label>
+      </div>
+    </div>
+  </section>
+
+  {/* Smart Insights */}
+  <section class="py-8 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-5 border border-amber-200">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">🏆</span>
+            <div>
+              <h3 class="font-bold text-amber-900">Fine-Tuning King</h3>
+              <p class="text-sm text-amber-800 mt-1">A100/H100 clusters for serious training. CoreWeave & Vast.ai offer the best value.</p>
+              <a href="#h100" class="inline-block mt-2 text-xs font-semibold text-amber-900 hover:underline">See best deals →</a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-5 border border-emerald-200">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">💰</span>
+            <div>
+              <h3 class="font-bold text-emerald-900">Budget Inference</h3>
+              <p class="text-sm text-emerald-800 mt-1">L4 or RTX 4090 on Vast.ai. Perfect for inference at $0.35-$0.50/hr.</p>
+              <a href="#rtx-4090" class="inline-block mt-2 text-xs font-semibold text-emerald-900 hover:underline">See best deals →</a>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 border border-indigo-200">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">⚡</span>
+            <div>
+              <h3 class="font-bold text-indigo-900">Zero-Setup</h3>
+              <p class="text-sm text-indigo-800 mt-1">Lambda & RunPod - ready in seconds, no config needed. Great for experiments.</p>
+              <a href="#lambda" class="inline-block mt-2 text-xs font-semibold text-indigo-900 hover:underline">See best deals →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Project Budgeter */}
+  <section class="py-10 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+        <span class="text-2xl">🧮</span> Project Budgeter
+      </h2>
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+        <div class="grid sm:grid-cols-4 gap-4 mb-6">
+          <div>
+            <label for="gpuCount" class="block text-sm font-medium text-slate-700 mb-2">Number of GPUs</label>
+            <input
+              type="number"
+              id="gpuCount"
+              value="1"
+              min="1"
+              max="100"
+              class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/10"
+            />
+          </div>
+          <div>
+            <label for="gpuSelect" class="block text-sm font-medium text-slate-700 mb-2">GPU Model</label>
+            <select
+              id="gpuSelect"
+              class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/10 bg-white"
+            >
+              <option value="">Select GPU...</option>
+              {gpuData.gpus.map(gpu => (
+                <option value={gpu.id}>{gpu.model}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label for="duration" class="block text-sm font-medium text-slate-700 mb-2">Duration</label>
+            <input
+              type="number"
+              id="duration"
+              value="24"
+              min="1"
+              max="8760"
+              class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/10"
+            />
+          </div>
+          <div>
+            <label for="durationUnit" class="block text-sm font-medium text-slate-700 mb-2">Unit</label>
+            <select
+              id="durationUnit"
+              class="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/10 bg-white"
+            >
+              <option value="hours">Hours</option>
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+            </select>
+          </div>
+        </div>
+        <div id="budgetResults" class="hidden">
+          <h3 class="text-sm font-semibold text-slate-700 mb-3">Estimated Costs ({gpuData.providers.length} providers)</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="budgetCards"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Comparison Table */}
+  <section class="py-12" id="gpu-table">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">GPU Comparison Table</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-slate-200">
+              <th class="text-left py-3 px-4 font-semibold text-slate-600">Provider</th>
+              <th class="text-left py-3 px-4 font-semibold text-slate-600">GPU & VRAM</th>
+              <th class="text-right py-3 px-4 font-semibold text-slate-600">On-Demand</th>
+              <th class="text-right py-3 px-4 font-semibold text-slate-600">Spot</th>
+              <th class="text-center py-3 px-4 font-semibold text-slate-600">Type</th>
+              <th class="text-center py-3 px-4 font-semibold text-slate-600">Action</th>
+            </tr>
+          </thead>
+          <tbody id="gpuTableBody">
+            {gpuData.gpus.map(gpu => (
+              gpu.rentals.map((rental, idx) => {
+                const provider = gpuData.providers.find(p => p.id === rental.provider);
+                const isLowest = gpu.rentals.filter(x => x.available).sort((a, b) => a.ondemand - b.ondemand)[0]?.provider === rental.provider;
+                const isLowestSpot = gpu.rentals.filter(x => x.available).sort((a, b) => a.spot - b.spot)[0]?.provider === rental.provider;
+                return (
+                  <tr
+                    class={`border-b border-slate-100 ${!rental.available ? 'opacity-50' : ''} gpu-row`}
+                    data-gpu={gpu.id}
+                    data-vram={gpu.vram_gb}
+                    data-model={gpu.model.toLowerCase()}
+                  >
+                    <td class="py-3 px-4">
+                      <div class="flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={`background-color: ${provider?.color || '#666'}`}>
+                          {provider?.name.charAt(0)}
+                        </span>
+                        <span class="font-medium text-slate-900">{provider?.name}</span>
+                        {isLowest && rental.available && <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">Best</span>}
+                      </div>
+                    </td>
+                    <td class="py-3 px-4">
+                      <div class="font-medium text-slate-900">{gpu.model}</div>
+                      <div class="text-xs text-slate-500">{gpu.vram_gb}GB VRAM</div>
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                      <span class="font-bold text-slate-900">${rental.ondemand.toFixed(2)}</span>
+                      <span class="text-slate-500">/hr</span>
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                      {rental.spot ? (
+                        <>
+                          <span class={`font-bold ${isLowestSpot && rental.available ? 'text-emerald-600' : 'text-slate-900'}`}>${rental.spot.toFixed(2)}</span>
+                          <span class="text-slate-500">/hr</span>
+                          {isLowestSpot && rental.available && <span class="ml-1 text-xs bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">Cheapest</span>}
+                        </>
+                      ) : (
+                        <span class="text-slate-400">-</span>
+                      )}
+                    </td>
+                    <td class="py-3 px-4 text-center">
+                      <span class={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${rental.available ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
+                        {rental.available ? 'Available' : 'Unavailable'}
+                      </span>
+                    </td>
+                    <td class="py-3 px-4 text-center">
+                      {rental.available ? (
+                        <a
+                          href={provider?.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+                        >
+                          Rent Now
+                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                      ) : (
+                        <span class="text-slate-400 text-xs">-</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section class="py-16 bg-slate-50" aria-labelledby="faq-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="faq-heading" class="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-12">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">What is the cheapest GPU for AI inference?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">Vast.ai's RTX 4090 at $0.35-$0.50/hr for spot instances is currently the best value for inference workloads. For even cheaper options, consider RTX 3090 or RTX 4070 Ti Super on spot pricing.</p>
+          </div>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">What is the difference between On-Demand and Spot pricing?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">On-Demand pricing guarantees availability 24/7. Spot instances are cheaper (30-60% savings) but can be interrupted when demand spikes. For critical production workloads, use On-Demand. For experiments and batch jobs, Spot is ideal.</p>
+          </div>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">How often is this GPU rental data updated?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">Our GPU rental index is updated daily via automated systems. Prices are sourced from major providers including AWS, Lambda Labs, RunPod, Vast.ai, Google Cloud, Azure, and CoreWeave. Last update: {new Date(gpuData.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.</p>
+          </div>
+        </details>
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">Which GPU do I need for training large language models?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">For training LLMs like Llama, Mistral, or GPT models, NVIDIA H100 80GB or A100 80GB are recommended. These offer the best VRAM and compute balance. H100 is the flagship for frontier models, while A100 offers excellent value at lower cost.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script define:vars={{ gpuData }}>
+  const gpuSearch = document.getElementById('gpuSearch');
+  const hideUnavailable = document.getElementById('hideUnavailable');
+  const gpuTableBody = document.getElementById('gpuTableBody');
+  const gpuSelect = document.getElementById('gpuSelect');
+  const gpuCount = document.getElementById('gpuCount');
+  const duration = document.getElementById('duration');
+  const durationUnit = document.getElementById('durationUnit');
+  const budgetResults = document.getElementById('budgetResults');
+  const budgetCards = document.getElementById('budgetCards');
+
+  // Filter functionality
+  function filterGPUs() {
+    const query = gpuSearch.value.toLowerCase();
+    const hide = hideUnavailable.checked;
+    const rows = gpuTableBody.querySelectorAll('tr.gpu-row');
+
+    rows.forEach(row => {
+      const model = row.dataset.model || '';
+      const matchesModel = model.includes(query);
+      const isUnavailable = row.querySelector('span:contains("Unavailable")');
+
+      if (matchesModel && (!hide || !isUnavailable)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  gpuSearch?.addEventListener('input', filterGPUs);
+  hideUnavailable?.addEventListener('change', filterGPUs);
+
+  // Project Budgeter functionality
+  function calculateBudget() {
+    const selectedGpuId = gpuSelect.value;
+    const count = parseInt(gpuCount.value) || 1;
+    const hours = parseInt(duration.value) || 1;
+    const unit = durationUnit.value;
+
+    if (!selectedGpuId) {
+      budgetResults.classList.add('hidden');
+      return;
+    }
+
+    let totalHours = hours;
+    if (unit === 'days') totalHours = hours * 24;
+    if (unit === 'weeks') totalHours = hours * 24 * 7;
+
+    const gpu = gpuData.gpus.find(g => g.id === selectedGpuId);
+    if (!gpu) return;
+
+    budgetResults.classList.remove('hidden');
+
+    const cardsHtml = gpu.rentals
+      .filter(r => r.available)
+      .map(rental => {
+        const provider = gpuData.providers.find(p => p.id === rental.provider);
+        const onDemandTotal = rental.ondemand * count * totalHours;
+        const spotTotal = rental.spot ? rental.spot * count * totalHours : null;
+        const bestPrice = gpu.rentals.filter(x => x.available).sort((a, b) => a.ondemand - b.ondemand)[0]?.ondemand;
+        const isBest = rental.ondemand === bestPrice;
+
+        return `
+          <div class="bg-white rounded-xl p-4 border ${isBest ? 'border-emerald-300 ring-2 ring-emerald-200' : 'border-slate-200'}">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white" style="background-color: ${provider?.color || '#666'}">${provider?.name.charAt(0)}</span>
+              <span class="font-semibold text-slate-900">${provider?.name}</span>
+              ${isBest ? '<span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium ml-auto">Best Value</span>' : ''}
+            </div>
+            <div class="space-y-1 text-sm">
+              <div class="flex justify-between">
+                <span class="text-slate-500">On-Demand Total:</span>
+                <span class="font-bold text-slate-900">$${onDemandTotal.toFixed(2)}</span>
+              </div>
+              ${spotTotal ? `
+              <div class="flex justify-between">
+                <span class="text-slate-500">Spot Total:</span>
+                <span class="font-bold text-emerald-600">$${spotTotal.toFixed(2)}</span>
+              </div>
+              ` : ''}
+              <div class="flex justify-between text-xs text-slate-400">
+                <span>${count} GPU × ${totalHours}h @ $${rental.ondemand}/hr</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+    budgetCards.innerHTML = cardsHtml;
+  }
+
+  gpuSelect?.addEventListener('change', calculateBudget);
+  gpuCount?.addEventListener('input', calculateBudget);
+  duration?.addEventListener('input', calculateBudget);
+  durationUnit?.addEventListener('change', calculateBudget);
+</script>
+
+<style>
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+</style>
