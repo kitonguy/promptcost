@@ -4,6 +4,11 @@
     "strictNullChecks": true,
     "jsx": "preserve",
     "jsxImportSource": "astro",
-    "types": ["astro/client"]
-  }
+    "types": ["astro/client"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowJs": true
+  },
+  "include": ["src/**/*", "*.astro"],
+  "exclude": ["node_modules"]
 }

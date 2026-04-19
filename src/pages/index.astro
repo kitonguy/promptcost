@@ -163,6 +163,15 @@ const modelDataJson = JSON.stringify(models);
             <div>
               <span class="font-medium">Output (est.):</span> <span id="outputCost">$0.00</span>
             </div>
+            <button
+              id="shareBtn"
+              type="button"
+              class="ml-auto flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors"
+              onclick="copyShareLink()"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+              Copy Link
+            </button>
           </div>
         </div>
 
@@ -535,10 +544,18 @@ const modelDataJson = JSON.stringify(models);
     let roiHtml = '';
     if (gpu && monthlyCost > 0) {
       const months = Math.ceil(gpu.price_msrp / monthlyCost);
+      let advice = '';
+      if (months > 24) {
+        advice = '<p class="text-xs text-slate-500 mt-2">💡 With this usage volume, API is more cost-effective — no hardware investment needed.</p>';
+      } else if (months < 12) {
+        advice = '<p class="text-xs text-emerald-600 mt-2">⚡ Don\'t miss! Running your own server practically pays for itself in under a year.</p>';
+      }
+
       roiHtml = `
         <div class="mt-3 pt-3 border-t border-slate-200">
           <p class="text-xs text-slate-500">ROI Break-even</p>
           <p class="text-sm font-medium text-primary">At $${formatCost(monthlyCost)}/month, ${gpu.name} ($${gpu.price_msrp}) pays off in ${months} months</p>
+          ${advice}
         </div>
       `;
     }
@@ -607,6 +624,19 @@ const modelDataJson = JSON.stringify(models);
 
     document.getElementById('chartBars').innerHTML = barsHtml;
     document.getElementById('costChart').classList.remove('hidden');
+  }
+
+  // Copy share link
+  function copyShareLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('shareBtn');
+      if (btn) {
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+        setTimeout(() => {
+          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg> Copy Link';
+        }, 2000);
+      }
+    });
   }
 
   // Toggle functionality
