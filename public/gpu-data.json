@@ -1,0 +1,112 @@
+{
+  "lastUpdated": "2026-04-20",
+  "updateFrequency": "weekly",
+  "sources": ["AWS EC2", "Lambda GPU", "RunPod", "Vast.ai", "CoreWeave"],
+  "gpus": [
+    {
+      "id": "rtx-4090-24gb",
+      "name": "NVIDIA RTX 4090",
+      "vram_gb": 24,
+      "tflops": 82.6,
+      "price_msrp": 1599,
+      "providers": {
+        "aws": { "price_per_hour": 2.10, "available": true },
+        "lambda": { "price_per_hour": 1.79, "available": true },
+        "runpod": { "price_per_hour": 0.69, "available": true },
+        "vastai": { "price_per_hour": 0.50, "available": true }
+      },
+      "bestValue": true,
+      "notes": "Best overall value for single-GPU workloads"
+    },
+    {
+      "id": "rtx-4070-ti-super-16gb",
+      "name": "NVIDIA RTX 4070 Ti Super",
+      "vram_gb": 16,
+      "tflops": 52.2,
+      "price_msrp": 799,
+      "providers": {
+        "aws": { "price_per_hour": 1.50, "available": true },
+        "lambda": { "price_per_hour": 1.29, "available": true },
+        "runpod": { "price_per_hour": 0.49, "available": true },
+        "vastai": { "price_per_hour": 0.35, "available": true }
+      },
+      "bestValue": false,
+      "notes": "Good mid-range option"
+    },
+    {
+      "id": "rtx-4070-12gb",
+      "name": "NVIDIA RTX 4070",
+      "vram_gb": 12,
+      "tflops": 29.1,
+      "price_msrp": 549,
+      "providers": {
+        "aws": { "price_per_hour": 0.90, "available": true },
+        "lambda": { "price_per_hour": 0.88, "available": true },
+        "runpod": { "price_per_hour": 0.39, "available": true },
+        "vastai": { "price_per_hour": 0.28, "available": true }
+      },
+      "bestValue": false,
+      "notes": "Budget-friendly option for smaller models"
+    },
+    {
+      "id": "rtx-3090-24gb",
+      "name": "NVIDIA RTX 3090",
+      "vram_gb": 24,
+      "tflops": 35.6,
+      "price_msrp": 1499,
+      "providers": {
+        "aws": { "price_per_hour": 1.93, "available": true },
+        "lambda": { "price_per_hour": 1.50, "available": true },
+        "runpod": { "price_per_hour": 0.69, "available": true },
+        "vastai": { "price_per_hour": 0.45, "available": true }
+      },
+      "bestValue": false,
+      "notes": "Older gen but still capable"
+    },
+    {
+      "id": "a100-80gb",
+      "name": "NVIDIA A100 80GB",
+      "vram_gb": 80,
+      "tflops": 312,
+      "price_msrp": 10000,
+      "providers": {
+        "aws": { "price_per_hour": 4.25, "available": true },
+        "lambda": { "price_per_hour": 3.40, "available": true },
+        "runpod": { "price_per_hour": 2.49, "available": true },
+        "vastai": { "price_per_hour": 1.89, "available": true }
+      },
+      "bestValue": false,
+      "notes": "Enterprise tier for large models"
+    },
+    {
+      "id": "a100-40gb",
+      "name": "NVIDIA A100 40GB",
+      "vram_gb": 40,
+      "tflops": 312,
+      "price_msrp": 6999,
+      "providers": {
+        "aws": { "price_per_hour": 3.67, "available": true },
+        "lambda": { "price_per_hour": 2.95, "available": true },
+        "runpod": { "price_per_hour": 1.89, "available": true },
+        "vastai": { "price_per_hour": 1.25, "available": true }
+      },
+      "bestValue": false,
+      "notes": "Good balance of VRAM and cost"
+    },
+    {
+      "id": "h100-80gb",
+      "name": "NVIDIA H100 80GB",
+      "vram_gb": 80,
+      "tflops": 989,
+      "price_msrp": 20000,
+      "providers": {
+        "aws": { "price_per_hour": 6.50, "available": true },
+        "lambda": { "price_per_hour": 5.50, "available": true },
+        "runpod": { "price_per_hour": 3.99, "available": true },
+        "vastai": { "price_per_hour": 2.75, "available": false }
+      },
+      "bestValue": false,
+      "notes": "Cutting-edge for frontier models"
+    }
+  ]
+}

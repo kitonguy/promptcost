@@ -1,0 +1,52 @@
+name: Update GPU Data
+
+on:
+  schedule:
+    # Every Sunday at 2am UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    # Manual trigger
+
+jobs:
+  update-gpu-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read current GPU data
+        id: current-data
+        run: |
+          echo "Current data timestamp:"
+          cat public/gpu-data.json | grep -o '"lastUpdated": "[^"]*"' || echo "No timestamp"
+
+      - name: Update GPU data (Simulated)
+        # NOTE: This is a placeholder. In production, you would:
+        # 1. Fetch real prices from AWS, RunPod, Vast.ai, Lambda APIs
+        # 2. Compare with current prices
+        # 3. Update the JSON file if changes exceed threshold
+        run: |
+          echo "In production, this step would:"
+          echo "1. Fetch current prices from cloud GPU providers"
+          echo "2. Compare with existing public/gpu-data.json"
+          echo "3. Update if price change > 5%"
+          echo ""
+          echo "For now, we update the timestamp to show last check"
+          TIMESTAMP=$(date -u +%Y-%m-%d)
+          cat public/gpu-data.json | sed "s/\"lastUpdated\": \"[^\"]*\"/\"lastUpdated\": \"$TIMESTAMP\"/" > public/gpu-data.json.new
+          mv public/gpu-data.json.new public/gpu-data.json
+          echo "Updated timestamp to $TIMESTAMP"
+
+      - name: Create PR if data changed
+        if: false  # Disable for now - enable when real API integration is added
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "Update GPU pricing data - ${{ steps.current-data.outputs.date }}"
+          body: |
+            Automated GPU pricing update
+            - Updated from cloud provider APIs
+            - Check provider availability and pricing
+          commit-message: "chore: update GPU pricing data"
+          branch: gpu-data-update
