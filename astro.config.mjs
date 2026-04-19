@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   output: 'hybrid',
   site: 'https://promptcost.org',
+  compressHTML: true,
   adapter: cloudflare({
     platformProxy: {
       enabled: true
@@ -19,7 +20,9 @@ export default defineConfig({
   ],
   vite: {
     build: {
-      assetsInlineLimit: 0
+      assetsInlineLimit: 0,
+      cssMinify: true,
+      minify: true
     }
   }
 });
