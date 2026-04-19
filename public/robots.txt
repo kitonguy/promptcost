@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://promptcost.org/sitemap-index.xml
+Sitemap: https://promptcost.org/sitemap.xml
