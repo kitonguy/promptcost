@@ -3,5 +3,13 @@
   "tailwindCSS.includeLanguages": {
     "astro": "html"
   },
-  "typescript.enablePromptUseWorkspaceTypeScript": true
+  "typescript.enablePromptUseWorkspaceTypeScript": true,
+  "typescript.tsserver.enabledLibraryExtensions": [],
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "files.associations": {
+    "*.astro": "html"
+  },
+  "emmet.includeLanguages": {
+    "astro": "html"
+  }
 }
