@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const sortedPosts = posts.sort((a, b) =>
+    new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf()
+  );
+
+  return sortedPosts.map(post => ({
+    params: { slug: post.id.replace(/\.mdx?$/, '') },
+    props: { post, allPosts: sortedPosts }
+  }));
+}
+
+const { post, allPosts } = Astro.props;
+const { Content } = await post.render();
+
+// JSON-LD for BlogPosting
+const blogPostSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.meta_title || post.data.title,
+  "description": post.data.meta_description || post.data.description,
+  "image": post.data.featured_image_url,
+  "datePublished": post.data.published_date,
+  "dateModified": post.data.updated_date || post.data.published_date,
+  "author": {
+    "@type": "Person",
+    "name": post.data.author,
+    "url": "https://promptcost.org/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PromptCost.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://promptcost.org/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://promptcost.org/blog/${post.id.replace(/\.mdx?$/, '')}`
+  }
+};
+---
+
+<Layout
+  title={post.data.meta_title || post.data.title}
+  description={post.data.meta_description || post.data.description}
+  article={{
+    published_date: post.data.published_date,
+    updated_date: post.data.updated_date,
+    author: post.data.author,
+    category: post.data.category
+  }}
+  schema={blogPostSchema}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    {/* Breadcrumb */}
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-sm text-slate-500">
+        <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+        <li>/</li>
+        <li><a href="/blog" class="hover:text-primary transition-colors">Blog</a></li>
+        <li>/</li>
+        <li class="text-slate-900 font-medium truncate">{post.data.title}</li>
+      </ol>
+    </nav>
+
+    {/* Header */}
+    <header class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-semibold rounded-full">
+          {post.data.category}
+        </span>
+        <time datetime={post.data.published_date} class="text-sm text-slate-500">
+          {new Date(post.data.published_date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-slate-600 leading-relaxed">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center gap-4 mt-8 pt-8 border-t border-slate-200">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <span class="text-primary font-bold text-lg">{post.data.author.charAt(0)}</span>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900">{post.data.author}</p>
+            {post.data.author_bio && (
+              <p class="text-sm text-slate-500">{post.data.author_bio}</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {/* Featured Image */}
+    {post.data.featured_image_url && (
+      <figure class="mb-12 rounded-2xl overflow-hidden">
+        <img
+          src={post.data.featured_image_url}
+          alt={post.data.title}
+          class="w-full h-auto"
+          loading="eager"
+        />
+      </figure>
+    )}
+
+    {/* Content */}
+    <div class="prose prose-lg prose-slate max-w-none
+                prose-headings:font-bold prose-headings:text-slate-900
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-slate-600 prose-p:leading-relaxed
+                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                prose-ul:text-slate-600 prose-li:marker:text-primary
+                prose-table:text-sm">
+      <Content />
+    </div>
+
+    {/* FAQ Section */}
+    {post.data.faq && post.data.faq.length > 0 && (
+      <section id="faq-section" class="mt-16 bg-slate-50 rounded-2xl p-8" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="text-2xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {post.data.faq.map((item: { question: string; answer: string }, index: number) => (
+            <details class="bg-white rounded-xl border border-slate-200 p-4 group" open={index === 0}>
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+                <span>{item.question}</span>
+                <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </summary>
+              <p class="mt-4 text-slate-600 leading-relaxed">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Share Section */}
+    <div class="mt-16 pt-8 border-t border-slate-200">
+      <p class="text-center text-slate-500 mb-6">Share this article</p>
+      <div class="flex justify-center gap-4">
+        <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.href)}`}
+           target="_blank"
+           rel="noopener noreferrer"
+           class="px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium text-slate-700 transition-colors">
+          Share on X
+        </a>
+        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.href)}`}
+           target="_blank"
+           rel="noopener noreferrer"
+           class="px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium text-slate-700 transition-colors">
+          Share on LinkedIn
+        </a>
+      </div>
+    </div>
+
+    {/* Related Articles */}
+    <aside class="mt-16 pt-16 border-t border-slate-200">
+      <h2 class="text-xl font-bold text-slate-900 mb-8">Related Articles</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        {allPosts.filter(p => p.id !== post.id).slice(0, 2).map(relatedPost => (
+          <a href={`/blog/${relatedPost.id.replace(/\.mdx?$/, '')}`}
+             class="group block bg-white rounded-xl border border-slate-200 p-6 hover:border-primary/50 hover:shadow-lg transition-all">
+            <span class="text-xs font-semibold text-primary uppercase tracking-wider">{relatedPost.data.category}</span>
+            <h3 class="font-bold text-slate-900 mt-2 group-hover:text-primary transition-colors">
+              {relatedPost.data.title}
+            </h3>
+            <p class="text-sm text-slate-500 mt-2 line-clamp-2">{relatedPost.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </article>
+</Layout>

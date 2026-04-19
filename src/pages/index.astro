@@ -1,0 +1,411 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+interface Model {
+  id: string;
+  name: string;
+  price: number;
+  context_length?: number;
+}
+
+// Fetch models at build time for static generation
+let models: Model[] = [];
+let fetchError = false;
+
+try {
+  const response = await fetch('https://openrouter.ai/api/v1/models', {
+    headers: { 'Authorization': `Bearer ${import.meta.env.OPENROUTER_API_KEY || ''}` }
+  });
+  if (response.ok) {
+    const data = await response.json();
+    models = data.data
+      .filter((m: any) => m.pricing && parseFloat(m.pricing.prompt) > 0)
+      .map((m: any) => ({
+        id: m.id,
+        name: m.name,
+        price: parseFloat(m.pricing.prompt) * 1000000, // per 1M tokens
+        context_length: m.context_length || m.context_window || 128000
+      }))
+      .sort((a: Model, b: Model) => a.price - b.price);
+  } else {
+    fetchError = true;
+  }
+} catch (e) {
+  fetchError = true;
+}
+
+// Sample fallback models if API fails
+if (models.length === 0) {
+  models = [
+    { id: 'openai/gpt-4o', name: 'GPT-4o', price: 2.5, context_length: 128000 },
+    { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet', price: 3.0, context_length: 200000 },
+    { id: 'google/gemini-pro-1.5', name: 'Gemini Pro 1.5', price: 1.25, context_length: 1000000 },
+    { id: 'deepseek/deepseek-v3', name: 'DeepSeek V3', price: 0.01, context_length: 64000 },
+    { id: 'meta/llama-3.1-70b', name: 'Llama 3.1 70B', price: 0.65, context_length: 128000 },
+  ];
+}
+
+const modelDataJson = JSON.stringify(models);
+---
+
+<Layout
+  title="AI Token Counter & Model Cost Comparison | PromptCost.org"
+  description="Calculate AI token costs instantly. Compare pricing for 200+ models including GPT-4o, Claude 3.5, Gemini, and DeepSeek. Optimize your API budget with real-time data."
+>
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-slate-50 to-blue-50 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
+        <span class="text-primary">PromptCost</span>.org
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-8">
+        Real-time AI Token Estimation & Global Model Cost Comparison
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 text-sm">
+        <span class="px-4 py-2 bg-white rounded-full border border-slate-200 text-slate-600 shadow-sm">
+          200+ Models
+        </span>
+        <span class="px-4 py-2 bg-white rounded-full border border-slate-200 text-slate-600 shadow-sm">
+          Live API Pricing
+        </span>
+        <span class="px-4 py-2 bg-white rounded-full border border-slate-200 text-slate-600 shadow-sm">
+          100% Free
+        </span>
+      </div>
+    </div>
+  </section>
+
+  {/* Calculator Section */}
+  <section class="py-12 sm:py-16 -mt-8" aria-labelledby="calculator-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8 lg:p-10">
+        <h2 id="calculator-heading" class="sr-only">AI Cost Calculator</h2>
+
+        {/* Input Area */}
+        <div class="space-y-4 mb-8">
+          <label for="textInput" class="block text-sm font-semibold text-slate-700">
+            Enter your prompt or text
+          </label>
+          <textarea
+            id="textInput"
+            rows="4"
+            placeholder="Paste your text or prompt here to calculate token cost..."
+            class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
+            aria-describedby="textInput-desc"
+          ></textarea>
+          <p id="textInput-desc" class="text-xs text-slate-500">
+            Token calculation: ~4 characters per token (English text average)
+          </p>
+
+          <label for="modelSearch" class="block text-sm font-semibold text-slate-700 mt-6">
+            Select AI Model
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              id="modelSearch"
+              list="modelList"
+              placeholder="Search models... (e.g., GPT-4o, Claude, Gemini)"
+              class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+              autocomplete="off"
+            />
+            <datalist id="modelList"></datalist>
+          </div>
+
+          <label for="responseLength" class="block text-sm font-semibold text-slate-700 mt-6">
+            Estimated Response Length (tokens)
+          </label>
+          <input
+            type="number"
+            id="responseLength"
+            value="500"
+            min="0"
+            max="100000"
+            class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-900 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+          />
+        </div>
+
+        {/* Stats Display */}
+        <div class="grid grid-cols-3 gap-4 mb-8" role="status" aria-live="polite">
+          <div class="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+            <p class="text-2xl sm:text-3xl font-bold text-primary" id="tokenCount">0</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Input Tokens</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+            <p class="text-2xl sm:text-3xl font-bold text-slate-700" id="wordCount">0</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Words</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 text-center border border-slate-100">
+            <p class="text-2xl sm:text-3xl font-bold text-slate-700" id="charCount">0</p>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Characters</p>
+          </div>
+        </div>
+
+        {/* Cost Display */}
+        <div id="costDisplay" class="hidden bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="text-sm text-slate-600 mb-1">Selected Model</p>
+              <p class="text-xl font-bold text-slate-900" id="selectedModelName">-</p>
+            </div>
+            <div class="text-left sm:text-right">
+              <p class="text-sm text-slate-600 mb-1">Total Estimated Cost</p>
+              <p class="text-3xl sm:text-4xl font-extrabold text-primary" id="totalCost">$0.00</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-blue-200 flex flex-wrap gap-4 text-sm text-slate-600">
+            <div>
+              <span class="font-medium">Input:</span> <span id="inputCost">$0.00</span>
+            </div>
+            <div>
+              <span class="font-medium">Output (est.):</span> <span id="outputCost">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Model Lists */}
+        <div id="modelResults" class="hidden space-y-8">
+          {/* Cheaper Alternatives */}
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-cheaper mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              Cost-Effective Alternatives
+            </h3>
+            <div id="cheaperModels" class="space-y-2"></div>
+          </div>
+
+          {/* More Powerful */}
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-expensive mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+              High-Performance Tiers
+            </h3>
+            <div id="expensiveModels" class="space-y-2"></div>
+          </div>
+        </div>
+
+        {/* Loading State */}
+        <div id="loadingState" class="text-center py-12 text-slate-500">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mb-4"></div>
+          <p>Loading model data...</p>
+        </div>
+
+        {/* API Error State */}
+        {fetchError && (
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800 text-sm">
+            <p class="font-medium">Unable to fetch live API rates</p>
+            <p class="text-amber-700 mt-1">Displaying sample model data. Prices may not reflect current rates.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section id="faq" class="py-16 bg-slate-50" aria-labelledby="faq-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="faq-heading" class="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-12">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">How much does GPT-4o cost per 1M tokens?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">GPT-4o costs approximately $2.50 per million input tokens and $10.00 per million output tokens as of April 2026. Prices vary by provider - check our live calculator for the latest rates from multiple sources.</p>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">How is token count calculated?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">Tokens are calculated by dividing text character count by approximately 4 (since 1 token ≈ 4 characters in English). For most LLMs, 1,000 tokens equal about 750 words. Our calculator uses this standard approximation.</p>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">What is the cheapest AI model?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">The cheapest AI models as of April 2026 include DeepSeek V3 at $0.01/M tokens and various open-source models under $0.50/M tokens. Use our live comparison tool to explore all options.</p>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-xl border border-slate-200 p-4 group" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 hover:text-primary transition-colors">
+            <span itemprop="name">Can I share my calculation results?</span>
+            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mt-4 text-slate-600" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes! Your prompt text and selected model are automatically saved in the URL. You can share the URL with colleagues or bookmark it for future reference. Just copy the browser URL after making your calculation.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  {/* Blog Preview Section */}
+  <section class="py-16" aria-labelledby="blog-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="blog-heading" class="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-12">
+        Latest from the Blog
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8" id="blogGrid">
+        <!-- Blog posts will be loaded dynamically -->
+      </div>
+      <div class="text-center mt-10">
+        <a href="/blog" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors">
+          View All Articles
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script define:vars={{ modelDataJson }}>
+  const models = JSON.parse(modelDataJson);
+  const textInput = document.getElementById('textInput');
+  const modelSearch = document.getElementById('modelSearch');
+  const responseLength = document.getElementById('responseLength');
+  const loadingState = document.getElementById('loadingState');
+  const costDisplay = document.getElementById('costDisplay');
+  const modelResults = document.getElementById('modelResults');
+  const list = document.getElementById('modelList');
+
+  // Initialize model list
+  models.forEach(m => {
+    const option = document.createElement('option');
+    option.value = m.id;
+    option.textContent = m.name;
+    list.appendChild(option);
+  });
+
+  // Hide loading, show results
+  loadingState.style.display = 'none';
+
+  // URL State Persistence
+  const urlParams = new URLSearchParams(window.location.search);
+  const savedText = urlParams.get('text');
+  const savedModel = urlParams.get('model');
+
+  if (savedText) textInput.value = savedText;
+  if (savedModel) modelSearch.value = savedModel;
+
+  function updateURL() {
+    const params = new URLSearchParams();
+    if (textInput.value) params.set('text', textInput.value);
+    if (modelSearch.value) params.set('model', modelSearch.value);
+    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.replaceState({}, '', newUrl);
+  }
+
+  function formatCost(cost) {
+    if (cost < 0.00001) return cost.toFixed(7);
+    if (cost < 0.001) return cost.toFixed(5);
+    return cost.toFixed(4);
+  }
+
+  function createModelCard(model, isSelected = false) {
+    const tokens = Math.ceil(textInput.value.length / 4);
+    const responseTokens = parseInt(responseLength.value) || 500;
+    const inputCost = (tokens / 1000000) * model.price;
+    const outputCost = (responseTokens / 1000000) * (model.price * 4); // Output typically 4x price
+    const totalCost = inputCost + outputCost;
+
+    return `
+      <div class="flex items-center justify-between p-4 rounded-xl border ${isSelected ? 'border-primary bg-blue-50 ring-2 ring-primary/20' : 'border-slate-200 bg-white hover:border-primary/50'} transition-all cursor-pointer"
+           onclick="document.getElementById('modelSearch').value='${model.id}'; calc();"
+           role="option"
+           aria-selected="${isSelected}"
+           tabindex="0">
+        <div>
+          <p class="font-semibold text-slate-900">${model.name}</p>
+          <p class="text-xs text-slate-500">${model.id}</p>
+          ${model.context_length ? `<p class="text-xs text-slate-400 mt-1">Context: ${(model.context_length / 1000).toLocaleString()}K tokens</p>` : ''}
+        </div>
+        <div class="text-right">
+          <p class="font-bold text-primary">$${formatCost(totalCost)}</p>
+          <p class="text-xs text-slate-500">per ~${(tokens + responseTokens).toLocaleString()} tokens</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function calc() {
+    const text = textInput.value;
+    const tokens = Math.ceil(text.length / 4);
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const chars = text.length;
+    const responseTokens = parseInt(responseLength.value) || 500;
+
+    document.getElementById('tokenCount').textContent = tokens.toLocaleString();
+    document.getElementById('wordCount').textContent = words.toLocaleString();
+    document.getElementById('charCount').textContent = chars.toLocaleString();
+
+    const selectedModel = models.find(m => m.id === modelSearch.value);
+    if (!selectedModel) {
+      costDisplay.classList.add('hidden');
+      modelResults.classList.add('hidden');
+      return;
+    }
+
+    const inputCost = (tokens / 1000000) * selectedModel.price;
+    const outputCost = (responseTokens / 1000000) * (selectedModel.price * 4);
+    const totalCost = inputCost + outputCost;
+
+    document.getElementById('selectedModelName').textContent = selectedModel.name;
+    document.getElementById('totalCost').textContent = `$${formatCost(totalCost)}`;
+    document.getElementById('inputCost').textContent = `$${formatCost(inputCost)}`;
+    document.getElementById('outputCost').textContent = `$${formatCost(outputCost)}`;
+
+    costDisplay.classList.remove('hidden');
+    modelResults.classList.remove('hidden');
+
+    const idx = models.indexOf(selectedModel);
+    const cheaper = models.slice(Math.max(0, idx - 5), idx).reverse();
+    const expensive = models.slice(idx + 1, idx + 5);
+
+    document.getElementById('cheaperModels').innerHTML = cheaper.map(m => createModelCard(m)).join('');
+    document.getElementById('expensiveModels').innerHTML = expensive.map(m => createModelCard(m)).join('');
+
+    // Context limit warning
+    if (selectedModel.context_length && tokens > selectedModel.context_length) {
+      const warning = document.createElement('div');
+      warning.className = 'bg-amber-50 border border-amber-200 rounded-lg p-4 text-amber-800 text-sm mt-4';
+      warning.innerHTML = `<strong>Warning:</strong> Your input (${tokens.toLocaleString()} tokens) exceeds this model's context limit of ${selectedModel.context_length.toLocaleString()} tokens. Consider truncating or splitting your text.`;
+      costDisplay.appendChild(warning);
+    }
+
+    updateURL();
+  }
+
+  textInput.addEventListener('input', calc);
+  modelSearch.addEventListener('change', calc);
+  responseLength.addEventListener('input', calc);
+
+  // Initial calculation if URL has params
+  if (savedText || savedModel) calc();
+</script>
+
+<style>
+  /* Custom styles that can't be Tailwind */
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

@@ -1,0 +1,7 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": false,
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  },
+  "typescript.enablePromptUseWorkspaceTypeScript": true
+}

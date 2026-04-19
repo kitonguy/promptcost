@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export const prerender = true;
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf()
+);
+
+// JSON-LD for blog listing page
+const blogListingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "PromptCost.org Blog",
+  "description": "AI cost optimization guides, API pricing analysis, and token calculation tutorials.",
+  "url": "https://promptcost.org/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "PromptCost.org"
+  }
+};
+---
+
+<Layout
+  title="AI Cost Guides & Token Calculation Tutorials | PromptCost.org Blog"
+  description="Expert guides on AI API pricing, token calculation, and cost optimization strategies. Learn how to reduce your AI expenses by up to 90% with practical tips and real-world examples."
+  canonical="https://promptcost.org/blog"
+>
+  <section class="py-16 sm:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+        AI Cost Optimization <span class="text-primary">Blog</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
+        Expert guides, API pricing analysis, and token calculation tutorials to help you optimize your AI budget.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16" aria-labelledby="articles-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="articles-heading" class="sr-only">All Articles</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post, index) => (
+          <article class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-300">
+            {post.data.featured_image_url && (
+              <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`} class="block aspect-video overflow-hidden">
+                <img
+                  src={post.data.featured_image_url}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading={index < 3 ? "eager" : "lazy"}
+                />
+              </a>
+            )}
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                  {post.data.category}
+                </span>
+                <time datetime={post.data.published_date} class="text-xs text-slate-500">
+                  {new Date(post.data.published_date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}
+                </time>
+              </div>
+              <h3 class="font-bold text-lg text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}>
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="text-sm text-slate-600 line-clamp-3 mb-4">
+                {post.data.description}
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                <span class="text-sm text-slate-500 font-medium">{post.data.author}</span>
+                <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}
+                   class="text-sm font-semibold text-primary hover:underline flex items-center gap-1">
+                  Read more
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Newsletter CTA */}
+  <section class="py-16 bg-slate-900 text-white" aria-labelledby="newsletter-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 id="newsletter-heading" class="text-2xl sm:text-3xl font-bold mb-4">
+        Stay Updated on AI Pricing Changes
+      </h2>
+      <p class="text-slate-400 mb-8 max-w-xl mx-auto">
+        Get weekly updates on API price changes, new model releases, and cost optimization strategies delivered to your inbox.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Newsletter signup placeholder');">
+        <input
+          type="email"
+          placeholder="your@email.com"
+          required
+          class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+          aria-label="Email address"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-colors whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>

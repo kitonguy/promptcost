@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token Counter & Model Cost Comparison | PromptCost.org</title>
+    <meta name="description" content="Search AI models, calculate tokens and compare API costs for GPT-4o, Claude 3.5, and Gemini in real-time. Optimize your AI budget for free.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --primary: #2563eb; --cheaper: #10b981; --expensive: #f59e0b; --bg: #f8fafc; --text: #1e293b; --border: #e2e8f0; }
+        
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 40px 20px; line-height: 1.6; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .tool-card { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        
+        h1 { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 5px; color: var(--primary); letter-spacing: -1.5px; }
+        p.tagline { text-align: center; color: #64748b; margin-bottom: 30px; font-weight: 500; }
+        
+        /* Input & Search Area */
+        .input-group { width: 100%; display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+        
+        textarea { 
+            width: 100%; height: 180px; padding: 20px; border: 2px solid var(--border); border-radius: 12px; 
+            font-size: 16px; box-sizing: border-box; transition: all 0.2s; background: #fdfdfd; font-family: inherit;
+        }
+        textarea:focus { outline: none; border-color: var(--primary); background: white; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        
+        /* Fixed Search Box Width */
+        input#modelSearch { 
+            width: 100%; padding: 18px; border: 2px solid var(--border); border-radius: 12px; 
+            font-size: 15px; font-weight: 600; box-sizing: border-box; transition: all 0.2s; font-family: inherit;
+        }
+        input#modelSearch:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        
+        /* Stats Display */
+        .stats-bar { display: flex; gap: 10px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap; }
+        .stat { background: #f1f5f9; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; color: #475569; border: 1px solid #e2e8f0; }
+
+        /* Comparison Lists */
+        .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 30px 0 12px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+        
+        .model-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; transition: 0.2s; }
+        .model-item:hover { transform: translateX(5px); border-color: var(--primary); }
+        .selected { border: 2px solid var(--primary); background: #eff6ff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
+        
+        .model-info strong { font-size: 15px; display: block; }
+        .model-info small { color: #64748b; font-size: 12px; }
+        .price-tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 16px; color: var(--primary); }
+        
+        /* SEO Content Section */
+        .seo-section { margin-top: 60px; padding: 40px; background: #fff; border-radius: 16px; border: 1px solid var(--border); }
+        .seo-section h2 { font-size: 24px; color: var(--text); margin-bottom: 15px; }
+        .seo-section p { margin-bottom: 15px; color: #4b5563; }
+        
+        footer { text-align: center; margin-top: 50px; color: #94a3b8; font-size: 14px; padding-bottom: 40px; }
+        .loading { text-align: center; padding: 30px; color: var(--primary); font-weight: bold; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>PromptCost.org</h1>
+    <p class="tagline">Real-time AI Token Estimation & Global Model Cost Comparison</p>
+
+    <div class="tool-card">
+        <div class="input-group">
+            <textarea id="textInput" placeholder="Paste your text or prompt here to begin..."></textarea>
+            <input type="text" id="modelSearch" list="modelList" placeholder="🔍 Search through 200+ models (e.g. GPT-4o, Claude 3.5, Gemini...)" oninput="calc()">
+            <datalist id="modelList"></datalist>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat">Tokens: <span id="st-tk">0</span></div>
+            <div class="stat">Words: <span id="st-wd">0</span></div>
+            <div class="stat">Characters: <span id="st-ch">0</span></div>
+        </div>
+
+        <div id="loader" class="loading">Fetching current API rates...</div>
+
+        <div id="results" style="display:none;">
+            <div class="section-title" style="color: var(--primary);">📍 Selected Model Cost</div>
+            <div id="selectedArea"></div>
+
+            <div class="section-title" style="color: var(--cheaper);">↓ Cost-Effective Alternatives (Cheaper)</div>
+            <div id="cheaperArea"></div>
+
+            <div class="section-title" style="color: var(--expensive);">↑ High-Performance Tiers (More Powerful)</div>
+            <div id="expensiveArea"></div>
+        </div>
+    </div>
+
+    <article class="seo-section">
+        <h2>What is PromptCost.org?</h2>
+        <p>PromptCost.org is a free professional utility tool designed to help developers, AI researchers, and content creators manage their API budgets effectively. As the AI landscape evolves, pricing structures for Large Language Models (LLMs) change almost daily. Our mission is to provide transparency.</p>
+        
+        <h3>Why Calculate Tokens?</h3>
+        <p>Tokens are the core units used by models like GPT-4 and Claude to process information. Typically, 1,000 tokens equal about 750 words. By calculating tokens before sending API requests, you can avoid "billing shock" and optimize your costs by choosing the right model for your task.</p>
+        
+        <h3>Live Price Syncing</h3>
+        <p>Our data is fetched live via the <strong>OpenRouter API</strong>, meaning you always see the latest prices for over 200 models including OpenAI, Anthropic, Meta (Llama), and Google DeepMind.</p>
+    </article>
+
+    <footer>
+        &copy; 2026 PromptCost.org - Transparency in Artificial Intelligence.
+    </footer>
+</div>
+
+<script>
+    let db = [];
+    const tInput = document.getElementById('textInput');
+    const mSearch = document.getElementById('modelSearch');
+
+    async function init() {
+        try {
+            const r = await fetch('https://openrouter.ai/api/v1/models');
+            const d = await r.json();
+            db = d.data.map(m => ({
+                id: m.id,
+                name: m.name,
+                price: parseFloat(m.pricing.prompt) * 1000000
+            })).filter(m => m.price > 0).sort((a,b) => a.price - b.price);
+
+            const list = document.getElementById('modelList');
+            db.forEach(m => {
+                let o = document.createElement('option');
+                o.value = m.id;
+                o.innerText = m.name;
+                list.appendChild(o);
+            });
+
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+        } catch(e) { 
+            document.getElementById('loader').innerText = "Unable to connect to API. Please check your connection."; 
+        }
+    }
+
+    function createRow(m, tokens, isSel = false) {
+        const costVal = (tokens / 1000000 * m.price);
+        const costFormatted = costVal < 0.00001 ? costVal.toFixed(7) : costVal.toFixed(5);
+        
+        return `<div class="model-item ${isSel?'selected':''}">
+                    <div class="model-info">
+                        <strong>${m.name}</strong>
+                        <small>${m.id}</small>
+                    </div>
+                    <div class="price-tag">$${costFormatted}</div>
+                </div>`;
+    }
+
+    function calc() {
+        const text = tInput.value;
+        const tokens = Math.ceil(text.length / 4);
+        document.getElementById('st-tk').innerText = tokens.toLocaleString();
+        document.getElementById('st-wd').innerText = (text.trim() ? text.trim().split(/\s+/).length : 0).toLocaleString();
+        document.getElementById('st-ch').innerText = text.length.toLocaleString();
+
+        const sel = db.find(m => m.id === mSearch.value);
+        if(!sel) return;
+
+        document.getElementById('selectedArea').innerHTML = createRow(sel, tokens, true);
+        const idx = db.indexOf(sel);
+        
+        const cheap = db.slice(Math.max(0, idx - 10), idx).reverse();
+        const exp = db.slice(idx + 1, idx + 6);
+
+        document.getElementById('cheaperArea').innerHTML = cheap.map(m => createRow(m, tokens)).join('');
+        document.getElementById('expensiveArea').innerHTML = exp.map(m => createRow(m, tokens)).join('');
+    }
+
+    tInput.oninput = calc;
+    init();
+</script>
+</body>
+</html>

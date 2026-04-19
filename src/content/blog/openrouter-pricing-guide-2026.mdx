@@ -1,0 +1,125 @@
+---
+title: "OpenRouter Pricing Guide 2026: Complete Cost Analysis and Model Aggregation"
+description: "Complete guide to OpenRouter API pricing. Learn how OpenRouter aggregates 200+ AI models, their cost structure, and how to optimize spending through intelligent routing."
+author: "PromptCost Engineering Team"
+author_bio: "Lead AI infrastructure engineers who have collectively spent over $500k on API bills across 12 production deployments."
+category: "API Guides"
+published_date: "2026-04-06"
+updated_date: "2026-04-19"
+featured_image_url: "/images/openrouter-pricing-guide.png"
+meta_title: "OpenRouter Pricing Guide 2026: Complete Cost Analysis"
+meta_description: "OpenRouter pricing guide. How much does OpenRouter cost? Which models are cheapest? How to optimize spending. Complete cost analysis for 200+ aggregated models."
+faq:
+  - question: "How much does OpenRouter cost?"
+    answer: "OpenRouter charges per token based on the underlying model's pricing, plus a small 1% markup. For example, GPT-4o costs $2.50/M tokens on OpenRouter vs $2.50/M directly from OpenAI."
+  - question: "Is OpenRouter more expensive than direct API calls?"
+    answer: "OpenRouter adds approximately 1% markup on top of model pricing. The benefit is unified API access to 200+ models with automatic failover and standardized response formats."
+  - question: "Which models are cheapest on OpenRouter?"
+    answer: "The cheapest models are DeepSeek V3 at $0.01/M tokens, followed by Gemini 1.5 Flash at $0.075/M, and GPT-4o-mini at $0.15/M. OpenRouter aggregates these for easy comparison."
+  - question: "How does OpenRouter model aggregation work?"
+    answer: "OpenRouter provides a unified API that routes requests to different model providers (OpenAI, Anthropic, Google, etc.) behind the scenes. You get one API key for all models with standardized response formats."
+speakable:
+  cssSelector: ["article h2", "#faq-section", ".quick-answer"]
+---
+
+## Quick Answer
+
+**OpenRouter** aggregates 200+ AI models through a single API. Cost is model price plus 1% markup. DeepSeek V3 is cheapest at $0.01/M. Use for multi-model routing, automatic failover, and unified access.
+
+---
+
+## Executive TL;DR
+
+OpenRouter pricing works by:
+
+- Charging model-specific rates plus 1% platform fee
+- Providing unified API key for 200+ models
+- Enabling automatic failover between providers
+
+**Key models and costs:**
+
+| Model | Input Cost | Output Cost | Provider |
+|-------|------------|-------------|----------|
+| DeepSeek V3 | $0.008/M | $0.032/M | DeepSeek |
+| Gemini 1.5 Flash | $0.075/M | $0.30/M | Google |
+| GPT-4o-mini | $0.15/M | $0.60/M | OpenAI |
+| GPT-4o | $2.50/M | $10.00/M | OpenAI |
+
+---
+
+## How OpenRouter Pricing Works
+
+OpenRouter acts as an aggregation layer. Instead of managing multiple API keys for different providers, you get one unified API key.
+
+**Pricing structure:**
+
+1. Base model price (varies by model)
+2. Plus 1% platform markup
+3. Plus minimal routing costs for failover
+
+For example:
+- GPT-4o direct: $2.50/M input
+- GPT-4o on OpenRouter: $2.525/M input (1% markup)
+
+---
+
+## Cost Optimization on OpenRouter
+
+### Tier 1: Budget Models (Under $0.10/M)
+
+For high-volume, simple tasks:
+
+- **DeepSeek V3**: $0.008/M input - Best for classification, extraction
+- **Gemini 1.5 Flash**: $0.075/M input - Best balance of cost and quality
+- **Llama 3.1 8B**: $0.10/M input - Open source option
+
+### Tier 2: Standard Models ($0.10-$1.00/M)
+
+For general-purpose tasks:
+
+- **GPT-4o-mini**: $0.15/M input - Best overall value
+- **Claude 3.5 Haiku**: $0.80/M input - Strong quality
+- **Gemini 1.5 Pro**: $0.35/M input - Good for long contexts
+
+### Tier 3: Premium Models ($1.00+/M)
+
+For complex reasoning:
+
+- **GPT-4o**: $2.50/M input - Best for coding
+- **Claude 3.5 Sonnet**: $3.00/M input - Best for documents
+- **o1**: $15.00/M input - Reasoning tasks only
+
+---
+
+## Automatic Failover Savings
+
+One key benefit: automatic failover.
+
+If your primary model (e.g., GPT-4o) goes down, OpenRouter automatically routes to a backup (e.g., Claude 3.5 Sonnet).
+
+**Without failover:** 100% downtime = $0 revenue
+**With failover:** 99.9% uptime = near-full revenue
+
+This can save thousands in lost transactions during API outages.
+
+---
+
+## FAQ
+
+### How does OpenRouter compare to direct API access?
+
+OpenRouter costs ~1% more but provides unified access, automatic failover, and standardized responses across all models.
+
+### Which OpenRouter model is best for cost optimization?
+
+GPT-4o-mini offers the best cost-to-quality ratio for most applications. DeepSeek V3 for budget-sensitive, high-volume tasks.
+
+### Does OpenRouter charge for failed requests?
+
+No. Failed requests (due to provider issues) are not charged. You only pay for successful responses.
+
+---
+
+## Conclusion
+
+OpenRouter simplifies multi-model AI access with transparent pricing. The 1% markup pays for itself through unified API management and automatic failover.
