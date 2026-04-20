@@ -42,5 +42,5 @@
   <text x="590" y="305" text-anchor="middle" fill="#ffedd5" font-family="system-ui" font-size="12">✓ 99.9% SLA</text>
   <text x="590" y="340" text-anchor="middle" fill="#ffedd5" font-family="system-ui" font-size="12">Best for: Regulated industries</text>
   <!-- Footer -->
-  <text x="400" y="385" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">CoreWeave: GPU specialization | AWS: Compliance & global scale</text>
+  <text x="400" y="385" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">CoreWeave: GPU specialization | AWS: Compliance &amp; global scale</text>
 </svg>
