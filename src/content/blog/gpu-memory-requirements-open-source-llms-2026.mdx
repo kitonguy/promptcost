@@ -1,0 +1,332 @@
+---
+title: "GPU Memory Requirements for Popular Open Source LLMs in 2026: The Definitive Guide"
+description: "Llama 3 70B needs 140GB+ (requires 2x A100). Mistral 7B fits in 24GB. DeepSeek V3 needs 320GB. Here is exactly what VRAM you need for every major model."
+author: "T. Camadan"
+author_link: "https://www.linkedin.com/in/camadan"
+author_bio: "AI infrastructure engineer who has spent $200K+ on GPU rentals across 8 production deployments. Former ML platform lead at a Series B startup."
+category: "GPU Rental"
+published_date: "2026-04-20"
+updated_date: "2026-04-20"
+featured_image_url: "/images/llm-vram-requirements-2026.svg"
+meta_title: "LLM VRAM Requirements 2026 - GPU Memory for All Popular Models"
+meta_description: "GPU memory requirements for Llama 3, Mistral, DeepSeek V3, Mixtral and more. Includes full precision, QLoRA, and inference requirements. Updated April 2026."
+faq:
+  - question: "How much VRAM do I need to run Llama 3 70B?"
+    answer: "Full precision Llama 3 70B requires 140GB+ (2x A100 80GB or 2x H100 80GB). 4-bit QLoRA fits in single A100 80GB. 8-bit inference fits in single A100 with aggressive memory optimization."
+  - question: "Can RTX 4090 24GB run Llama 3 70B?"
+    answer: "No, not at meaningful quality. RTX 4090 can run Llama 3 70B at 4-bit with tensor parallelism but throughput is low and inference is slow. For practical 70B deployment, minimum 2x A100 80GB or equivalent."
+  - question: "What VRAM do I need for Mistral 7B?"
+    answer: "Mistral 7B full precision needs 14GB, fitting in RTX 4090 24GB with room for batch processing. 4-bit quantized inference fits in RTX 4070 Ti Super 16GB. This is the sweet spot for local development."
+  - question: "How much VRAM for DeepSeek V3?"
+    answer: "DeepSeek V3 at full precision requires 320GB—exceeding single-server H100 configurations. Q1 2026 checkpoints enable 2-bit inference on 4x A100 80GB. The model requires multi-node or aggressive quantization to run practically."
+  - question: "What is QLoRA and why does it reduce VRAM requirements?"
+    answer: "QLoRA (Quantized Low-Rank Adaptation) reduces model weight precision from 16-bit to 4-bit while preserving fine-tuning quality. It enables 70B model fine-tuning on single 80GB GPU instead of requiring multi-GPU setups."
+  - question: "Does batch size affect VRAM requirements?"
+    answer: "Yes. Batch size multiplies memory requirements for activations, not just weights. A model that fits at batch size 1 may fail at batch size 8. For inference APIs, keep batch size small and scale horizontally instead."
+  - question: "What GPU is cheapest for 70B model inference?"
+    answer: "Vast.ai A100 80GB spot at $1.25/hr is the lowest cost per token for 70B models. RunPod offers similar value at $1.69/hr. RTX 4090 on Vast.ai at $0.35/hr spot works for quantized 70B but is slow."
+  - question: "How do Mixture of Experts models affect VRAM?"
+    answer: "MoE models like Mixtral 8x7B route tokens through subset of expert networks, reducing active parameter count per token. Mixtral 8x7B activates 12B parameters per token despite having 45B total, enabling it to fit in 24GB RTX 4090."
+  - question: "What is the VRAM difference between training and inference?"
+    answer: "Training requires 3-4x more VRAM than inference due to optimizer states (Adam states are fp32), gradients, and activations. Fine-tuning 7B in fp16 needs ~16GB for model + ~8GB for training overhead. Inference 7B in fp16 needs ~14GB."
+speakable:
+  cssSelector: ["article h2", "#faq-section", ".quick-answer"]
+---
+
+## Quick Answer
+
+**The VRAM equation is simple: full-precision parameters × 2 bytes + 20% overhead = minimum training VRAM.** Llama 3 70B at 140GB requires multi-GPU. Mistral 7B at 14GB fits in RTX 4090. DeepSeek V3 at 320GB needs a cluster. Quantization (QLoRA, GPTQ, AWQ) cuts requirements by 60-75% with minimal quality loss for most tasks.
+
+---
+
+## Why VRAM Requirements Actually Matter
+
+Choosing the right GPU for your model is not about preference—it is about math. A model that requires 140GB of VRAM cannot run on a 24GB RTX 4090, period. Understanding VRAM requirements prevents expensive mistakes: renting an A100 when an RTX 4090 would suffice, or buying RTX 4090s when your workload actually needs A100s.
+
+This guide covers the most commonly deployed open-source models as of April 2026. Numbers are based on official model documentation, community benchmarks, and my own deployment experience.
+
+**Key assumption:** We use fp16 (float16) as the baseline unless noted. Quantization examples use 4-bit unless noted.
+
+---
+
+## The VRAM Formula
+
+Before listing specific models, understand the calculation:
+
+### Inference VRAM
+
+```
+Model VRAM = Parameters × 2 bytes (fp16) × 1.2 (overhead)
+```
+
+70B model = 70,000,000,000 × 2 × 1.2 = **168GB**
+
+The 1.2x overhead covers activation memory, KV cache, and runtime buffers. Actual requirements vary by implementation.
+
+### Training VRAM
+
+```
+Training VRAM = Parameters × 2 bytes × 4 (optimizer + gradients + activations + model)
+```
+
+70B training = 70B × 2 × 4 = **560GB**
+
+Training requires 3-4x inference VRAM due to optimizer states (Adam uses fp32, which is 4 bytes per parameter), gradients, and activation memory for backpropagation.
+
+### QLoRA Fine-tuning VRAM
+
+```
+QLoRA VRAM = Parameters × 0.5 bytes (4-bit) × 1.2 + 4GB (adapter overhead)
+```
+
+70B QLoRA = 70B × 0.5 × 1.2 + 4GB = **~46GB**
+
+QLoRA (Quantized Low-Rank Adaptation) enables 70B fine-tuning on single 80GB GPU by quantizing the base model to 4-bit and only training small adapter matrices in fp16.
+
+---
+
+## Model-by-Model Breakdown
+
+### Llama 3 Family
+
+#### Llama 3 8B
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 16GB | 32GB | RTX 4070 Ti Super minimum |
+| 4-bit | 6GB | 10GB | RTX 3060 viable |
+| 8-bit | 10GB | 18GB | RTX 3080 minimum |
+
+**Use case:** Best small model for consumer GPUs. Runs on RTX 3060 12GB for experimentation. 8B is the new "good enough" baseline for simple tasks.
+
+#### Llama 3 70B
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 140GB | 560GB | Requires 2x A100 80GB |
+| 4-bit | 40GB | 46GB | Single A100 80GB with QLoRA |
+| 8-bit | 72GB | 120GB | Single A100 80GB full fine-tune impossible |
+
+**Use case:** State-of-the-art general purpose model. Production deployments typically use 4-bit for inference economics. QLoRA fine-tuning is the standard for domain adaptation.
+
+**Practical note:** I run Llama 3 70B 4-bit inference on Lambda Labs A100 80GB spot for $2.40/hour. Full fp16 requires 2x A100 at $4.80/hour minimum.
+
+#### Llama 3 405B
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 810GB | 3.2TB | Multi-node H100 cluster only |
+| 4-bit | 230GB | 260GB | Requires 4x A100 80GB |
+| 8-bit | 410GB | 600GB | 8x A100 or 4x H100 |
+
+**Use case:** Frontier model research. Not deployable on single-server infrastructure. 405B is for organizations with GPU cluster access who need maximum model quality.
+
+---
+
+### Mistral Family
+
+#### Mistral 7B
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 14GB | 28GB | RTX 4090 24GB comfortable |
+| 4-bit | 5GB | 9GB | RTX 3060 12GB borderline |
+| 8-bit | 9GB | 16GB | RTX 4070 Ti Super minimum |
+
+**Use case:** The development workhorse. Mistral 7B fits in consumer GPUs for experimentation and local development. Quality is competitive with Llama 3 8B on most benchmarks. Best model to prototype with before scaling to 70B.
+
+**Why Mistral 7B instead of Llama 3 8B:** Mistral consistently outperforms Llama 3 8B on coding tasks and math. The grouped-query attention architecture is more memory-efficient.
+
+#### Mixtral 8x7B (MoE)
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 48GB | 96GB | Single A100 80GB full fine-tune |
+| 4-bit | 24GB | 30GB | RTX 4090 24GB viable |
+| 8-bit | 36GB | 48GB | A100 80GB recommended |
+
+**Use case:** Mixture of Experts architecture activates only 12B parameters per token despite having 45B total. This makes it the highest quality-per-VRAM model available. Excellent for production inference where you can afford A100-level compute.
+
+**The MoE advantage:** Mixtral 8x7B at 24GB fits in RTX 4090 at 4-bit—same as Mistral 7B. But it delivers quality approaching Llama 3 70B with the memory footprint of a 7B model. This is the best open-source model for RTX 4090 owners.
+
+#### Mistral Small (22B)
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 44GB | 88GB | Single A100 80GB borderline |
+| 4-bit | 18GB | 24GB | RTX 4090 comfortable |
+
+**Use case:** The middle ground between 7B and 70B. Mistral 22B offers better quality than 7B without requiring multi-GPU setup. Emerging as the preferred model for single-GPU production inference.
+
+---
+
+### DeepSeek Family
+
+#### DeepSeek V3 (671B)
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 1342GB | 5.3TB | Multi-node cluster only |
+| FP8 | 700GB | 2.8TB | Requires H200 or advanced quantization |
+| 4-bit | 380GB | 420GB | 8x H100 cluster |
+
+**Use case:** DeepSeek V3 is the largest commonly discussed open-source MoE model. Full precision is not deployable on any single-server configuration. Aggressive quantization + multi-node is the practical path.
+
+**Important:** DeepSeek released Q1 2026 checkpoints with extensive quantization support. The community is actively developing single-GPU configurations using 2-bit quantization, but quality preservation is still being validated.
+
+#### DeepSeek Coder V2 (236B)
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 472GB | 1.9TB | Multi-node required |
+| 4-bit | 130GB | 150GB | 2x A100 80GB viable |
+
+**Use case:** Best open-source code generation model as of April 2026. DeepSeek Coder V2 approaches GPT-4 Turbo on coding benchmarks at a fraction of the cost via Vast.ai inference. Requires 2x A100 for practical deployment.
+
+---
+
+### Phi and Smaller Models
+
+#### Phi-3 Mini (3.8B)
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 8GB | 16GB | RTX 3060 minimum |
+| 4-bit | 2GB | 5GB | MacBook M1 Pro viable |
+
+**Use case:** Edge deployment, mobile inference, scenarios where even RTX 3060 is overkill. Phi-3 Mini is surprising capable for its size. Good for prototyping with extremely limited compute.
+
+#### Gemma 2 9B
+| Precision | Inference | Fine-tuning | Notes |
+|-----------|-----------|--------------|-------|
+| fp16 | 18GB | 36GB | RTX 4090 comfortable |
+| 4-bit | 6GB | 12GB | RTX 3060 minimum |
+
+**Use case:** Google's open model with strong instruction-following. Gemma 2 9B is a credible alternative to Mistral 7B with better multilingual support. Good for European markets where Llama licensing concerns apply.
+
+---
+
+## The Practical VRAM Table
+
+Here is the quick reference for the models you are most likely to deploy in 2026:
+
+| Model | fp16 Inference | 4-bit Inference | QLoRA Fine-tune | Practical Min GPU |
+|-------|---------------|-----------------|-----------------|------------------|
+| Llama 3 8B | 16GB | 6GB | 10GB | RTX 3060 |
+| Mistral 7B | 14GB | 5GB | 9GB | RTX 3060 |
+| Gemma 2 9B | 18GB | 6GB | 12GB | RTX 3060 |
+| Phi-3 Mini | 8GB | 2GB | 5GB | MacBook M1 |
+| Mixtral 8x7B | 48GB | 24GB | 30GB | RTX 4090 |
+| Mistral Small 22B | 44GB | 18GB | 24GB | RTX 4090 |
+| Llama 3 70B | 140GB | 40GB | 46GB | A100 80GB |
+| DeepSeek Coder V2 | 472GB | 130GB | 150GB | 2x A100 80GB |
+| Llama 3 405B | 810GB | 230GB | 260GB | 4x A100 80GB |
+| DeepSeek V3 | 1342GB | 380GB | 420GB | 8x H100 |
+
+---
+
+## Multi-GPU Strategies for Large Models
+
+When your model does not fit in single GPU, you need tensor parallelism or pipeline parallelism.
+
+### Tensor Parallelism
+
+Splits the model weights across GPUs along the tensor dimension. All GPUs work on each layer together. Requires high-bandwidth interconnects (NVLink).
+
+- **Effective for:** Inference, training with large batch sizes
+- **Communication overhead:** High (all GPUs must sync every layer)
+- **NVLink required:** Yes for performance
+
+### Pipeline Parallelism
+
+Splits model layers across GPUs. GPU 1 processes layers 1-20, GPU 2 processes layers 21-40, etc. Latency from pipeline bubbles.
+
+- **Effective for:** Training with small batch sizes
+- **Communication overhead:** Lower than tensor parallelism
+- **NVLink helpful but not required:** Data transfers via PCIe work with acceptable overhead
+
+### Common Configurations for 70B Models
+
+| Configuration | GPUs | Total VRAM | Use Case |
+|--------------|------|------------|----------|
+| Single A100 | 1x A100 80GB | 80GB | QLoRA fine-tune, small batch inference |
+| Dual A100 | 2x A100 80GB | 160GB | Full fp16 inference, small batch training |
+| Quad A100 | 4x A100 80GB | 320GB | Large batch training, DeepSeek Coder V2 |
+| Single H100 | 1x H100 80GB | 80GB | 30% faster than A100, same VRAM |
+| Dual H100 | 2x H100 80GB | 160GB | Best for 70B production inference |
+
+---
+
+## Quantization: The Memory Reduction Multiplier
+
+Quantization reduces weight precision to shrink VRAM requirements. The quality trade-off has improved dramatically with newer techniques.
+
+### 4-bit Quantization (GPTQ, QLoRA)
+
+- Reduces fp16 to 4-bit integers via calibration dataset
+- 60-75% memory reduction with <5% quality loss on most benchmarks
+- **Best for:** Production inference where quality preservation matters
+- **Tools:** AutoGPTQ, GPTQ-for-LLaMa, llama.cpp
+
+### 8-bit Quantization
+
+- Reduces fp16 to 8-bit with mixed precision (some layers stay fp16)
+- 40-50% memory reduction with <2% quality loss
+- **Best for:** Cases where 4-bit quality loss is unacceptable but 16GB models are too small
+- **Tools:** bitsandbytes 8-bit optimization
+
+### 2-bit Quantization (Emerging)
+
+- Emerging technique with active research in 2026
+- 80% memory reduction but significant quality loss without special handling
+- **Best for:** Research only, not production
+- **Tools:** AWQ, QuaROT with calibration improvements
+
+### Quantization Quality by Model
+
+| Model | fp16 | 8-bit | 4-bit | 2-bit |
+|-------|------|-------|-------|-------|
+| Llama 3 70B | 100% | 98% | 95% | 85% |
+| Mixtral 8x7B | 100% | 99% | 96% | 87% |
+| Mistral 7B | 100% | 99% | 97% | 90% |
+| DeepSeek V3 | 100% | 97% | 91% | 78% |
+
+Quality percentages are approximate, based on community benchmark averages. Your mileage varies by task.
+
+---
+
+## The Practical Decision Guide
+
+### Start Here
+
+**1. What model quality do you need?**
+- Simple tasks (summarization, classification, extraction) → 7B models fine
+- Complex reasoning, code generation → 70B models necessary
+- Frontier research → 405B or DeepSeek V3 clusters
+
+**2. What compute do you have access to?**
+- RTX 4090 24GB → Mistral 7B, Mixtral 8x7B 4-bit, Gemma 2 9B
+- Consumer GPUs 12-16GB → Mistral 7B 4-bit, Phi-3, Gemma 2 4-bit
+- Single A100 80GB → Llama 3 70B QLoRA, Mixtral fine-tuning
+- Multi-A100/H100 → Any model at full precision
+
+**3. What is your cost constraint?**
+- Budget-constrained → Vast.ai spot + Mixtral 8x7B at 4-bit
+- Mid-range → RunPod A100 spot + Llama 3 70B QLoRA
+- Production quality → CoreWeave reserved + Mixtral or Llama 3 70B full precision
+
+---
+
+## The GPU That Matches Your Model
+
+Based on my deployment experience, here is the practical pairing:
+
+| Model Target | Recommended GPU | Provider | Approximate Cost |
+|-------------|-----------------|----------|-------------------|
+| Mistral 7B development | RTX 4090 24GB | Vast.ai spot | $0.35-0.50/hr |
+| Mixtral 8x7B production | A100 80GB | Lambda spot | $2.40/hr |
+| Llama 3 70B fine-tuning | A100 80GB | RunPod spot | $1.69/hr |
+| Llama 3 70B production | 2x A100 80GB | CoreWeave reserved | $5.00/hr |
+| DeepSeek Coder V2 | 2x A100 80GB | Lambda spot | $4.80/hr |
+
+For real-time pricing across all these options, use our **[GPU Rental Index](/gpu)** which shows current spot and on-demand prices from Vast.ai, RunPod, Lambda Labs, CoreWeave, and AWS.
+
+:::tip
+**Continue Reading:**
+
+- For real-time GPU pricing across all providers, see the **[GPU Rental Index](/gpu)**
+- To calculate your project cost by GPU type, use our **[Project Budgeter](/gpu#budget-calculator)**
+- For provider comparisons, see **[Vast.ai vs RunPod vs Lambda](/blog/vastai-vs-runpod-vs-lambda-gpu-comparison-2026)**
+- For fine-tuning strategies, see **[ROI Calculator for GPU Rentals](/blog/gpu-rental-roi-llm-fine-tuning-calculator)**
+:::
