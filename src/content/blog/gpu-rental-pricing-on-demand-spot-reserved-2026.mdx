@@ -24,7 +24,7 @@ faq:
   - question: "How do providers determine spot prices?"
     answer: "Spot prices fluctuate based on supply-demand balance in each region. Prices update every 5-30 minutes depending on provider. When a new AI model releases, GPU demand spikes and spot prices jump 20-40% within hours."
   - question: "What is the break-even point for reserved instance discounts?"
-    answer: "With 40-50% reserved discounts, the break-even vs on-demand is typically 4-6 months of equivalent usage. If you need GPUs for <4 months, on-demand is cheaper even at premium rates."
+    answer: "With 40-50% reserved discounts, the break-even vs on-demand is typically 4-6 months of equivalent usage. If you need GPUs for &lt;4 months, on-demand is cheaper even at premium rates."
   - question: "Do spot instances have SLAs?"
     answer: "No major provider offers SLA guarantees on spot instances. This is the fundamental trade-off: you save money but accept interruption risk. Enterprise deployments must plan for spot failures or pay for on-demand/reserved."
   - question: "What are the minimum commitment requirements?"
@@ -240,7 +240,7 @@ For latency-sensitive batch jobs that cannot wait for instance startup, maintain
 **Choose On-Demand If:**
 - [ ] Your GPU needs vary significantly week-to-week
 - [ ] You are in a development or experimentation phase
-- [ ] You need GPUs for <4 months total
+- [ ] You need GPUs for &lt;4 months total
 - [ ] You cannot handle interruption recovery in your pipelines
 
 **Choose Spot If:**

@@ -28,7 +28,7 @@ faq:
   - question: "What about multi-GPU setups at home?"
     answer: "Multi-RTX 4090 home setups are possible but require: expensive motherboards (2x PCIe slots with proper spacing), high-wattage PSUs (1000W+), significant cooling, and NVLink is not available on RTX consumer cards—multi-GPU scaling is limited."
   - question: "When does RTX 4090 ownership make financial sense?"
-    answer: "RTX 4090 ownership makes sense when: you use 8+ hours daily, electricity is cheap (<$0.12/kWh), you need instant availability without waiting for cloud instances, you are running experiments that frequently idle between iterations."
+    answer: "RTX 4090 ownership makes sense when: you use 8+ hours daily, electricity is cheap (&lt;$0.12/kWh), you need instant availability without waiting for cloud instances, you are running experiments that frequently idle between iterations."
 speakable:
   cssSelector: ["article h2", "#faq-section", ".quick-answer"]
 ---
@@ -239,7 +239,7 @@ Vast.ai at $0.35/hr for 8 hours/day = $84/month. That is competitive with local 
 ### Start Here: The Basic Test
 
 **1. How many hours per day will you actively use the GPU?**
-- <4 hours: Cloud almost always wins
+- &lt;4 hours: Cloud almost always wins
 - 4-8 hours: Cloud wins unless electricity is very cheap
 - 8-12 hours: Local wins if electricity is cheap
 - 12+ hours: Local almost always wins
@@ -247,7 +247,7 @@ Vast.ai at $0.35/hr for 8 hours/day = $84/month. That is competitive with local 
 **2. What is your electricity rate?**
 - >$0.20/kWh: Cloud wins for most usage levels
 - $0.12-0.20/kWh: Break-even at 8-10 hours/day
-- <$0.12/kWh: Local competitive at moderate usage
+- &lt;$0.12/kWh: Local competitive at moderate usage
 
 **3. What models do you need?**
 - 7B class only: RTX 4090 handles this well locally
