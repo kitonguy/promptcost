@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="amd" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ed8936"/>
+      <stop offset="100%" style="stop-color:#dd6b20"/>
+    </linearGradient>
+    <linearGradient id="nvidia" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#48bb78"/>
+      <stop offset="100%" style="stop-color:#38a169"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg5)"/>
+  <text x="400" y="40" text-anchor="middle" fill="#f8fafc" font-family="system-ui" font-size="22" font-weight="700">AMD MI300X vs NVIDIA H100</text>
+  <!-- MI300X Card -->
+  <rect x="30" y="70" width="360" height="290" rx="12" fill="url(#amd)"/>
+  <text x="210" y="105" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="24" font-weight="800">AMD MI300X</text>
+  <text x="210" y="130" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="13">The Memory King</text>
+  <!-- MI300X Specs -->
+  <rect x="50" y="150" width="140" height="60" rx="8" fill="#c05621"/>
+  <text x="120" y="175" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">128GB</text>
+  <text x="120" y="195" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="11">HBM3 VRAM</text>
+  <rect x="210" y="150" width="160" height="60" rx="8" fill="#c05621"/>
+  <text x="290" y="175" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">5.3 TB/s</text>
+  <text x="290" y="195" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="11">Memory Bandwidth</text>
+  <rect x="50" y="225" width="140" height="60" rx="8" fill="#c05621"/>
+  <text x="120" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">1,707</text>
+  <text x="120" y="270" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="11">TFLOPS FP16</text>
+  <rect x="210" y="225" width="160" height="60" rx="8" fill="#c05621"/>
+  <text x="290" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">$3.49</text>
+  <text x="290" y="270" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="11">per hour spot</text>
+  <text x="210" y="320" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="13">✓ 60% more VRAM</text>
+  <text x="210" y="340" text-anchor="middle" fill="#fed7aa" font-family="system-ui" font-size="12">Best for: Large model training</text>
+  <!-- H100 Card -->
+  <rect x="410" y="70" width="360" height="290" rx="12" fill="url(#nvidia)"/>
+  <text x="590" y="105" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="24" font-weight="800">NVIDIA H100 SXM5</text>
+  <text x="590" y="130" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="13">The Industry Standard</text>
+  <!-- H100 Specs -->
+  <rect x="430" y="150" width="140" height="60" rx="8" fill="#276749"/>
+  <text x="500" y="175" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">80GB</text>
+  <text x="500" y="195" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="11">HBM3e VRAM</text>
+  <rect x="590" y="150" width="160" height="60" rx="8" fill="#276749"/>
+  <text x="670" y="175" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">3.35 TB/s</text>
+  <text x="670" y="195" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="11">Memory Bandwidth</text>
+  <rect x="430" y="225" width="140" height="60" rx="8" fill="#276749"/>
+  <text x="500" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">989</text>
+  <text x="500" y="270" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="11">TFLOPS FP16</text>
+  <rect x="590" y="225" width="160" height="60" rx="8" fill="#276749"/>
+  <text x="670" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="22" font-weight="800">$2.99</text>
+  <text x="670" y="270" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="11">per hour spot</text>
+  <text x="590" y="320" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="13">✓ TensorRT-LLM support</text>
+  <text x="590" y="340" text-anchor="middle" fill="#c6f6d5" font-family="system-ui" font-size="12">Best for: Production inference</text>
+  <!-- Footer -->
+  <text x="400" y="385" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">MI300X: 60% more VRAM | H100: Better ecosystem & inference optimization</text>
+</svg>
