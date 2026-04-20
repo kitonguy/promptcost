@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="vastai" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="runpod" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#9333ea"/>
+    </linearGradient>
+    <linearGradient id="lambda" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <text x="400" y="45" text-anchor="middle" fill="#f8fafc" font-family="system-ui" font-size="22" font-weight="700">GPU Provider Comparison 2026</text>
+  <!-- Vast.ai -->
+  <rect x="30" y="80" width="230" height="260" rx="12" fill="url(#vastai)"/>
+  <text x="145" y="115" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="18" font-weight="700">Vast.ai</text>
+  <text x="145" y="145" text-anchor="middle" fill="#dcfce7" font-family="system-ui" font-size="13">Marketplace Model</text>
+  <text x="145" y="175" text-anchor="middle" fill="#fef08a" font-family="system-ui" font-size="28" font-weight="800">$0.35/hr</text>
+  <text x="145" y="200" text-anchor="middle" fill="#bbf7d0" font-family="system-ui" font-size="12">RTX 4090 Spot</text>
+  <text x="145" y="230" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ Deepest discounts</text>
+  <text x="145" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ $0.01/GB egress</text>
+  <text x="145" y="270" text-anchor="middle" fill="#fecaca" font-family="system-ui" font-size="12">✗ Community only</text>
+  <text x="145" y="290" text-anchor="middle" fill="#fecaca" font-family="system-ui" font-size="12">✗ 8-15% interruption</text>
+  <text x="145" y="320" text-anchor="middle" fill="#bbf7d0" font-family="system-ui" font-size="11">Best for: Budget researchers</text>
+  <!-- RunPod -->
+  <rect x="285" y="80" width="230" height="260" rx="12" fill="url(#runpod)"/>
+  <text x="400" y="115" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="18" font-weight="700">RunPod</text>
+  <text x="400" y="145" text-anchor="middle" fill="#f3e8ff" font-family="system-ui" font-size="13">Managed Cloud</text>
+  <text x="400" y="175" text-anchor="middle" fill="#fef08a" font-family="system-ui" font-size="28" font-weight="800">$0.49/hr</text>
+  <text x="400" y="200" text-anchor="middle" fill="#e9d5ff" font-family="system-ui" font-size="12">RTX 4090 Spot</text>
+  <text x="400" y="230" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ Easy setup</text>
+  <text x="400" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ Community support</text>
+  <text x="400" y="270" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ $0.05/GB egress</text>
+  <text x="400" y="320" text-anchor="middle" fill="#e9d5ff" font-family="system-ui" font-size="11">Best for: Indie developers</text>
+  <!-- Lambda Labs -->
+  <rect x="540" y="80" width="230" height="260" rx="12" fill="url(#lambda)"/>
+  <text x="655" y="115" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="18" font-weight="700">Lambda Labs</text>
+  <text x="655" y="145" text-anchor="middle" fill="#dbeafe" font-family="system-ui" font-size="13">Enterprise Cloud</text>
+  <text x="655" y="175" text-anchor="middle" fill="#fef08a" font-family="system-ui" font-size="28" font-weight="800">$1.19/hr</text>
+  <text x="655" y="200" text-anchor="middle" fill="#bfdbfe" font-family="system-ui" font-size="12">RTX 4090 On-Demand</text>
+  <text x="655" y="230" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ 24/7 support</text>
+  <text x="655" y="250" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ 1TB free egress</text>
+  <text x="655" y="270" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="12">✓ 3-5% interruption</text>
+  <text x="655" y="320" text-anchor="middle" fill="#bfdbfe" font-family="system-ui" font-size="11">Best for: Production teams</text>
+  <!-- Footer -->
+  <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">Data: April 2026 | Source: Provider pricing pages</text>
+</svg>

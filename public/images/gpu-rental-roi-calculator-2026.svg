@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg4)"/>
+  <text x="400" y="40" text-anchor="middle" fill="#f8fafc" font-family="system-ui" font-size="22" font-weight="700">Fine-Tuning ROI Calculator Framework</text>
+  <!-- Input Section -->
+  <rect x="30" y="60" width="360" height="300" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="210" y="90" text-anchor="middle" fill="#f8fafc" font-family="system-ui" font-size="16" font-weight="700">Inputs</text>
+  <!-- Input boxes -->
+  <rect x="50" y="110" width="320" height="35" rx="6" fill="#0f172a"/>
+  <text x="65" y="132" fill="#94a3b8" font-family="system-ui" font-size="12">API Cost/Month:</text>
+  <text x="370" y="132" fill="#22c55e" font-family="system-ui" font-size="12" text-anchor="end">$2,000</text>
+  <rect x="50" y="155" width="320" height="35" rx="6" fill="#0f172a"/>
+  <text x="65" y="177" fill="#94a3b8" font-family="system-ui" font-size="12">Fine-tune Cost:</text>
+  <text x="370" y="177" fill="#22c55e" font-family="system-ui" font-size="12" text-anchor="end">$500</text>
+  <rect x="50" y="200" width="320" height="35" rx="6" fill="#0f172a"/>
+  <text x="65" y="222" fill="#94a3b8" font-family="system-ui" font-size="12">GPU Rental/Month:</text>
+  <text x="370" y="222" fill="#22c55e" font-family="system-ui" font-size="12" text-anchor="end">$400</text>
+  <rect x="50" y="245" width="320" height="35" rx="6" fill="#0f172a"/>
+  <text x="65" y="267" fill="#94a3b8" font-family="system-ui" font-size="12">Eng Time (weeks):</text>
+  <text x="370" y="267" fill="#22c55e" font-family="system-ui" font-size="12" text-anchor="end">4</text>
+  <rect x="50" y="290" width="320" height="35" rx="6" fill="#0f172a"/>
+  <text x="65" y="312" fill="#94a3b8" font-family="system-ui" font-size="12">Hourly Eng Rate:</text>
+  <text x="370" y="312" fill="#22c55e" font-family="system-ui" font-size="12" text-anchor="end">$200</text>
+  <!-- Output Section -->
+  <rect x="410" y="60" width="360" height="300" rx="12" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="590" y="90" text-anchor="middle" fill="#22c55e" font-family="system-ui" font-size="16" font-weight="700">Results</text>
+  <!-- ROI Result -->
+  <text x="590" y="140" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="14">Monthly Savings</text>
+  <text x="590" y="175" text-anchor="middle" fill="#22c55e" font-family="system-ui" font-size="36" font-weight="800">$1,200</text>
+  <text x="590" y="200" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="14">Annual Savings</text>
+  <text x="590" y="235" text-anchor="middle" fill="#22c55e" font-family="system-ui" font-size="36" font-weight="800">$14,400</text>
+  <!-- ROI Calc -->
+  <text x="590" y="275" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="14">ROI Calculation</text>
+  <text x="590" y="305" text-anchor="middle" fill="#fef08a" font-family="system-ui" font-size="16">(14,400 - 13,700) / 13,700 × 100</text>
+  <text x="590" y="335" text-anchor="middle" fill="#22c55e" font-family="system-ui" font-size="24" font-weight="800">ROI: 5%</text>
+  <text x="590" y="355" text-anchor="middle" fill="#fecaca" font-family="system-ui" font-size="12">⚠ Break-even: 11 months</text>
+  <!-- Footer -->
+  <text x="400" y="385" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">Fine-tuning ROI = ((Annual Savings - Year 1 Costs) / Year 1 Costs) × 100</text>
+</svg>
