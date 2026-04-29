@@ -1,28 +1,30 @@
 # =============================================================================
 # REDIRECT RULES — Cloudflare Pages
 # OLD URLs → /en/ prefixed structure
+# IMPORTANT: Rules are processed top-to-bottom. More specific rules MUST come first.
 # =============================================================================
 
+# STATIC ASSETS — These MUST come first (before /en/* skip)
+# Serve directly with 200, don't redirect
+/_astro/*         /_astro/:splat          200
+/images/*        /images/:splat           200
+/fonts/*         /fonts/:splat            200
+/favicon*        /favicon:file           200
+
 # Root to /en/
-/               /en/                    301
+/                /en/                    301
 
 # Blog old structure
-/blog/          /en/blog/              301
-/blog           /en/blog/              301
-/blog/*         /en/blog/:splat        301
+/blog/           /en/blog/               301
+/blog            /en/blog/               301
+/blog/*          /en/blog/:splat         301
 
 # GPU page
-/gpu/           /en/gpu/               301
-/gpu            /en/gpu/              301
+/gpu/            /en/gpu/                301
+/gpu             /en/gpu/                301
 
 # Skip /en/* paths — they are real pages, not redirects (stops /en/en/ loop)
-/en/*           /en/:splat             200
-
-# Static assets — serve directly, don't redirect
-/_astro/*         /_astro/:splat          200
-/images/*         /images/:splat          200
-/fonts/*          /fonts/:splat           200
-/favicon*         /favicon:file          200
+/en/*            /en/:splat              200
 
 # Catch-all for non-en paths only
-/*              /en/:splat             301
+/*               /en/:splat              301
