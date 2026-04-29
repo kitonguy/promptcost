@@ -52,7 +52,7 @@ const blogListingSchema = {
         {sortedPosts.map((post, index) => (
           <article class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-300">
             {post.data.featured_image_url && (
-              <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`} class="block aspect-video overflow-hidden">
+              <a href={`/en/blog/${post.id.replace(/\.mdx?$/, '')}`} class="block aspect-video overflow-hidden">
                 <img
                   src={post.data.featured_image_url}
                   alt={post.data.title}
@@ -75,7 +75,7 @@ const blogListingSchema = {
                 </time>
               </div>
               <h3 class="font-bold text-lg text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}>
+                <a href={`/en/blog/${post.id.replace(/\.mdx?$/, '')}`}>
                   {post.data.title}
                 </a>
               </h3>
