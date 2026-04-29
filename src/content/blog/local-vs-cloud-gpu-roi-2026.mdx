@@ -46,11 +46,11 @@ With the NVIDIA Blackwell architecture dominating the high-end data center marke
 
 ## 1. The Hardware Fundamentals
 
-In the early days of AI, marketing materials focused on TFLOPS and compute speed. However, in the era of 70B plus parameter models, VRAM is the ultimate gatekeeper. If your model does not fit in memory, compute speed is irrelevant.
+In the early days of AI, marketing materials focused on TFLOPS and compute speed. However, in the era of 70B plus parameter models, VRAM is the ultimate gatekeeper. If your model does not fit in memory, compute speed is irrelevant. See our complete [VRAM requirements guide](/en/blog/gpu-memory-requirements-open-source-llms-2026/) for specific model needs.
 
 ### The Universal VRAM Calculation Formula
 
-At PromptCost.org, we have standardized the formula used by top infrastructure engineers to estimate requirements.
+At [PromptCost.org](/en/), we have standardized the formula used by top infrastructure engineers to estimate requirements.
 
 **Required VRAM in GB equals Number of Parameters times Quantization Factor plus System Overhead.**
 
@@ -78,7 +78,7 @@ Third, Cooling. For tight multi-GPU cases, Blower style cards are essential to v
 
 ## 3. The Cloud Advantage
 
-Cloud providers like AWS, Lambda Labs, RunPod, and Vast.ai offer a zero-maintenance promise that is hard to ignore.
+Cloud providers like [AWS](/en/gpu/), Lambda Labs, RunPod, and Vast.ai offer a zero-maintenance promise that is hard to ignore.
 
 ### The Power of Interconnects
 
@@ -86,7 +86,7 @@ Where cloud instances truly shine is Inter-GPU communication. An H100 cluster us
 
 For Training and Fine-tuning, if you are training a model from scratch, the cloud is significantly faster due to the interconnect speed.
 
-For Burst Capacity, cloud allows you to scale from 1 GPU to 128 GPUs for a weekend and then go back to zero. You cannot buy that flexibility on-premise.
+For Burst Capacity, cloud allows you to scale from 1 GPU to 128 GPUs for a weekend and then go back to zero. You cannot buy that flexibility on-premise. Check our [GPU Rental Index](/en/gpu/) for real-time pricing across all major cloud providers.
 
 ---
 
@@ -110,13 +110,13 @@ Let us look at the numbers. Scenario: an AI startup running inference 8 hours a 
 
 ## 5. The Coffee Index
 
-Technical jargon often masks the reality of spending. At PromptCost.org, we use the Coffee Index to simplify decision-making for non-technical stakeholders.
+Technical jargon often masks the reality of spending. At [PromptCost.org](/en/), we use the [Coffee Index](/en/gpu/) to simplify decision-making for non-technical stakeholders.
 
 **The Single Latte Project:** If your monthly API bill is under 10 dollars, do not buy a GPU. Stick to OpenAI or Anthropic APIs.
 
 **The Coffee Machine Milestone:** When your monthly bill hits 200 dollars, you are in the Cloud GPU zone.
 
-**The Coffee Shop Investment:** When your monthly burn reaches 600 dollars or more, you are effectively buying a high-end GPU for someone else every 3 months. It is time to bring that hardware in-house.
+**The Coffee Shop Investment:** When your monthly burn reaches 600 dollars or more, you are effectively buying a high-end GPU for someone else every 3 months. It is time to bring that hardware in-house. Use our [AI Token Calculator](/en/) to estimate your exact monthly spend.
 
 ---
 
@@ -134,7 +134,7 @@ ROI is not just about dollars. It is about Data Sovereignty.
 
 In 2026, running models at Full Precision is seen as wasteful. Modern techniques like GGUF, EXL2, and BitNet allow us to compress a model weights to 4-bits with negligible loss in reasoning capability.
 
-**Result:** You can run a massive 120B parameter model on a triple 4090 setup that previously required an eight by H100 cluster. This Quantization Hack is the single biggest factor driving local AI adoption.
+**Result:** You can run a massive 120B parameter model on a triple 4090 setup that previously required an eight by H100 cluster. This Quantization Hack is the single biggest factor driving local AI adoption. For detailed VRAM requirements per model, see our [GPU Memory Requirements guide](/en/blog/gpu-memory-requirements-open-source-llms-2026/).
 
 ---
 
