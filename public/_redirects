@@ -18,5 +18,10 @@
 # Skip /en/* paths — they are real pages, not redirects (stops /en/en/ loop)
 /en/*           /en/:splat             200
 
+# Static assets — serve directly, don't redirect
+/images/*       /images/:splat          200
+/fonts/*        /fonts/:splat          200
+/favicon*       /favicon:file         200
+
 # Catch-all for non-en paths only
 /*              /en/:splat             301
