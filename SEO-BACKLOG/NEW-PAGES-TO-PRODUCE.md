@@ -374,6 +374,28 @@ All posts must include:
 - Word count: 1500+ (target 1800-2200 for pillar posts)
 - H2 count: 10-15 per post
 - External links: 5-6 authority links per post
-- Internal links: 3-5 per post
+- Internal links: 5 contextual links per post (mix: 2-3 to main pages, 2-3 to related posts)
 - Featured image: SVG placeholder with gradient
 - Last updated: "April 2026"
+
+### Internal Linking Rules (MANDATORY)
+
+**Every blog post must include exactly 5 contextually relevant internal links:**
+
+1. **Main page links** (2-3 per post):
+   - `/en/` — Token Calculator (when discussing costs, API bills, token calculation)
+   - `/en/gpu/` — GPU Rental Index (when discussing GPU pricing, cloud providers, hardware)
+   - `/en/blog/` — Blog index (when referencing other posts or general AI topics)
+
+2. **Cross-post links** (2-3 per post):
+   - Link to 2-3 other related blog posts within the same topic cluster
+   - Example: GPU posts → VRAM guide, Spot instances, H100 vs A100
+   - Example: API cost posts → Token Calculator, DeepSeek comparisons
+   - Use natural context (e.g., "As covered in our [VRAM guide](/en/blog/gpu-memory-requirements-...), ...")
+
+**Link style:** `[descriptive anchor text](/en/path/)` — no bare URLs
+
+**NOT allowed:**
+- Links outside `/en/` path structure (old `/blog/` paths)
+- Duplicate `/en/en/` double prefixes
+- Links without context (e.g., "click [here](/en/)")
