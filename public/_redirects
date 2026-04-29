@@ -1,11 +1,12 @@
 # =============================================================================
-# REDIRECT RULES — Old URLs to /en/ prefixed structure
+# REDIRECT RULES — Cloudflare Pages
+# OLD URLs → /en/ prefixed structure
 # =============================================================================
 
 # Root to /en/
 /               /en/                    301
 
-# Blog old structure to new
+# Blog old structure
 /blog/          /en/blog/              301
 /blog           /en/blog/              301
 /blog/*         /en/blog/:splat        301
@@ -14,5 +15,8 @@
 /gpu/           /en/gpu/               301
 /gpu            /en/gpu/              301
 
-# Catch-all (should be last)
+# Skip /en/* paths — they are real pages, not redirects (stops /en/en/ loop)
+/en/*           /en/:splat             200
+
+# Catch-all for non-en paths only
 /*              /en/:splat             301
