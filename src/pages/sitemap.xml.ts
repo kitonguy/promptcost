@@ -1,4 +1,3 @@
-import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export const prerender = true;
@@ -8,13 +7,13 @@ export async function GET() {
   const blogPosts = await getCollection('blog');
 
   const staticPages = [
-    { url: siteUrl + '/', lastmod: new Date().toISOString().split('T')[0], priority: '1.0', changefreq: 'daily' },
-    { url: siteUrl + '/blog', lastmod: new Date().toISOString().split('T')[0], priority: '0.9', changefreq: 'weekly' },
-    { url: siteUrl + '/#faq', lastmod: new Date().toISOString().split('T')[0], priority: '0.5', changefreq: 'monthly' },
+    { url: siteUrl + '/en/', lastmod: new Date().toISOString().split('T')[0], priority: '1.0', changefreq: 'daily' },
+    { url: siteUrl + '/en/blog/', lastmod: new Date().toISOString().split('T')[0], priority: '0.9', changefreq: 'weekly' },
+    { url: siteUrl + '/en/gpu/', lastmod: new Date().toISOString().split('T')[0], priority: '0.8', changefreq: 'weekly' },
   ];
 
   const blogPages = blogPosts.map(post => ({
-    url: `${siteUrl}/blog/${post.id.replace(/\.mdx?$/, '')}`,
+    url: `${siteUrl}/en/blog/${post.id.replace(/\.mdx?$/, '')}/`,
     lastmod: (post.data.updated_date || post.data.published_date).split('T')[0],
     priority: '0.8',
     changefreq: 'monthly'

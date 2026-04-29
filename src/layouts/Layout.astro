@@ -79,6 +79,38 @@ const faqSchema = {
 };
 
 const currentSchema = schema || softwareSchema;
+
+// FAQPage JSON-LD for homepage FAQ section (only when no article schema)
+const homepageFaqSchema = !article ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does GPT-4o cost per 1M tokens?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPT-4o costs approximately $2.50 per million input tokens and $10.00 per million output tokens as of April 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is token count calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tokens are calculated by dividing text character count by approximately 4 (since 1 token ≈ 4 characters in English)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cheapest AI model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cheapest AI models as of April 2026 include DeepSeek V3 at $0.01/M tokens and various open-source models under $0.50/M tokens."
+      }
+    }
+  ]
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -92,6 +124,10 @@ const currentSchema = schema || softwareSchema;
   <meta name="description" content={description}>
   <meta name="author" content={article?.author || 'PromptCost.org'}>
   <link rel="canonical" href={canonical}>
+
+  {/* hreflang for internationalization */}
+  <link rel="alternate" hreflang="en" href={canonical}>
+  <link rel="alternate" hreflang="x-default" href="https://promptcost.org/en/">
 
   {/* Open Graph */}
   <meta property="og:type" content={article ? 'article' : 'website'}>
@@ -121,7 +157,13 @@ const currentSchema = schema || softwareSchema;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   {/* Schema.org JSON-LD */}
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(currentSchema)}></script>
+  {article ? (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(currentSchema)}></script>
+  ) : (
+    <>
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(homepageFaqSchema)}></script>
+    </>
+  )}
 
   {/* Critical CSS - Inlined for faster FCP, no external fonts */}
   <style is:inline>
@@ -209,9 +251,9 @@ const currentSchema = schema || softwareSchema;
         </div>
         <nav aria-label="Footer navigation">
           <div class="flex gap-6 text-sm text-slate-500">
-            <a href="/privacy-policy" class="hover:text-primary transition-colors">Privacy</a>
-            <a href="/terms" class="hover:text-primary transition-colors">Terms</a>
-            <a href="/contact" class="hover:text-primary transition-colors">Contact</a>
+            <a href="/en/privacy-policy" class="hover:text-primary transition-colors">Privacy</a>
+            <a href="/en/terms" class="hover:text-primary transition-colors">Terms</a>
+            <a href="/en/contact" class="hover:text-primary transition-colors">Contact</a>
           </div>
         </nav>
       </div>

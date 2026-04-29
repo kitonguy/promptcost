@@ -1,5 +1,19 @@
 # GPU Index Blog Post Plan - 2026
 
+## ✅ COMPLETED
+
+| # | Slug | Status | Notes |
+|---|------|--------|-------|
+| #0 | `local-vs-cloud-gpu-roi-2026` | ✅ Done | New post added 2026-04-30 |
+| #A | `deepseek-r1-vs-gpt4o-api-war` | ✅ Done | New post added 2026-04-30 |
+| #B | `hermes-agent-vs-openclaw-2026` | ✅ Done | New post added 2026-04-30 |
+| #C | `mac-m4-max-vs-nvidia-local-llm` | ✅ Done | New post added 2026-04-30 |
+
+**Internal Links**: GPU Index, Token Calculator
+**Cross-links**: RTX 4090 post (#5), Spot instances (#2)
+
+---
+
 ## Strategy
 - **Topic Cluster**: GPU rental market, AI infrastructure cost optimization
 - **Target Audience**: Startups, developers, AI researchers, ML engineers

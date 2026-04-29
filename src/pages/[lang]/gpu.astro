@@ -1,8 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import gpuData from '../data/gpu_market.json';
+import Layout from '../../layouts/Layout.astro';
+import gpuData from '../../data/gpu_market.json';
 
 export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+  ];
+}
 
 const siteUrl = 'https://promptcost.org';
 const fullTitle = 'Global GPU Rental Index 2026 | Compare Cloud GPU Prices';
@@ -21,6 +27,50 @@ const gpuMarketSchema = {
     "url": siteUrl
   },
   "dateModified": gpuData.lastUpdated
+};
+
+// FAQPage schema with SpeakableSpecification
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the cheapest GPU for AI inference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vast.ai's RTX 4090 at $0.35-$0.50/hr for spot instances is currently the best value for inference workloads. For even cheaper options, consider RTX 3090 or RTX 4070 Ti Super on spot pricing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between On-Demand and Spot pricing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-Demand pricing guarantees availability 24/7. Spot instances are cheaper (30-60% savings) but can be interrupted when demand spikes. For critical production workloads, use On-Demand. For experiments and batch jobs, Spot is ideal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is this GPU rental data updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our GPU rental index is updated daily via automated systems. Prices are sourced from major providers including AWS, Lambda Labs, RunPod, Vast.ai, Google Cloud, Azure, and CoreWeave."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which GPU do I need for training large language models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For training LLMs like Llama, Mistral, or GPT models, NVIDIA H100 80GB or A100 80GB are recommended. These offer the best VRAM and compute balance. H100 is the flagship for frontier models, while A100 offers excellent value at lower cost."
+      }
+    }
+  ],
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#faq-section details summary", ".faq-question"]
+  }
 };
 ---
 

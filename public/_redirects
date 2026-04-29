@@ -1,0 +1,18 @@
+# =============================================================================
+# REDIRECT RULES — Old URLs to /en/ prefixed structure
+# =============================================================================
+
+# Root to /en/
+/               /en/                    301
+
+# Blog old structure to new
+/blog/          /en/blog/              301
+/blog           /en/blog/              301
+/blog/*         /en/blog/:splat        301
+
+# GPU page
+/gpu/           /en/gpu/               301
+/gpu            /en/gpu/              301
+
+# Catch-all (should be last)
+/*              /en/:splat             301

@@ -7,6 +7,7 @@ export default defineConfig({
   output: 'hybrid',
   site: 'https://promptcost.org',
   compressHTML: true,
+  trailingSlash: "always",
   adapter: cloudflare({
     platformProxy: {
       enabled: true
