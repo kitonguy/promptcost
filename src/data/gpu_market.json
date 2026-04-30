@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T02:00:00Z",
+  "lastUpdated": "2026-04-29T23:41:33.125Z",
   "providers": [
     {
       "id": "aws",
@@ -58,15 +58,61 @@
       "vram_gb": 80,
       "tflops": 989,
       "tier": "flagship",
-      "useCases": ["Fine-tuning", "Inference", "Training"],
+      "useCases": [
+        "Fine-tuning",
+        "Inference",
+        "Training"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 6.50, "spot": 4.50, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 5.50, "spot": 3.80, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 3.99, "spot": 2.49, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 2.75, "spot": 1.89, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 7.20, "spot": 5.10, "available": true, "region": "us-central1" },
-        { "provider": "azure", "ondemand": 6.80, "spot": 4.60, "available": true, "region": "eastus" },
-        { "provider": "coreweave", "ondemand": 4.29, "spot": 2.99, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 6.5,
+          "spot": 4.5,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 5.5,
+          "spot": 3.8,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 3.99,
+          "spot": 2.49,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 1.47,
+          "spot": 1.1,
+          "available": false,
+          "region": "fr"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 7.2,
+          "spot": 5.1,
+          "available": true,
+          "region": "us-central1"
+        },
+        {
+          "provider": "azure",
+          "ondemand": 6.8,
+          "spot": 4.6,
+          "available": true,
+          "region": "eastus"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 4.29,
+          "spot": 2.99,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -75,15 +121,61 @@
       "vram_gb": 80,
       "tflops": 312,
       "tier": "enterprise",
-      "useCases": ["Fine-tuning", "Training", "Inference"],
+      "useCases": [
+        "Fine-tuning",
+        "Training",
+        "Inference"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 4.25, "spot": 2.95, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 3.40, "spot": 2.40, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 2.49, "spot": 1.69, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 1.89, "spot": 1.25, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 4.50, "spot": 3.10, "available": true, "region": "us-central1" },
-        { "provider": "azure", "ondemand": 3.90, "spot": 2.70, "available": true, "region": "eastus" },
-        { "provider": "coreweave", "ondemand": 2.79, "spot": 1.89, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 4.25,
+          "spot": 2.95,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 3.4,
+          "spot": 2.4,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 2.49,
+          "spot": 1.69,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 0.09,
+          "spot": 0.07,
+          "available": true,
+          "region": "it"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 4.5,
+          "spot": 3.1,
+          "available": true,
+          "region": "us-central1"
+        },
+        {
+          "provider": "azure",
+          "ondemand": 3.9,
+          "spot": 2.7,
+          "available": true,
+          "region": "eastus"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 2.79,
+          "spot": 1.89,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -92,15 +184,60 @@
       "vram_gb": 40,
       "tflops": 312,
       "tier": "enterprise",
-      "useCases": ["Training", "Inference"],
+      "useCases": [
+        "Training",
+        "Inference"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 3.67, "spot": 2.50, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 2.95, "spot": 2.00, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 1.89, "spot": 1.29, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 1.25, "spot": 0.89, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 3.85, "spot": 2.65, "available": true, "region": "us-central1" },
-        { "provider": "azure", "ondemand": 3.40, "spot": 2.30, "available": true, "region": "eastus" },
-        { "provider": "coreweave", "ondemand": 1.99, "spot": 1.39, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 3.67,
+          "spot": 2.5,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 2.95,
+          "spot": 2,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 1.89,
+          "spot": 1.29,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 1.25,
+          "spot": 0.89,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 3.85,
+          "spot": 2.65,
+          "available": true,
+          "region": "us-central1"
+        },
+        {
+          "provider": "azure",
+          "ondemand": 3.4,
+          "spot": 2.3,
+          "available": true,
+          "region": "eastus"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 1.99,
+          "spot": 1.39,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -109,15 +246,61 @@
       "vram_gb": 24,
       "tflops": 82.6,
       "tier": "consumer",
-      "useCases": ["Inference", "Fine-tuning", "Local Development"],
+      "useCases": [
+        "Inference",
+        "Fine-tuning",
+        "Local Development"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 2.10, "spot": 1.40, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 1.79, "spot": 1.19, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 0.69, "spot": 0.49, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 0.50, "spot": 0.35, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 2.40, "spot": 1.65, "available": false, "region": "us-central1" },
-        { "provider": "azure", "ondemand": 1.90, "spot": 1.30, "available": true, "region": "eastus" },
-        { "provider": "coreweave", "ondemand": 0.79, "spot": 0.55, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 2.1,
+          "spot": 1.4,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 1.79,
+          "spot": 1.19,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 0.69,
+          "spot": 0.49,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 0.14,
+          "spot": 0.1,
+          "available": false,
+          "region": "cn"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 2.4,
+          "spot": 1.65,
+          "available": false,
+          "region": "us-central1"
+        },
+        {
+          "provider": "azure",
+          "ondemand": 1.9,
+          "spot": 1.3,
+          "available": true,
+          "region": "eastus"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 0.79,
+          "spot": 0.55,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -126,15 +309,60 @@
       "vram_gb": 24,
       "tflops": 35.6,
       "tier": "consumer",
-      "useCases": ["Inference", "Local Development"],
+      "useCases": [
+        "Inference",
+        "Local Development"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 1.93, "spot": 1.25, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 1.50, "spot": 0.99, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 0.69, "spot": 0.45, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 0.45, "spot": 0.30, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 2.10, "spot": 1.45, "available": true, "region": "us-central1" },
-        { "provider": "azure", "ondemand": 1.70, "spot": 1.15, "available": true, "region": "eastus" },
-        { "provider": "coreweave", "ondemand": 0.69, "spot": 0.49, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 1.93,
+          "spot": 1.25,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 1.5,
+          "spot": 0.99,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 0.69,
+          "spot": 0.45,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 0.45,
+          "spot": 0.3,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 2.1,
+          "spot": 1.45,
+          "available": true,
+          "region": "us-central1"
+        },
+        {
+          "provider": "azure",
+          "ondemand": 1.7,
+          "spot": 1.15,
+          "available": true,
+          "region": "eastus"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 0.69,
+          "spot": 0.49,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -143,14 +371,54 @@
       "vram_gb": 48,
       "tflops": 73.5,
       "tier": "midrange",
-      "useCases": ["Inference", "Training", "Rendering"],
+      "useCases": [
+        "Inference",
+        "Training",
+        "Rendering"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 2.30, "spot": 1.55, "available": true, "region": "us-east-1" },
-        { "provider": "lambda", "ondemand": 1.99, "spot": 1.35, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 0.89, "spot": 0.59, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 0.65, "spot": 0.45, "available": true, "region": "us-east-1" },
-        { "provider": "gcp", "ondemand": 2.50, "spot": 1.75, "available": true, "region": "us-central1" },
-        { "provider": "coreweave", "ondemand": 0.89, "spot": 0.59, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 2.3,
+          "spot": 1.55,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "lambda",
+          "ondemand": 1.99,
+          "spot": 1.35,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 0.89,
+          "spot": 0.59,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 0.65,
+          "spot": 0.45,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "gcp",
+          "ondemand": 2.5,
+          "spot": 1.75,
+          "available": true,
+          "region": "us-central1"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 0.89,
+          "spot": 0.59,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -159,12 +427,39 @@
       "vram_gb": 16,
       "tflops": 52.2,
       "tier": "budget",
-      "useCases": ["Local Development", "Small Inference"],
+      "useCases": [
+        "Local Development",
+        "Small Inference"
+      ],
       "rentals": [
-        { "provider": "lambda", "ondemand": 1.29, "spot": 0.89, "available": true, "region": "us-east-1" },
-        { "provider": "runpod", "ondemand": 0.49, "spot": 0.35, "available": true, "region": "us-east-1" },
-        { "provider": "vastai", "ondemand": 0.35, "spot": 0.25, "available": true, "region": "us-east-1" },
-        { "provider": "coreweave", "ondemand": 0.59, "spot": 0.39, "available": true, "region": "us-east" }
+        {
+          "provider": "lambda",
+          "ondemand": 1.29,
+          "spot": 0.89,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "runpod",
+          "ondemand": 0.49,
+          "spot": 0.35,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "vastai",
+          "ondemand": 0.35,
+          "spot": 0.25,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 0.59,
+          "spot": 0.39,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     },
     {
@@ -173,10 +468,26 @@
       "vram_gb": 128,
       "tflops": 163,
       "tier": "flagship",
-      "useCases": ["Training", "Inference", "Frontier Models"],
+      "useCases": [
+        "Training",
+        "Inference",
+        "Frontier Models"
+      ],
       "rentals": [
-        { "provider": "aws", "ondemand": 7.80, "spot": 5.50, "available": true, "region": "us-east-1" },
-        { "provider": "coreweave", "ondemand": 4.99, "spot": 3.49, "available": true, "region": "us-east" }
+        {
+          "provider": "aws",
+          "ondemand": 7.8,
+          "spot": 5.5,
+          "available": true,
+          "region": "us-east-1"
+        },
+        {
+          "provider": "coreweave",
+          "ondemand": 4.99,
+          "spot": 3.49,
+          "available": true,
+          "region": "us-east"
+        }
       ]
     }
   ]

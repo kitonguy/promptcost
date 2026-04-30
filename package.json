@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-gpu": "node scripts/update-gpu-prices.js"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^10.0.0",
