@@ -1,0 +1,48 @@
+# PromptCost.org — AI Token Calculator & GPU Rental Index
+
+## About PromptCost.org
+
+PromptCost.org is a free, real-time AI token estimation and global model cost comparison tool. We help developers, businesses, and AI enthusiasts understand and optimize their AI spending by providing transparent pricing data across 200+ AI models from multiple providers.
+
+## Main Features
+
+### AI Token Calculator
+Calculate the exact cost of your AI API usage in real-time. Support for all major providers including OpenAI, Anthropic, Google Gemini, DeepSeek, Mistral, and hundreds of open-source models.
+
+### GPU Rental Index
+Compare live GPU rental prices across 7 providers: AWS, Lambda Labs, RunPod, Vast.ai, Google Cloud, Azure, and CoreWeave. Data updated nightly.
+
+## Content Sections
+
+### AI Model Pricing Guides
+Expert analysis and guides on AI API pricing, including:
+- GPT-4o, Claude, Gemini cost comparisons
+- DeepSeek V3 and R1 analysis
+- OpenAI o1/o3 reasoning model costs
+- Enterprise AI cost management strategies
+
+### GPU & Infrastructure
+Technical guides for AI infrastructure decisions:
+- H100 vs A100 rental comparison
+- RTX 4090 local development vs cloud
+- Spot instance strategies for AI training
+- GPU memory requirements for open-source LLMs
+
+### AI Optimization
+Practical guides to reduce AI costs:
+- Prompt compression techniques
+- Semantic caching strategies
+- Token calculation methodology
+- API cost reduction best practices
+
+## Related Tools
+
+- [AI Token Calculator](https://promptcost.org/en/) — Real-time cost estimation
+- [GPU Rental Index](https://promptcost.org/en/gpu/) — Live GPU pricing comparison
+- [Blog](https://promptcost.org/en/blog/) — All articles and guides
+
+## Company
+
+PromptCost.org — Transparency in Artificial Intelligence
+
+For questions or feedback: [Contact](https://promptcost.org/en/contact/)
