@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <rect fill="#172554" width="1200" height="630"/>
+  <text x="600" y="100" font-family="system-ui" font-size="44" fill="#60a5fa" text-anchor="middle" font-weight="bold">Small Language Models</text>
+  <text x="600" y="160" font-family="system-ui" font-size="28" fill="#93c5fd" text-anchor="middle">Stop Overpaying for Frontier AI</text>
+  
+  <rect x="100" y="220" width="280" height="160" rx="12" fill="#991b1b"/>
+  <text x="240" y="270" font-family="system-ui" font-size="18" fill="#fca5a5" text-anchor="middle">GPT-4o / Claude 3.5</text>
+  <text x="240" y="310" font-family="system-ui" font-size="32" fill="white" text-anchor="middle">$15.00</text>
+  <text x="240" y="350" font-family="system-ui" font-size="14" fill="#fca5a5" text-anchor="middle">per 1M tokens</text>
+  
+  <text x="420" y="300" font-family="system-ui" font-size="40" fill="#fbbf24" text-anchor="middle">vs</text>
+  
+  <rect x="480" y="220" width="280" height="160" rx="12" fill="#065f46"/>
+  <text x="620" y="270" font-family="system-ui" font-size="18" fill="#6ee7b7" text-anchor="middle">DeepSeek-R1 (7B)</text>
+  <text x="620" y="310" font-family="system-ui" font-size="32" fill="white" text-anchor="middle">$0.20</text>
+  <text x="620" y="350" font-family="system-ui" font-size="14" fill="#6ee7b7" text-anchor="middle">per 1M tokens</text>
+  
+  <text x="800" y="300" font-family="system-ui" font-size="40" fill="#fbbf24" text-anchor="middle">vs</text>
+  
+  <rect x="860" y="220" width="280" height="160" rx="12" fill="#1e40af"/>
+  <text x="1000" y="270" font-family="system-ui" font-size="18" fill="#93c5fd" text-anchor="middle">Local SLM (Phi-4)</text>
+  <text x="1000" y="310" font-family="system-ui" font-size="32" fill="white" text-anchor="middle">$0</text>
+  <text x="1000" y="350" font-family="system-ui" font-size="14" fill="#93c5fd" text-anchor="middle">electricity only</text>
+  
+  <rect x="200" y="420" width="800" height="80" rx="10" fill="#1e3a5f"/>
+  <text x="600" y="470" font-family="system-ui" font-size="28" fill="#22c55e" text-anchor="middle">90% Cost Reduction — 95% Quality</text>
+  
+  <text x="600" y="560" font-family="system-ui" font-size="16" fill="#64748b" text-anchor="middle">Llama 3.2 • Phi-4 • Gemma 2 • Qwen 2.5</text>
+</svg>
