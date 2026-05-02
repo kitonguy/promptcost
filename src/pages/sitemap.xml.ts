@@ -12,12 +12,17 @@ export async function GET() {
     { url: siteUrl + '/en/gpu/', lastmod: new Date().toISOString().split('T')[0], priority: '0.8', changefreq: 'weekly' },
   ];
 
-  const blogPages = blogPosts.map(post => ({
-    url: `${siteUrl}/en/blog/${post.id.replace(/\.mdx?$/, '')}/`,
-    lastmod: (post.data.updated_date || post.data.published_date).split('T')[0],
-    priority: '0.8',
-    changefreq: 'monthly'
-  }));
+  const blogPages = blogPosts.map(post => {
+    const slug = post.id.replace(/\.mdx?$/, '');
+    const imageUrl = `/images/${slug}.svg`;
+    return {
+      url: `${siteUrl}/en/blog/${slug}/`,
+      lastmod: (post.data.updated_date || post.data.published_date).split('T')[0],
+      priority: '0.8',
+      changefreq: 'monthly',
+      image: imageUrl
+    };
+  });
 
   const allPages = [...staticPages, ...blogPages];
 
@@ -30,7 +35,10 @@ ${allPages.map(page => `  <url>
     <loc>${page.url}</loc>
     <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
+    <priority>${page.priority}</priority>${page.image ? `
+    <image:image>
+      <image:loc>${page.image}</image:loc>
+    </image:image>` : ''}
   </url>`).join('\n')}
 </urlset>`;
 

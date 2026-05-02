@@ -25,7 +25,7 @@ const {
 const siteUrl = 'https://promptcost.org';
 const fullTitle = title.includes('PromptCost') ? title : `${title} | PromptCost.org`;
 
-// SoftwareApplication Schema
+// SoftwareApplication Schema (always available)
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -46,8 +46,37 @@ const softwareSchema = {
   }
 };
 
-// FAQPage Schema for FAQ section
-const faqSchema = {
+// WebSite + Organization schema for non-article pages
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "PromptCost.org",
+      "url": siteUrl,
+      "description": "Real-time AI token estimation and global model cost comparison tool. Compare 200+ AI model prices instantly.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}/?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "PromptCost.org",
+      "url": siteUrl,
+      "logo": `${siteUrl}/logo.svg`,
+      "description": "Free AI cost estimation and model comparison platform. Helping developers and businesses optimize AI spending.",
+      "sameAs": ["https://twitter.com/promptcost"]
+    }
+  ]
+};
+
+// FAQPage Schema for homepage FAQ section
+const homepageFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -78,70 +107,20 @@ const faqSchema = {
   ]
 };
 
-const currentSchema = schema || softwareSchema;
+// Build schema list for output — no duplicates, clean logic
+let schemaList: object[] = [];
 
-// WebSite + Organization schema for SEO
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "name": "PromptCost.org",
-      "url": siteUrl,
-      "description": "Real-time AI token estimation and global model cost comparison tool. Compare 200+ AI model prices instantly.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${siteUrl}/?q={search_term_string}`
-        },
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "Organization",
-      "name": "PromptCost.org",
-      "url": siteUrl,
-      "logo": `${siteUrl}/logo.svg`,
-      "description": "Free AI cost estimation and model comparison platform. Helping developers and businesses optimize AI spending.",
-      "sameAs": [
-        "https://twitter.com/promptcost"
-      ]
-    }
-  ]
-};
-
-// FAQPage JSON-LD for homepage FAQ section (only when no article schema)
-const homepageFaqSchema = !article ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much does GPT-4o cost per 1M tokens?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GPT-4o costs approximately $2.50 per million input tokens and $10.00 per million output tokens as of April 2026."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is token count calculated?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tokens are calculated by dividing text character count by approximately 4 (since 1 token ≈ 4 characters in English)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the cheapest AI model?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The cheapest AI models as of April 2026 include DeepSeek V3 at $0.01/M tokens and various open-source models under $0.50/M tokens."
-      }
-    }
-  ]
-} : null;
+if (article) {
+  // Article page: BlogPosting schema (or passed schema), breadcrumb, organization
+  if (schema) {
+    schemaList = Array.isArray(schema) ? [...schema] : [schema];
+  } else {
+    schemaList = [softwareSchema];
+  }
+} else {
+  // Non-article page: software + website + FAQ (no passed schema)
+  schemaList = [softwareSchema, websiteSchema, homepageFaqSchema];
+}
 ---
 
 <!DOCTYPE html>
@@ -174,7 +153,7 @@ const homepageFaqSchema = !article ? {
   <meta name="twitter:description" content={description}>
   <meta name="twitter:image" content={ogImage}>
 
-  {/* Article Schema */}
+  {/* Article meta tags */}
   {article && (
     <>
       <meta property="article:published_time" content={article.published_date}>
@@ -187,18 +166,8 @@ const homepageFaqSchema = !article ? {
   {/* Favicon */}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-  {/* Schema.org JSON-LD */}
-  {article ? (
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(currentSchema)}></script>
-  ) : (
-    <>
-      <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)}></script>
-      <script type="application/ld+json" is:inline set:html={JSON.stringify(homepageFaqSchema)}></script>
-    </>
-  )}
-
-  {/* Additional schemas passed as array */}
-  {Array.isArray(schema) && schema.map((s: any) => (
+  {/* Schema.org JSON-LD — one block per schema, no duplicates */}
+  {schemaList.map((s) => (
     <script type="application/ld+json" is:inline set:html={JSON.stringify(s)}></script>
   ))}
 
@@ -231,12 +200,10 @@ const homepageFaqSchema = !article ? {
       @apply bg-bg text-text antialiased;
     }
 
-    /* Focus styles for accessibility */
     :focus-visible {
       @apply outline-2 outline-offset-2 outline-primary;
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -288,9 +255,10 @@ const homepageFaqSchema = !article ? {
         </div>
         <nav aria-label="Footer navigation">
           <div class="flex gap-6 text-sm text-slate-500">
-            <a href="/en/privacy-policy" class="hover:text-primary transition-colors">Privacy</a>
-            <a href="/en/terms" class="hover:text-primary transition-colors">Terms</a>
-            <a href="/en/contact" class="hover:text-primary transition-colors">Contact</a>
+            <a href="/en/about/" class="hover:text-primary transition-colors">About</a>
+            <a href="/en/privacy-policy/" class="hover:text-primary transition-colors">Privacy</a>
+            <a href="/en/terms/" class="hover:text-primary transition-colors">Terms</a>
+            <a href="/en/contact/" class="hover:text-primary transition-colors">Contact</a>
           </div>
         </nav>
       </div>
