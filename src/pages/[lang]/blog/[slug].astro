@@ -213,21 +213,62 @@ const blogPostSchema = {
       </div>
     </div>
 
-    {/* Related Articles */}
+    {/* Key Resources — internal links to cornerstone pages */}
     <aside class="mt-16 pt-16 border-t border-slate-200">
-      <h2 class="text-xl font-bold text-slate-900 mb-8">Related Articles</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        {allPosts.filter(p => p.id !== post.id).slice(0, 2).map(relatedPost => (
-          <a href={`/blog/${relatedPost.id.replace(/\.mdx?$/, '')}`}
-             class="group block bg-white rounded-xl border border-slate-200 p-6 hover:border-primary/50 hover:shadow-lg transition-all">
-            <span class="text-xs font-semibold text-primary uppercase tracking-wider">{relatedPost.data.category}</span>
-            <h3 class="font-bold text-slate-900 mt-2 group-hover:text-primary transition-colors">
-              {relatedPost.data.title}
-            </h3>
-            <p class="text-sm text-slate-500 mt-2 line-clamp-2">{relatedPost.data.description}</p>
-          </a>
-        ))}
+      <h2 class="text-xl font-bold text-slate-900 mb-6">Explore More</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/en/" class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl hover:bg-primary/5 transition-colors group">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900 text-sm group-hover:text-primary transition-colors">AI Cost Calculator</p>
+            <p class="text-xs text-slate-500">Calculate token costs instantly</p>
+          </div>
+        </a>
+        <a href="/en/blog/" class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl hover:bg-primary/5 transition-colors group">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900 text-sm group-hover:text-primary transition-colors">All Blog Posts</p>
+            <p class="text-xs text-slate-500">31+ AI cost guides</p>
+          </div>
+        </a>
+        <a href="/en/gpu/" class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl hover:bg-primary/5 transition-colors group">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-900 text-sm group-hover:text-primary transition-colors">GPU Rental Guide</p>
+            <p class="text-xs text-slate-500">Compare cloud GPU prices</p>
+          </div>
+        </a>
       </div>
     </aside>
+
+    {/* Related Articles — smarter matching by category */}
+    {(() => {
+      const sameCategory = allPosts.filter(p => p.id !== post.id && p.data.category === post.data.category);
+      const otherPosts = allPosts.filter(p => p.id !== post.id && p.data.category !== post.data.category);
+      const related = [...sameCategory, ...otherPosts].slice(0, 3);
+      return (
+        <aside class="mt-16 pt-16 border-t border-slate-200">
+          <h2 class="text-xl font-bold text-slate-900 mb-8">Related Articles</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            {related.map(relatedPost => (
+              <a href={`/en/blog/${relatedPost.id.replace(/\.mdx?$/, '')}/`}
+                 class="group block bg-white rounded-xl border border-slate-200 p-5 hover:border-primary/50 hover:shadow-lg transition-all">
+                <span class="text-xs font-semibold text-primary uppercase tracking-wider">{relatedPost.data.category}</span>
+                <h3 class="font-bold text-slate-900 mt-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {relatedPost.data.title}
+                </h3>
+                <p class="text-sm text-slate-500 mt-2 line-clamp-2">{relatedPost.data.description}</p>
+              </a>
+            ))}
+          </div>
+        </aside>
+      );
+    })()}
   </article>
 </Layout>

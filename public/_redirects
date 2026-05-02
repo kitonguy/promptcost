@@ -19,12 +19,12 @@
 # Root to /en/
 /                /en/                    301
 
-# Blog old structure
+# Blog old structure — all variants → trailing slash /en/
 /blog/           /en/blog/               301
 /blog            /en/blog/               301
-/blog/*          /en/blog/:splat         301
+/blog/*          /en/blog/:splat/        301
 
-# GPU page
+# GPU page — all variants → trailing slash /en/
 /gpu/            /en/gpu/                301
 /gpu             /en/gpu/                301
 
