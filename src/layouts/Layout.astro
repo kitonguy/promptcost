@@ -144,14 +144,14 @@ if (article) {
   <meta property="og:url" content={canonical}>
   <meta property="og:title" content={fullTitle}>
   <meta property="og:description" content={description}>
-  <meta property="og:image" content={ogImage}>
+  <meta property="og:image" content={ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`}>
   <meta property="og:site_name" content="PromptCost.org">
 
   {/* Twitter Card */}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={fullTitle}>
   <meta name="twitter:description" content={description}>
-  <meta name="twitter:image" content={ogImage}>
+  <meta name="twitter:image" content={ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`}>
 
   {/* Article meta tags */}
   {article && (
@@ -162,6 +162,10 @@ if (article) {
       <meta property="article:section" content={article.category}>
     </>
   )}
+
+  {/* Preconnect to external origins for performance */}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   {/* Favicon */}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">

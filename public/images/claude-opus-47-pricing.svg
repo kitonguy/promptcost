@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="60" y="80" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="800" fill="#f8fafc">Claude Opus April 2026</text>
+  <text x="60" y="120" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#94a3b8">Released April 16, 2026 — Complete API Pricing Guide</text>
+  <rect x="60" y="150" width="520" height="160" rx="12" fill="url(#gold)" opacity="0.12"/>
+  <rect x="60" y="150" width="520" height="160" rx="12" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <text x="90" y="195" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#f59e0b">CLAUDE OPUS 4.7</text>
+  <text x="90" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="42" font-weight="800" fill="#f59e0b">$5.00</text>
+  <text x="230" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#f59e0b">/ 1M input</text>
+  <text x="90" y="280" font-family="system-ui,-apple-system,sans-serif" font-size="42" font-weight="800" fill="#f59e0b">$25.00</text>
+  <text x="270" y="280" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#f59e0b">/ 1M output</text>
+  <rect x="620" y="150" width="520" height="160" rx="12" fill="#3b82f6" opacity="0.1"/>
+  <rect x="620" y="150" width="520" height="160" rx="12" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <text x="650" y="195" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#3b82f6">200K TOKEN CONTEXT</text>
+  <text x="650" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" fill="#3b82f6">200,000 tokens context window</text>
+  <text x="650" y="275" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#64748b">Anthropic API • Amazon Bedrock</text>
+  <text x="650" y="300" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#64748b">Google Cloud Vertex AI • Microsoft Foundry</text>
+  <text x="60" y="380" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#64748b">Benchmarks: BigLaw 90.9% • Self-verification • Complex reasoning • Execution acceleration</text>
+  <rect x="60" y="400" width="1080" height="2" fill="#3b82f6" opacity="0.2"/>
+  <text x="60" y="440" font-family="system-ui,-apple-system,sans-serif" font-size="16" fill="#cbd5e1">PromptCost.org — AI Model Cost Comparison</text>
+  <text x="60" y="470" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Compare 200+ AI Models • Real-time Token Calculator • GPU Rental Index</text>
+  <text x="60" y="580" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">promptcost.org</text>
+</svg>

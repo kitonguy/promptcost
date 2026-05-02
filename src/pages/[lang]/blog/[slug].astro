@@ -95,6 +95,7 @@ const blogPostSchema = {
   title={post.data.meta_title || post.data.title}
   description={post.data.meta_description || post.data.description}
   canonical={`https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}/`}
+  ogImage={post.data.featured_image_url ? `https://promptcost.org${post.data.featured_image_url}` : undefined}
   article={{
     published_date: post.data.published_date,
     updated_date: post.data.updated_date,
