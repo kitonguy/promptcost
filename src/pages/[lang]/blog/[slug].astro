@@ -250,11 +250,26 @@ const blogPostSchema = {
       </div>
     </aside>
 
-    {/* Related Articles — smarter matching by category */}
+    {/* Related Articles — keyword overlap + recency + category diversity */}
     {(() => {
-      const sameCategory = allPosts.filter(p => p.id !== post.id && p.data.category === post.data.category);
-      const otherPosts = allPosts.filter(p => p.id !== post.id && p.data.category !== post.data.category);
-      const related = [...sameCategory, ...otherPosts].slice(0, 3);
+      const postKeywords = new Set((post.data.keywords || []).map((k: string) => k.toLowerCase()));
+      const postDate = new Date(post.data.published_date).valueOf();
+
+      const scored = allPosts
+        .filter(p => p.id !== post.id)
+        .map(p => {
+          const pKeywords = new Set((p.data.keywords || []).map((k: string) => k.toLowerCase()));
+          const overlap = [...postKeywords].filter(k => pKeywords.has(k)).length;
+          const daysDiff = Math.abs(new Date(p.data.published_date).valueOf() - postDate) / 86400000;
+          const sameCat = p.data.category === post.data.category ? 2 : 0;
+          const score = overlap * 3 + sameCat - (daysDiff / 30);
+          return { post: p, score };
+        })
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+
+      const related = scored.map(s => s.post);
+
       return (
         <aside class="mt-16 pt-16 border-t border-slate-200">
           <h2 class="text-xl font-bold text-slate-900 mb-8">Related Articles</h2>
