@@ -3,7 +3,11 @@ import { getCollection } from 'astro:content';
 
 export const prerender = true;
 
-export async function GET(context: { site: URL }) {
+export async function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'tr' } }];
+}
+
+export async function GET(context: { site: URL; params: { lang: string } }) {
   const posts = await getCollection('blog');
   const sortedPosts = posts
     .filter(p => !p.id.includes('//')) // security
