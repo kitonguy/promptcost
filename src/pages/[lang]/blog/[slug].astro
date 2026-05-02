@@ -79,12 +79,15 @@ const blogPostSchema = {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}`
+    "@id": `https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}/`
   },
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h2", "#faq-section", ".quick-answer"]
-  }
+  },
+  "keywords": post.data.keywords ? post.data.keywords.join(", ") : `${post.data.category}, AI cost, API pricing`,
+  "articleSection": post.data.category,
+  "wordCount": post.body ? post.body.split(/\s+/).length : 0
 };
 ---
 
