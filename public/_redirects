@@ -20,8 +20,8 @@
 /                /en/                    301
 
 # Blog old structure — all variants → trailing slash /en/
-/blog/           /en/blog/               301
 /blog            /en/blog/               301
+/blog/           /en/blog/               301
 /blog/*          /en/blog/:splat/        301
 
 # GPU page — all variants → trailing slash /en/
