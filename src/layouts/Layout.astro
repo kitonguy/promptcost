@@ -170,6 +170,9 @@ if (article) {
   {/* Favicon */}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
+  {/* RSS Autodiscovery */}
+  <link rel="alternate" type="application/rss+xml" title="PromptCost.org Blog" href="/rss.xml">
+
   {/* Schema.org JSON-LD — one block per schema, no duplicates */}
   {schemaList.map((s) => (
     <script type="application/ld+json" is:inline set:html={JSON.stringify(s)}></script>

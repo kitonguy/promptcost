@@ -14,7 +14,7 @@ export async function GET() {
 
   const blogPages = blogPosts.map(post => {
     const slug = post.id.replace(/\.mdx?$/, '');
-    const imageUrl = `/images/${slug}.svg`;
+    const imageUrl = `${siteUrl}/images/${slug}.svg`;
     return {
       url: `${siteUrl}/en/blog/${slug}/`,
       lastmod: (post.data.updated_date || post.data.published_date).split('T')[0],
