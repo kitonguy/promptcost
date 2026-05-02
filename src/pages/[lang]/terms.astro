@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+
+<Layout
+  title="Terms of Service | PromptCost.org"
+  description="Terms of service for PromptCost.org. Our AI token calculator and model comparison tool are provided as-is for informational purposes."
+  canonical="https://promptcost.org/terms/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8">Terms of Service</h1>
+    
+    <div class="prose prose-lg prose-slate">
+      <p class="lead text-lg text-slate-600 mb-8">Last updated: May 2, 2026</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Acceptance of Terms</h2>
+      <p class="text-slate-600 mb-4">By accessing or using PromptCost.org, you agree to be bound by these Terms of Service. If you do not agree, do not use this website.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Description of Service</h2>
+      <p class="text-slate-600 mb-4">PromptCost.org provides a free AI token estimation calculator and AI model cost comparison tool. All information is provided for informational purposes only. Prices shown are approximations based on publicly available data and may not reflect current market rates.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">No Warranty</h2>
+      <p class="text-slate-600 mb-4">The service is provided "as is" without warranties of any kind. We do not guarantee the accuracy, completeness, or timeliness of any pricing data. Always verify current prices directly from model providers before making financial decisions.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Limitation of Liability</h2>
+      <p class="text-slate-600 mb-4">PromptCost.org shall not be held liable for any damages arising from the use of this service or reliance on the information provided.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Third-Party Links</h2>
+      <p class="text-slate-600 mb-4">Our site may contain links to third-party websites. We are not responsible for the content or practices of any linked sites.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Contact</h2>
+      <p class="text-slate-600 mb-4">For questions about these terms, contact us at <a href="mailto:legal@promptcost.org" class="text-primary hover:underline">legal@promptcost.org</a>.</p>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+
+<Layout
+  title="Contact Us | PromptCost.org"
+  description="Contact PromptCost.org. Reach us at info@promptcost.org for partnerships, feedback, or inquiries about our AI cost estimation tool."
+  canonical="https://promptcost.org/contact/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Contact Us</h1>
+    <p class="text-lg text-slate-600 mb-12">We'd love to hear from you.</p>
+    
+    <div class="prose prose-lg prose-slate">
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">General Inquiries</h2>
+      <p class="text-slate-600 mb-4">For general questions, feedback, or suggestions: <a href="mailto:info@promptcost.org" class="text-primary hover:underline">info@promptcost.org</a></p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Partnerships</h2>
+      <p class="text-slate-600 mb-4">Interested in partnering with PromptCost.org? Contact us at <a href="mailto:partners@promptcost.org" class="text-primary hover:underline">partners@promptcost.org</a></p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Press</h2>
+      <p class="text-slate-600 mb-4">Media inquiries: <a href="mailto:press@promptcost.org" class="text-primary hover:underline">press@promptcost.org</a></p>
+    </div>
+  </article>
+</Layout>

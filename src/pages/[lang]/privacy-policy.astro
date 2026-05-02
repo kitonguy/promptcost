@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+
+<Layout
+  title="Privacy Policy | PromptCost.org"
+  description="PromptCost.org privacy policy. We do not collect personal data. Our AI token calculator processes all calculations locally in your browser."
+  canonical="https://promptcost.org/privacy-policy/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-8">Privacy Policy</h1>
+    
+    <div class="prose prose-lg prose-slate">
+      <p class="lead text-lg text-slate-600 mb-8">Last updated: May 2, 2026</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Data Collection</h2>
+      <p class="text-slate-600 mb-4">PromptCost.org does not collect, store, or share any personal data. All AI token calculations are performed entirely within your browser — no data is transmitted to our servers.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Cookies</h2>
+      <p class="text-slate-600 mb-4">We do not use cookies. We do not use tracking pixels, analytics, or any form of user tracking.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Third-Party Services</h2>
+      <p class="text-slate-600 mb-4">We may display third-party advertisements via Google AdSense. These services may collect data according to their own privacy policies.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">API Data</h2>
+      <p class="text-slate-600 mb-4">When you use our AI model cost comparison tool, model pricing data may be fetched from external APIs (such as OpenRouter). This data is used solely for display purposes and is not stored by us.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Contact</h2>
+      <p class="text-slate-600 mb-4">For privacy-related questions, contact us at <a href="mailto:privacy@promptcost.org" class="text-primary hover:underline">privacy@promptcost.org</a>.</p>
+    </div>
+  </article>
+</Layout>

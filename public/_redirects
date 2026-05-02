@@ -9,10 +9,12 @@
 /_astro/*         /_astro/:splat          200
 /images/*        /images/:splat           200
 /fonts/*         /fonts/:splat            200
-/favicon*        /favicon:file           200
+/og-image.svg    /og-image.svg           200
+/favicon.svg     /favicon.svg            200
+/logo.svg        /logo.svg               200
 /sitemap.xml     /sitemap.xml            200
-/llms.txt        /llms.txt               200
-/robots.txt      /robots.txt             200
+/llms.txt        /llms.txt              200
+/robots.txt      /robots.txt            200
 
 # Root to /en/
 /                /en/                    301

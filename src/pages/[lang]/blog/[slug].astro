@@ -19,6 +19,42 @@ export async function getStaticPaths() {
 const { post, allPosts } = Astro.props;
 const { Content } = await post.render();
 
+// Organization schema for all pages
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PromptCost.org",
+  "url": "https://promptcost.org",
+  "logo": "https://promptcost.org/logo.svg",
+  "sameAs": ["https://twitter.com/promptcost"]
+};
+
+// BreadcrumbList schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://promptcost.org/en/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://promptcost.org/en/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": post.data.title,
+      "item": `https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}/`
+    }
+  ]
+};
+
 // JSON-LD for BlogPosting
 const blogPostSchema = {
   "@context": "https://schema.org",
@@ -62,7 +98,7 @@ const blogPostSchema = {
     author: post.data.author,
     category: post.data.category
   }}
-  schema={blogPostSchema}
+  schema={[blogPostSchema, breadcrumbSchema, organizationSchema]}
 >
   <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
     {/* Breadcrumb */}

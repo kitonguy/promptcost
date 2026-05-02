@@ -4,7 +4,7 @@ interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
-  schema?: object;
+  schema?: object | object[];
   article?: {
     published_date: string;
     updated_date?: string;
@@ -80,6 +80,37 @@ const faqSchema = {
 
 const currentSchema = schema || softwareSchema;
 
+// WebSite + Organization schema for SEO
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "PromptCost.org",
+      "url": siteUrl,
+      "description": "Real-time AI token estimation and global model cost comparison tool. Compare 200+ AI model prices instantly.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}/?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "PromptCost.org",
+      "url": siteUrl,
+      "logo": `${siteUrl}/logo.svg`,
+      "description": "Free AI cost estimation and model comparison platform. Helping developers and businesses optimize AI spending.",
+      "sameAs": [
+        "https://twitter.com/promptcost"
+      ]
+    }
+  ]
+};
+
 // FAQPage JSON-LD for homepage FAQ section (only when no article schema)
 const homepageFaqSchema = !article ? {
   "@context": "https://schema.org",
@@ -127,7 +158,7 @@ const homepageFaqSchema = !article ? {
 
   {/* hreflang for internationalization */}
   <link rel="alternate" hreflang="en" href={canonical}>
-  <link rel="alternate" hreflang="x-default" href="https://promptcost.org/en/">
+  <link rel="alternate" hreflang="x-default" href="https://promptcost.org/">
 
   {/* Open Graph */}
   <meta property="og:type" content={article ? 'article' : 'website'}>
@@ -161,9 +192,15 @@ const homepageFaqSchema = !article ? {
     <script type="application/ld+json" is:inline set:html={JSON.stringify(currentSchema)}></script>
   ) : (
     <>
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)}></script>
       <script type="application/ld+json" is:inline set:html={JSON.stringify(homepageFaqSchema)}></script>
     </>
   )}
+
+  {/* Additional schemas passed as array */}
+  {Array.isArray(schema) && schema.map((s: any) => (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(s)}></script>
+  ))}
 
   {/* Critical CSS - Inlined for faster FCP, no external fonts */}
   <style is:inline>
@@ -231,8 +268,8 @@ const homepageFaqSchema = !article ? {
       </a>
       <div class="flex items-center gap-8">
         <a href="/" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">Calculator</a>
-        <a href="/gpu" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">GPU Index</a>
-        <a href="/blog" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">Blog</a>
+        <a href="/en/gpu/" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">GPU Index</a>
+        <a href="/en/blog/" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">Blog</a>
         <a href="/#faq" class="text-base font-bold text-slate-700 hover:text-primary transition-colors">FAQ</a>
       </div>
     </nav>

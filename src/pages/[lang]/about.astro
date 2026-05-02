@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+
+<Layout
+  title="About PromptCost.org — AI Cost Transparency"
+  description="PromptCost.org is a free tool helping developers and businesses understand and optimize AI spending through real-time token estimation and model cost comparison."
+  canonical="https://promptcost.org/about/"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">About PromptCost.org</h1>
+    
+    <div class="prose prose-lg prose-slate">
+      <p class="lead text-xl text-slate-600 mb-8">Making AI pricing transparent, one token at a time.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Our Mission</h2>
+      <p class="text-slate-600 mb-4">AI API pricing is notoriously opaque. PromptCost.org exists to bring transparency to AI costs. We help developers, businesses, and AI enthusiasts understand exactly what they're paying for — before they spend a dollar.</p>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">What We Offer</h2>
+      <ul class="text-slate-600 mb-4 space-y-2">
+        <li><strong>AI Token Calculator</strong> — Estimate the cost of any prompt or text across 200+ AI models in real-time.</li>
+        <li><strong>Model Cost Comparison</strong> — Compare pricing across OpenAI, Anthropic, Google, DeepSeek, and hundreds of open-source models.</li>
+        <li><strong>GPU Rental Index</strong> — Track real-time GPU rental prices across major cloud providers.</li>
+        <li><strong>Expert Blog</strong> — Analysis, guides, and strategies for optimizing AI costs.</li>
+      </ul>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Our Values</h2>
+      <ul class="text-slate-600 mb-4 space-y-2">
+        <li><strong>Transparency</strong> — No hidden fees, no surprises. Real prices, real data.</li>
+        <li><strong>Accuracy</strong> — We update pricing data regularly and clearly mark when data was last refreshed.</li>
+        <li><strong>Independence</strong> — We are not affiliated with any AI provider. Our recommendations are based solely on data.</li>
+      </ul>
+      
+      <h2 class="text-xl font-bold text-slate-900 mt-8 mb-4">Contact</h2>
+      <p class="text-slate-600 mb-4">Questions, feedback, or partnership inquiries: <a href="mailto:info@promptcost.org" class="text-primary hover:underline">info@promptcost.org</a></p>
+    </div>
+  </article>
+</Layout>
