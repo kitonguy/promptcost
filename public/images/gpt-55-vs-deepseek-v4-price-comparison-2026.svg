@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f3460"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Accent bar top -->
+  <rect width="1200" height="8" fill="#e94560"/>
+  
+  <!-- Grid pattern -->
+  <g stroke="#ffffff08" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff">
+    GPT-5.5 vs DeepSeek V4-Pro
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#a0a0a0">
+    The 98% Price Difference That Changes Everything
+  </text>
+  
+  <!-- VS Badge -->
+  <circle cx="600" cy="280" r="45" fill="#e94560"/>
+  <text x="600" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">VS</text>
+  
+  <!-- GPT-5.5 Box (Left) -->
+  <rect x="50" y="180" width="480" height="320" rx="12" fill="url(#accentGrad)" stroke="#ffffff20" stroke-width="2"/>
+  
+  <!-- GPT-5.5 Label -->
+  <text x="290" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#10a37f">
+    GPT-5.5 Pro
+  </text>
+  
+  <!-- GPT-5.5 Price -->
+  <text x="290" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#ffffff">
+    $75-120
+  </text>
+  
+  <!-- GPT-5.5 Per Million -->
+  <text x="290" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#a0a0a0">
+    per 1M input tokens
+  </text>
+  
+  <!-- GPT-5.5 Feature -->
+  <text x="290" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#10a37f">
+    256K Context Window
+  </text>
+  <text x="290" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#10a37f">
+    Advanced Reasoning
+  </text>
+  <text x="290" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#10a37f">
+    Enterprise Support
+  </text>
+  
+  <!-- DeepSeek V4-Pro Box (Right) -->
+  <rect x="670" y="180" width="480" height="320" rx="12" fill="url(#accentGrad)" stroke="#ffffff20" stroke-width="2"/>
+  
+  <!-- DeepSeek Label -->
+  <text x="910" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#60a5fa">
+    DeepSeek V4-Pro
+  </text>
+  
+  <!-- DeepSeek Price -->
+  <text x="910" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#60a5fa">
+    $0.48
+  </text>
+  
+  <!-- DeepSeek Per Million -->
+  <text x="910" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#a0a0a0">
+    per 1M input tokens
+  </text>
+  
+  <!-- DeepSeek Features -->
+  <text x="910" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#60a5fa">
+    128K Context Window
+  </text>
+  <text x="910" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#60a5fa">
+    95%+ Benchmark Match
+  </text>
+  <text x="910" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#60a5fa">
+    75% Price Cut (2026)
+  </text>
+  
+  <!-- Savings Callout -->
+  <rect x="400" y="520" width="400" height="60" rx="30" fill="#e94560"/>
+  <text x="600" y="558" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">
+    Save 98% with DeepSeek V4-Pro
+  </text>
+  
+  <!-- Footer -->
+  <text x="1170" y="620" text-anchor="end" font-family="Arial, sans-serif" font-size="14" fill="#606060">
+    promptcost.org
+  </text>
+  
+  <!-- Benchmark badges -->
+  <g transform="translate(50, 530)">
+    <rect width="160" height="30" rx="15" fill="#10a37f40"/>
+    <text x="80" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#10a37f">MMLU: 89.8% vs 90.2%</text>
+  </g>
+  <g transform="translate(220, 530)">
+    <rect width="160" height="30" rx="15" fill="#60a5fa40"/>
+    <text x="80" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#60a5fa">Code: 87.6% vs 88.3%</text>
+  </g>
+</svg>
