@@ -118,8 +118,11 @@ if (article) {
   } else {
     schemaList = [softwareSchema];
   }
+} else if (schema) {
+  // Non-article page WITH passed schema (e.g. blog index with Blog + ItemList, about page)
+  schemaList = Array.isArray(schema) ? schema : [schema];
 } else {
-  // Non-article page: SEPARATE blocks — SoftwareApplication + WebSite + Organization + FAQ
+  // Non-article page with no schema: SoftwareApplication + WebSite + Organization + FAQ
   // This enables sitelinks search box in Google Search Console
   schemaList = [softwareSchema, homepageFaqSchema];
 

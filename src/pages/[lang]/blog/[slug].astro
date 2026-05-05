@@ -93,7 +93,7 @@ const blogPostSchema: Record<string, any> = {
     "name": "PromptCost.org",
     "url": "https://promptcost.org"
   },
-  "speakable": {
+  "speakable": post.data.speakable || {
     "@type": "SpeakableSpecification",
     "cssSelector": ["article h2", "#faq-section", ".quick-answer", ".answer-summary"]
   },
