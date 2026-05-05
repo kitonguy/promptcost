@@ -6,12 +6,34 @@ export const prerender = true;
 export function getStaticPaths() {
   return [{ params: { lang: 'en' } }];
 }
+
+// Author/AboutPage schema for E-E-A-T
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "PromptCost Team",
+    "url": "https://promptcost.org/en/about",
+    "jobTitle": "AI Cost Optimization Experts",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "PromptCost.org",
+      "url": "https://promptcost.org"
+    },
+    "sameAs": [
+      "https://twitter.com/promptcost"
+    ],
+    "description": "AI cost optimization experts who have spent over $2M on API bills across 50+ production deployments."
+  }
+};
 ---
 
 <Layout
   title="About PromptCost.org — AI Cost Transparency"
   description="PromptCost.org is a free tool helping developers and businesses understand and optimize AI spending through real-time token estimation and model cost comparison."
   canonical="https://promptcost.org/about/"
+  schema={aboutSchema}
 >
   <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">About PromptCost.org</h1>

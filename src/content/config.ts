@@ -20,7 +20,10 @@ const blog = defineCollection({
     })).optional(),
     speakable: z.object({
       cssSelector: z.array(z.string())
-    }).optional()
+    }).optional(),
+    answer_summary: z.string().optional(),
+    cornerstone: z.boolean().optional(),
+    importance: z.enum(['high', 'medium', 'low']).optional()
   })
 });
 

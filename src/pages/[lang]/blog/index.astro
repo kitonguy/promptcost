@@ -15,7 +15,7 @@ const sortedPosts = posts.sort((a, b) =>
   new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf()
 );
 
-// JSON-LD for blog listing page
+// JSON-LD for blog listing page — ItemList for SEO
 const blogListingSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
@@ -27,13 +27,29 @@ const blogListingSchema = {
     "name": "PromptCost.org"
   }
 };
+
+// ItemList schema — helps Google understand the blog post structure
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "AI Cost Optimization Blog Posts",
+  "description": "Expert guides on AI API pricing, model comparisons, GPU rental, and cost optimization strategies.",
+  "numberOfItems": sortedPosts.length,
+  "itemListElement": sortedPosts.slice(0, 10).map((post, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "url": `https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}/`,
+    "name": post.data.title,
+    "description": post.data.description
+  }))
+};
 ---
 
 <Layout
   title="AI Cost Guides & Token Calculation Tutorials | PromptCost.org Blog"
   description="Expert guides on AI API pricing, token calculation, and cost optimization strategies. Learn how to reduce your AI expenses by up to 90% with practical tips and real-world examples."
   canonical="https://promptcost.org/en/blog/"
-  schema={blogListingSchema}
+  schema={[blogListingSchema, itemListSchema]}
 >
   <section class="py-16 sm:py-24 bg-gradient-to-br from-slate-50 to-blue-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

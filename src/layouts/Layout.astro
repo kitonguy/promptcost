@@ -107,7 +107,8 @@ const homepageFaqSchema = {
   ]
 };
 
-// Build schema list for output — no duplicates, clean logic
+// Build schema list for output — WebSite, Organization, SoftwareApplication as SEPARATE blocks
+// This allows Google Search Console to show sitelinks search box
 let schemaList: object[] = [];
 
 if (article) {
@@ -118,8 +119,39 @@ if (article) {
     schemaList = [softwareSchema];
   }
 } else {
-  // Non-article page: software + website + FAQ (no passed schema)
-  schemaList = [softwareSchema, websiteSchema, homepageFaqSchema];
+  // Non-article page: SEPARATE blocks — SoftwareApplication + WebSite + Organization + FAQ
+  // This enables sitelinks search box in Google Search Console
+  schemaList = [softwareSchema, homepageFaqSchema];
+
+  // Add WebSite as its own separate block (not inside @graph)
+  const websiteSchemaStandalone = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PromptCost.org",
+    "url": siteUrl,
+    "description": "Real-time AI token estimation and global model cost comparison tool. Compare 200+ AI model prices instantly.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteUrl}/?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+  schemaList.push(websiteSchemaStandalone);
+
+  // Add Organization as its own separate block
+  const orgSchemaStandalone = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PromptCost.org",
+    "url": siteUrl,
+    "logo": `${siteUrl}/logo.svg`,
+    "description": "Free AI cost estimation and model comparison platform. Helping developers and businesses optimize AI spending.",
+    "sameAs": ["https://twitter.com/promptcost"]
+  };
+  schemaList.push(orgSchemaStandalone);
 }
 ---
 
@@ -162,6 +194,14 @@ if (article) {
       <meta property="article:section" content={article.category}>
     </>
   )}
+
+  {/* Robots meta for article pages — enable rich snippets */}
+  {article && (
+    <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
+  )}
+
+  {/* News keywords — still read by some crawlers */}
+  <meta name="keywords" content="GPT-4o pricing, Claude API cost, AI token calculator, DeepSeek V3 cost, GPU rental comparison, AI cost optimization, model comparison, API pricing 2026">
 
   {/* Preconnect to external origins for performance */}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -209,6 +249,12 @@ if (article) {
 
     :focus-visible {
       @apply outline-2 outline-offset-2 outline-primary;
+    }
+
+    /* Content visibility for long articles — performance */
+    article {
+      content-visibility: auto;
+      contain-intrinsic-size: 1000px;
     }
 
     ::-webkit-scrollbar {

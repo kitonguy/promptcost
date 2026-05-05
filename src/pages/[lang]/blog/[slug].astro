@@ -10,13 +10,18 @@ export async function getStaticPaths() {
     new Date(b.data.published_date).valueOf() - new Date(a.data.published_date).valueOf()
   );
 
-  return sortedPosts.map(post => ({
+  return sortedPosts.map((post, index) => ({
     params: { lang: 'en', slug: post.id.replace(/\.mdx?$/, '') },
-    props: { post, allPosts: sortedPosts }
+    props: {
+      post,
+      allPosts: sortedPosts,
+      prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+      nextPost: index > 0 ? sortedPosts[index - 1] : null,
+    }
   }));
 }
 
-const { post, allPosts } = Astro.props;
+const { post, allPosts, prevPost, nextPost } = Astro.props;
 const { Content } = await post.render();
 
 // Organization schema for all pages
@@ -56,12 +61,13 @@ const breadcrumbSchema = {
 };
 
 // JSON-LD for BlogPosting
-const blogPostSchema = {
+const slug = post.id.replace(/\.mdx?$/, '');
+const postUrl = `https://promptcost.org/en/blog/${slug}/`;
+const blogPostSchema: Record<string, any> = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post.data.meta_title || post.data.title,
   "description": post.data.meta_description || post.data.description,
-  "image": post.data.featured_image_url,
   "datePublished": post.data.published_date,
   "dateModified": post.data.updated_date || post.data.published_date,
   "author": {
@@ -79,16 +85,37 @@ const blogPostSchema = {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://promptcost.org/en/blog/${post.id.replace(/\.mdx?$/, '')}/`
+    "@id": postUrl
+  },
+  "url": postUrl,
+  "provider": {
+    "@type": "Organization",
+    "name": "PromptCost.org",
+    "url": "https://promptcost.org"
   },
   "speakable": {
     "@type": "SpeakableSpecification",
-    "cssSelector": ["article h2", "#faq-section", ".quick-answer"]
+    "cssSelector": ["article h2", "#faq-section", ".quick-answer", ".answer-summary"]
   },
   "keywords": post.data.keywords ? post.data.keywords.join(", ") : `${post.data.category}, AI cost, API pricing`,
   "articleSection": post.data.category,
   "wordCount": post.body ? post.body.split(/\s+/).length : 0
 };
+
+// Add abstract from answer_summary if available
+if (post.data.answer_summary) {
+  blogPostSchema.abstract = post.data.answer_summary;
+}
+
+// Image as ImageObject
+if (post.data.featured_image_url) {
+  blogPostSchema.image = {
+    "@type": "ImageObject",
+    "url": `https://promptcost.org${post.data.featured_image_url}`,
+    "width": 1200,
+    "height": 630
+  };
+}
 ---
 
 <Layout
@@ -289,5 +316,27 @@ const blogPostSchema = {
         </aside>
       );
     })()}
+
+    {/* Post Navigation — Previous / Next */}
+    {(prevPost || nextPost) && (
+      <nav class="mt-16 pt-8 border-t border-slate-200" aria-label="Post navigation">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {prevPost ? (
+            <a href={`/en/blog/${prevPost.id.replace(/\.mdx?$/, '')}/`}
+               class="group flex flex-col p-5 bg-slate-50 rounded-xl border border-slate-200 hover:border-primary/50 hover:bg-primary/5 transition-all">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">← Previous</span>
+              <span class="font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">{prevPost.data.title}</span>
+            </a>
+          ) : <div />}
+          {nextPost ? (
+            <a href={`/en/blog/${nextPost.id.replace(/\.mdx?$/, '')}/`}
+               class="group flex flex-col p-5 bg-slate-50 rounded-xl border border-slate-200 hover:border-primary/50 hover:bg-primary/5 transition-all text-right sm:col-start-2">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Next →</span>
+              <span class="font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">{nextPost.data.title}</span>
+            </a>
+          ) : <div />}
+        </div>
+      </nav>
+    )}
   </article>
 </Layout>
