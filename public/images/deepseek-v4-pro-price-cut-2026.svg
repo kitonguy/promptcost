@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0f1f3d"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="#fff" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="1000" y1="0" x2="1000" y2="630" stroke="#fff" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Badge: 75% OFF -->
+  <g transform="translate(950, 60)">
+    <rect x="0" y="0" width="180" height="50" rx="25" fill="url(#accentGrad)"/>
+    <text x="90" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">75% PRICE CUT</text>
+  </g>
+  
+  <!-- Main Title -->
+  <text x="80" y="140" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#fff">
+    DeepSeek V4 Pro
+  </text>
+  <text x="80" y="210" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#10b981">
+    Reshapes AI Pricing
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8">
+    May 2026 Cost Analysis: V4-Pro vs GPT-5.5 vs Claude Opus 4.7
+  </text>
+  
+  <!-- Pricing Cards -->
+  <!-- DeepSeek V4 Pro Card -->
+  <g transform="translate(80, 300)">
+    <rect x="0" y="0" width="320" height="180" rx="12" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="2"/>
+    <text x="160" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#10b981" text-anchor="middle">DeepSeek V4 Pro</text>
+    <text x="160" y="90" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle">$0.07</text>
+    <text x="160" y="120" font-family="Arial, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">per 1M input tokens</text>
+    <text x="160" y="155" font-family="Arial, sans-serif" font-size="16" fill="#10b981" text-anchor="middle">✓ Best Value</text>
+  </g>
+  
+  <!-- GPT-5.5 Card -->
+  <g transform="translate(440, 300)">
+    <rect x="0" y="0" width="320" height="180" rx="12" fill="#374151" stroke="#4b5563" stroke-width="2"/>
+    <text x="160" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#9ca3af" text-anchor="middle">GPT-5.5</text>
+    <text x="160" y="90" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle">$8.44</text>
+    <text x="160" y="120" font-family="Arial, sans-serif" font-size="18" fill="#6b7280" text-anchor="middle">per 1M input tokens</text>
+    <text x="160" y="155" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">120x More Expensive</text>
+  </g>
+  
+  <!-- Claude Opus 4.7 Card -->
+  <g transform="translate(800, 300)">
+    <rect x="0" y="0" width="320" height="180" rx="12" fill="#374151" stroke="#4b5563" stroke-width="2"/>
+    <text x="160" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#9ca3af" text-anchor="middle">Claude Opus 4.7</text>
+    <text x="160" y="90" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle">$5.00</text>
+    <text x="160" y="120" font-family="Arial, sans-serif" font-size="18" fill="#6b7280" text-anchor="middle">per 1M input tokens</text>
+    <text x="160" y="155" font-family="Arial, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle">71x More Expensive</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="80" y="540" font-family="Arial, sans-serif" font-size="18" fill="#64748b">
+    Source: AIMultiple, OpenAI, Anthropic, DeepSeek (May 2026)
+  </text>
+  <text x="1120" y="540" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="end">
+    promptcost.org
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="1100" cy="100" r="60" fill="#10b981" fill-opacity="0.1"/>
+  <circle cx="1150" cy="180" r="40" fill="#10b981" fill-opacity="0.08"/>
+</svg>
