@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#ffffff08" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="60" y="100" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#ffffff">
+    GPT-5.5 Instant
+  </text>
+  <text x="60" y="165" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="url(#accent)">
+    vs GPT-4o Cost
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="220" font-family="system-ui, sans-serif" font-size="28" fill="#94a3b8">
+    Is the 2x Price Worth It?
+  </text>
+  
+  <!-- Price boxes -->
+  <g transform="translate(60, 280)">
+    <!-- GPT-4o box -->
+    <rect width="340" height="180" rx="12" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <text x="20" y="40" font-family="system-ui, sans-serif" font-size="22" fill="#94a3b8" font-weight="600">GPT-4o</text>
+    <text x="20" y="90" font-family="system-ui, sans-serif" font-size="48" fill="#22c55e" font-weight="700">$2.50</text>
+    <text x="175" y="90" font-family="system-ui, sans-serif" font-size="18" fill="#64748b">/M input</text>
+    <text x="20" y="130" font-family="system-ui, sans-serif" font-size="36" fill="#22c55e" font-weight="700">$10.00</text>
+    <text x="150" y="130" font-family="system-ui, sans-serif" font-size="18" fill="#64748b">/M output</text>
+    <text x="20" y="160" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">128K context</text>
+  </g>
+  
+  <g transform="translate(430, 280)">
+    <!-- GPT-5.5 Instant box -->
+    <rect width="340" height="180" rx="12" fill="#1e1b4b" stroke="#7c3aed" stroke-width="3"/>
+    <text x="20" y="40" font-family="system-ui, sans-serif" font-size="22" fill="#c4b5fd" font-weight="600">GPT-5.5 Instant</text>
+    <text x="20" y="90" font-family="system-ui, sans-serif" font-size="48" fill="#a855f7" font-weight="700">$5.00</text>
+    <text x="175" y="90" font-family="system-ui, sans-serif" font-size="18" fill="#7c3aed">/M input</text>
+    <text x="20" y="130" font-family="system-ui, sans-serif" font-size="36" fill="#a855f7" font-weight="700">$30.00</text>
+    <text x="150" y="130" font-family="system-ui, sans-serif" font-size="18" fill="#7c3aed">/M output</text>
+    <text x="20" y="160" font-family="system-ui, sans-serif" font-size="14" fill="#8b5cf6">128K context • NEW May 2026</text>
+  </g>
+  
+  <!-- VS badge -->
+  <circle cx="405" cy="370" r="30" fill="#f59e0b"/>
+  <text x="405" y="380" font-family="system-ui, sans-serif" font-size="28" fill="#1a1a2e" font-weight="800" text-anchor="middle">vs</text>
+  
+  <!-- Key insight -->
+  <g transform="translate(800, 280)">
+    <rect width="340" height="180" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+    <text x="20" y="40" font-family="system-ui, sans-serif" font-size="18" fill="#fcd34d" font-weight="700">KEY INSIGHT</text>
+    <text x="20" y="75" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">38% fewer hallucinations</text>
+    <text x="20" y="100" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">22% better instruction</text>
+    <text x="20" y="125" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">following accuracy</text>
+    <text x="20" y="160" font-family="system-ui, sans-serif" font-size="16" fill="#f59e0b" font-weight="600">Use GPT-5.5 for complex</text>
+    <text x="20" y="182" font-family="system-ui, sans-serif" font-size="16" fill="#f59e0b" font-weight="600">tasks, GPT-4o for volume</text>
+  </g>
+  
+  <!-- Bottom tagline -->
+  <text x="60" y="550" font-family="system-ui, sans-serif" font-size="20" fill="#64748b">
+    May 2026 • Source: OpenRouter API
+  </text>
+  
+  <!-- Logo -->
+  <text x="1140" y="550" font-family="system-ui, sans-serif" font-size="22" fill="#94a3b8" font-weight="600" text-anchor="end">promptcost.org</text>
+</svg>
