@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+<rect width="400" height="300" fill="#0f1923"/>
+<rect x="40" y="60" width="320" height="200" rx="8" fill="#1a2533" stroke="#2d3f54" stroke-width="2"/>
+<rect x="40" y="60" width="320" height="32" rx="8" fill="#243044"/>
+<rect x="56" y="72" width="10" height="10" rx="5" fill="#ff5f57"/>
+<rect x="72" y="72" width="10" height="10" rx="5" fill="#febc2e"/>
+<rect x="88" y="72" width="10" height="10" rx="5" fill="#28c840"/>
+<text x="200" y="85" text-anchor="middle" font-family="Arial" font-size="11" fill="#8ba4c0">chrome://ai-internals</text>
+<rect x="160" y="130" width="80" height="80" rx="12" fill="#1e3a5f"/>
+<text x="200" y="175" text-anchor="middle" font-family="Arial" font-size="32" font-weight="bold" fill="#4285f4">G</text>
+<text x="200" y="235" text-anchor="middle" font-family="Arial" font-size="11" fill="#5a7a9a">4 GB</text>
+<text x="200" y="250" text-anchor="middle" font-family="Arial" font-size="10" fill="#3d5a80">Gemini Nano</text>
+<path d="M100 195 L300 195" stroke="#2d3f54" stroke-width="1" stroke-dasharray="4"/>
+<text x="60" y="200" font-family="Arial" font-size="9" fill="#ff5f57">⚠ hidden</text>
+<text x="300" y="200" font-family="Arial" font-size="9" fill="#28c840">✓ local</text>
+<rect x="130" y="265" width="140" height="22" rx="4" fill="#4285f4"/>
+<text x="200" y="280" text-anchor="middle" font-family="Arial" font-size="10" fill="white">$0 / token</text>
+</svg>
