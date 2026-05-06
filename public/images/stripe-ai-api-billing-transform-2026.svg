@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="stripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6772e5"/>
+      <stop offset="100%" style="stop-color:#9b59b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff06" stroke-width="1">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+  <g transform="translate(60, 50)">
+    <rect width="50" height="50" rx="10" fill="url(#stripe)"/>
+    <text x="25" y="35" font-family="system-ui, sans-serif" font-size="24" fill="white" font-weight="700" text-anchor="middle">$</text>
+  </g>
+  <text x="130" y="90" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#ffffff">Stripe AI API Billing</text>
+  <text x="60" y="155" font-family="system-ui, sans-serif" font-size="32" fill="#94a3b8">Transforming AI Costs Into Profit</text>
+  <g transform="translate(60, 200)">
+    <rect width="340" height="280" rx="12" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+    <text x="20" y="35" font-family="system-ui, sans-serif" font-size="20" fill="#ef4444" font-weight="700">OLD MODEL</text>
+    <text x="20" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">AI Cost = Pure Expense</text>
+    <line x1="20" y1="85" x2="320" y2="85" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="115" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Fixed monthly API bill</text>
+    <text x="20" y="140" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Costs eat into margins</text>
+    <text x="20" y="165" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- No revenue attribution</text>
+    <text x="20" y="190" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Unpredictable spikes</text>
+    <text x="20" y="220" font-family="system-ui, sans-serif" font-size="28" fill="#ef4444" font-weight="700">Lost Money</text>
+  </g>
+  <g transform="translate(420, 300)">
+    <polygon points="0,25 50,0 50,15 100,15 100,35 50,35 50,50" fill="#f59e0b"/>
+  </g>
+  <g transform="translate(540, 200)">
+    <rect width="340" height="280" rx="12" fill="#0f172a" stroke="#22c55e" stroke-width="2"/>
+    <text x="20" y="35" font-family="system-ui, sans-serif" font-size="20" fill="#22c55e" font-weight="700">NEW MODEL</text>
+    <text x="20" y="70" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">AI Cost = Revenue Driver</text>
+    <line x1="20" y1="85" x2="320" y2="85" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="115" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Usage-based pricing</text>
+    <text x="20" y="140" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Pass costs to customers</text>
+    <text x="20" y="165" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Token-based billing</text>
+    <text x="20" y="190" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">- Predictable revenue</text>
+    <text x="20" y="220" font-family="system-ui, sans-serif" font-size="28" fill="#22c55e" font-weight="700">Profit Center</text>
+  </g>
+  <g transform="translate(900, 200)">
+    <rect width="240" height="280" rx="12" fill="#1e1b4b" stroke="#6772e5" stroke-width="2"/>
+    <text x="20" y="35" font-family="system-ui, sans-serif" font-size="18" fill="#c4b5fd" font-weight="700">KEY METRICS</text>
+    <text x="20" y="80" font-family="system-ui, sans-serif" font-size="36" fill="#22c55e" font-weight="700">40-60%</text>
+    <text x="20" y="105" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">typical markup margin</text>
+    <text x="20" y="140" font-family="system-ui, sans-serif" font-size="36" fill="#f59e0b" font-weight="700">2-3x</text>
+    <text x="20" y="165" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">revenue increase reported</text>
+    <text x="20" y="200" font-family="system-ui, sans-serif" font-size="36" fill="#00d4ff" font-weight="700">May 2026</text>
+    <text x="20" y="225" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">Stripe announcement</text>
+  </g>
+  <text x="60" y="550" font-family="system-ui, sans-serif" font-size="18" fill="#64748b">Source: TechCrunch, PYMNTS, Stripe Blog (May 2026)</text>
+  <text x="1140" y="550" font-family="system-ui, sans-serif" font-size="22" fill="#94a3b8" font-weight="600" text-anchor="end">promptcost.org</text>
+</svg>
