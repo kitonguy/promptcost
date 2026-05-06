@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect fill="#0f172a" width="1200" height="630"/>
+  <rect x="40" y="80" width="520" height="420" rx="8" fill="#1e293b"/>
+  <text x="300" y="160" font-family="system-ui" font-size="20" fill="#f87171" text-anchor="middle" font-weight="bold">VISION AGENT</text>
+  <text x="300" y="210" font-family="system-ui" font-size="36" fill="#fca5a5" text-anchor="middle" font-weight="bold">551K Tokens</text>
+  <text x="300" y="250" font-family="system-ui" font-size="20" fill="#94a3b8" text-anchor="middle">53 Steps</text>
+  <text x="300" y="290" font-family="system-ui" font-size="20" fill="#94a3b8" text-anchor="middle">~17 min</text>
+  <text x="300" y="350" font-family="system-ui" font-size="28" fill="#f87171" text-anchor="middle">$2.05 / task</text>
+  <rect x="640" y="80" width="520" height="420" rx="8" fill="#1e293b"/>
+  <text x="900" y="160" font-family="system-ui" font-size="20" fill="#22c55e" text-anchor="middle" font-weight="bold">API CALLS</text>
+  <text x="900" y="210" font-family="system-ui" font-size="36" fill="#4ade80" text-anchor="middle" font-weight="bold">12K Tokens</text>
+  <text x="900" y="250" font-family="system-ui" font-size="20" fill="#94a3b8" text-anchor="middle">8 Calls</text>
+  <text x="900" y="290" font-family="system-ui" font-size="20" fill="#94a3b8" text-anchor="middle">~20 sec</text>
+  <text x="900" y="350" font-family="system-ui" font-size="28" fill="#4ade80" text-anchor="middle">$0.046 / task</text>
+  <text x="600" y="570" font-family="system-ui" font-size="18" fill="#64748b" text-anchor="middle">Same Task • Same Model • Same App</text>
+  <rect x="200" y="520" width="800" height="2" fill="#22c55e" opacity="0.3"/>
+</svg>
