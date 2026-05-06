@@ -1,0 +1,143 @@
+---
+title: "Gemma 4's Multi-Token Prediction: How Google Made Its Smaller Models Inference Speed Monsters"
+description: "Google's Gemma 4 uses multi-token prediction to inference up to 3x faster than standard autoregressive decoding. We break down how the technique works, what it costs on OpenRouter, and whether it's worth building around."
+author: "PromptCost Team"
+author_bio: "AI cost optimization experts who have spent over $2M on API bills across 50+ production deployments."
+author_link: "https://promptcost.org/en/team/"
+category: "AI Model Performance"
+published_date: "2026-05-06"
+updated_date: "2026-05-06"
+featured_image_url: "/images/gemma-4-multi-token-prediction.svg"
+meta_title: "Gemma 4 Multi-Token Prediction: How It Works and What It Costs"
+meta_description: "Google's Gemma 4 uses multi-token prediction drafters to inference 2-3x faster. Full breakdown: how the technique works, benchmark context, OpenRouter pricing, and whether to switch."
+keywords: ["gemma-4", "multi-token-prediction", "google-ai", "inference-speed", "llm-optimization", "gemma-4-pricing", "ai-inference-costs", "draft-model", "fast-llm", "google-deepmind"]
+answer_summary: "Gemma 4 uses multi-token prediction drafters — smaller helper models that predict multiple tokens at once, then the main model verifies them in parallel. This cuts inference latency by 2-3x compared to standard one-token-at-a-time decoding. Gemma 4 26B and 31B are free on OpenRouter's free tier, or $0.06-0.13/M input at standard pricing — a fraction of what you'd pay for comparable throughput from Claude or GPT-4o."
+faq:
+  - question: "What is multi-token prediction in Gemma 4?"
+    answer: "Multi-token prediction is a decoding technique where a secondary 'drafter' model proposes multiple tokens at once, and the main model verifies them in parallel rather than generating one token at a time. This reduces the number of forward passes needed, cutting inference time by 2-3x for typical workloads."
+  - question: "How much faster is Gemma 4 compared to standard decoding?"
+    answer: "Google's benchmarks show 2-3x faster inference on standard benchmarks, with larger gains on longer outputs. The improvement comes from amortizing the cost of each forward pass across multiple tokens instead of processing them sequentially."
+  - question: "Is Gemma 4 free to use?"
+    answer: "Yes — Gemma 4 26B and 31B are available for free on OpenRouter's free tier (gemma-4-26b-a4b-it:free and gemma-4-31b-it:free). At standard pricing, Gemma 4 26B costs $0.06/M input and $0.33/M output; Gemma 4 31B costs $0.13/M input and $0.38/M output."
+  - question: "How does Gemma 4 compare to Claude 3.5 Sonnet on price?"
+    answer: "Gemma 4 31B costs roughly 23x less per million input tokens than Claude 3.5 Sonnet ($0.13 vs $3.00). For tasks where inference speed matters more than frontier-level reasoning, Gemma 4 is dramatically cheaper."
+  - question: "What context length does Gemma 4 support?"
+    answer: "Both Gemma 4 26B and 31B support 262,144 token context windows, making them suitable for long-document tasks, codebases, and extended conversations."
+  - question: "Can Gemma 4 handle code generation tasks?"
+    answer: "Gemma 4 is trained on a diverse corpus including code. According to user reports on Hacker News, Gemma 4 31B performs well on technical tasks including Verilog simulation and complex debugging. It competes with Gemini CLI in many developer scenarios."
+  - question: "What's the catch with free-tier Gemma 4 on OpenRouter?"
+    answer: "Free tier has rate limits and no SLA. For production traffic, the standard tier ($0.06-0.13/M input) is more reliable. The free tier is useful for development and testing before committing to a paid deployment."
+  - question: "How does multi-token prediction affect output quality?"
+    answer: "The drafter model proposes tokens and the main model verifies them — if a proposed token is wrong, the main model corrects it during verification. The quality is equivalent to standard autoregressive generation; the speedup comes from parallel verification rather than compromising accuracy."
+  - question: "Is 26B or 31B better for production use?"
+    answer: "The 31B model has higher raw capability and handles more complex reasoning tasks better. The 26B model is faster and cheaper. For most general tasks, the 26B version at free-tier pricing offers the best cost-performance ratio."
+  - question: "Where can I try Gemma 4 today?"
+    answer: "Gemma 4 is available directly on OpenRouter (openrouter.ai/models/google/gemma-4-31b-it) or through Google's AI Studio. For API access with higher rate limits, the OpenRouter standard tier at $0.13/M input is the most straightforward option."
+
+---
+
+## Quick Answer
+
+Google's Gemma 4 uses a technique called multi-token prediction to speed up inference. Instead of generating one token, checking it, then moving to the next, a smaller drafter model proposes multiple tokens at once and the main model verifies them in parallel. The result: 2-3x faster inference on the same hardware.
+
+The practical upside: Gemma 4 26B and 31B are free on OpenRouter's free tier, with standard pricing of $0.06-0.13 per million input tokens. For context, Claude 3.5 Sonnet charges $3.00 per million input tokens. The capability gap is real for complex reasoning, but for coding assistance, summarization, and standard AI tasks, Gemma 4 is fast becoming a credible alternative.
+
+---
+
+## What Multi-Token Prediction Actually Is
+
+Standard language model decoding is sequential. The model predicts token 1, then uses token 1 to predict token 2, then token 2 to predict token 3, and so on. Every token wait for the one before it.
+
+Multi-token prediction changes this. A secondary model — the drafter — proposes a small sequence of tokens at once. The main model then verifies all of them in a single forward pass. If the drafter was right, you just saved multiple forward passes. If it was wrong on token 3, the main model corrects it and continues.
+
+The key insight is that verification is cheaper than generation. A smaller model can propose tokens cheaply, and a larger model can verify them quickly in parallel. The net effect is fewer total compute steps for the same output length.
+
+Google's implementation in Gemma 4 uses what they call "drafters" — lightweight predictors that run alongside the main model. The drafter doesn't generate text on its own; it previews what the main model might say next, and the main model either accepts or rejects each proposed token.
+
+The technique has been explored in academic literature for years (see the Medusa and EAGLE papers from 2023-2024), but Google's implementation in a production frontier-adjacent model is what brought it to mainstream attention.
+
+---
+
+## What the Speedup Looks Like in Practice
+
+In Google's published benchmarks, multi-token prediction delivers 2-3x throughput improvement over standard autoregressive decoding at equal quality. The gains are most pronounced on longer outputs where the pipeline can fully warm up.
+
+For a concrete example: a coding task that takes 30 seconds with standard decoding might complete in 10-12 seconds with multi-token prediction enabled. On workloads with sustained token generation, the improvement compounds.
+
+The Hacker News discussion around Gemma 4's release surfaced real-world reports that line up with this. One developer noted that Gemini CLI — which uses related techniques — had improved dramatically in recent months, going from frustrating loops to reliably solving complex build problems in minutes. Another compared it favorably to Claude on technical tasks after being stuck on a problem with the latter.
+
+These are anecdotal, but the pattern matches what you'd expect from the architecture: tasks with clear structure and moderate complexity benefit most. Ambiguous reasoning tasks still benefit from frontier models.
+
+---
+
+## OpenRouter Pricing — Gemma 4 vs. the Field
+
+Gemma 4 costs on OpenRouter right now, compared to the models it competes with:
+
+| Model | Context | Input Cost | Output Cost | Free Tier |
+|-------|---------|-----------|-------------|-----------|
+| Gemma 4 26B | 262K | $0.06/M | $0.33/M | Yes |
+| Gemma 4 31B | 262K | $0.13/M | $0.38/M | Yes |
+| Claude 3.5 Sonnet | 200K | $3.00/M | $15.00/M | No |
+| GPT-4o | 128K | $2.50/M | $10.00/M | No |
+| DeepSeek V3 | 64K | $0.01/M | $0.03/M | No |
+| Qwen 3.5 35B | 262K | $0.15/M | $1.00/M | No |
+
+*Prices from OpenRouter (May 2026). Verify before making infrastructure decisions.*
+
+Gemma 4 sits between the ultra-cheap DeepSeek tier and the premium frontier models. For teams that need more capability than DeepSeek offers but want to avoid Claude/GPT pricing, it's a legitimate middle ground — especially given the 262K context window.
+
+---
+
+## What You Can Actually Build With It
+
+The combination of multi-token prediction, long context, and low cost opens up some specific use cases where Gemma 4 makes sense.
+
+**Code generation and review.** With a 262K context, you can feed an entire medium-sized codebase into Gemma 4 and ask it to generate or review code. The multi-token prediction speedup matters here — longer code outputs are where the technique pays off most.
+
+**Document processing at scale.** Summarizing, extracting, or classifying long documents. The context window means you don't need chunking strategies, and the throughput is high enough for production workloads.
+
+**Developer tooling.** The HN discussion mentioned Gemini CLI competing with Claude for developer tasks. Gemma 4 occupies similar territory — fast enough for interactive use, capable enough for real work.
+
+**High-volume AI tasks.** If you're running thousands of daily tasks that don't require frontier reasoning — classification, extraction, straightforward Q&A — Gemma 4's free tier covers substantial volume.
+
+---
+
+## Where It Falls Short
+
+Gemma 4 is not a Claude replacement for complex reasoning. The multi-token prediction speedup comes from architectural optimization, not from raw capability improvements. If a task requires multi-step reasoning about an ambiguous problem, frontier models still outperform.
+
+The practical gap shows up in:
+- Complex debugging where the solution path isn't obvious
+- Tasks requiring deep domain expertise and nuanced judgment
+- Problems where you need the model to challenge your assumptions
+
+For these, you're still paying for Sonnet or GPT-4o.
+
+There's also the rate limit consideration on the free tier. OpenRouter's free tier works for development, but production traffic needs the standard tier. At $0.06-0.13/M input, it's still far cheaper than alternatives — but it's not free at scale.
+
+---
+
+## Should You Switch?
+
+The calculus is straightforward.
+
+If you're paying for Claude or GPT-4o on tasks that don't require frontier reasoning — and you probably are, most teams are — Gemma 4 is worth testing. Spin up the free tier, run your actual workloads against it, and compare results.
+
+If Gemma 4 passes your quality bar for 60% of your tasks, you've just cut your API bill by 90%+ on that portion. The remaining 40% (complex reasoning, nuanced judgment, ambiguous problems) stays with the frontier model.
+
+The bottleneck is rarely the model. It's usually the assumption that you need the most expensive option for every task. Gemma 4 multi-token prediction is Google's argument that speed and cost can improve without sacrificing capability — and for a growing class of production AI tasks, they're right.
+
+**Related Reading:**
+- [OpenRouter Pricing Guide 2026](/en/blog/openrouter-pricing-guide-2026/) — full model aggregation breakdown
+- [How Much Does Claude 3.5 Sonnet Cost?](/en/blog/how-much-does-claude-35-sonnet-cost/) — Sonnet vs Gemma pricing
+- [Small Language Models: How to Stop Overpaying](/en/blog/small-language-models-slm-cost-2026/) — when smaller models make sense
+- [DeepSeek V3 Cost Analysis](/en/blog/deepseek-v3-cost-analysis-2026/) — another cheap capable model
+
+**Community & Sources:**
+- [HN: Accelerating Gemma 4](https://news.ycombinator.com/item?id=48024540)
+- [Google AI Blog: Multi-Token Prediction](https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction/)
+
+---
+
+*Pricing data from OpenRouter (May 2026). Gemma 4 benchmark data from Google's official publications and community reports. Results vary by workload — test with your actual tasks before committing to any model for production use.*
