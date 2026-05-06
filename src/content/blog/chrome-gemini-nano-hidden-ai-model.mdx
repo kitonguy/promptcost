@@ -1,218 +1,166 @@
 ---
-title: "Chrome Gemini Nano: Gizli 4GB AI Modeli — Ne Kadar Maliyet Tasarrufu Sağlar?"
+title: "Chrome Gemini Nano: The Hidden 4GB AI Model on Your Device — What's the Real Cost Savings?"
 published_date: "2026-05-06"
-description: "Chrome 4GB Gemini Nano modelini sessizce yüklüyor. Yerel AI inference maliyeti sıfır. API maliyetleriyle karşılaştırma: ne kadar tasarruf edersiniz?"
+description: "Chrome silently downloads a 4GB Gemini Nano model. Local AI inference costs $0 per token. Here's the real cost comparison and how much you can save vs API pricing."
 updated_date: "2026-05-06"
 author: "Byzas AI Research"
 author_url: "https://byzas.co"
 category: "AI Infrastructure"
 tags: ["chrome", "gemini-nano", "local-ai", "webgpu", "on-device-ai", "chrome-prompt-api", "privacy"]
 featured_image_url: "/images/chrome-gemini-nano-hidden-ai.svg"
-meta_title: "Chrome Gemini Nano Gizli 4GB AI Modeli — Maliyet Karşılaştırması"
-meta_description: "Chrome 4GB Gemini Nano modelini sessizce yüklüyor. Yerel AI inference maliyeti sıfır. API maliyetleriyle karşılaştırma: ne kadar tasarruf edersiniz?"
-answer_summary: "Chrome, Gemini Nano 4GB modelini kullanıcı onayı almadan cihaza yüklüyor. Yerel inference maliyeti sıfır — tek seferlik cihaz maliyeti dışında API ücreti yok. Gemini 2.0 Flash API maliyeti yaklaşık 0.10$/1M token. Günde 1000 sorgu yapan bir kullanıcı, yerel modelle aylık 30-50$ API ücretinden kurtulabilir. Bunun yanında veriler cihazda kalır, gecikme minimum ve internet bağlantısı gerekmez."
+meta_title: "Chrome Gemini Nano Hidden 4GB AI Model — Local vs API Cost Comparison"
+meta_description: "Chrome silently downloads a 4GB Gemini Nano model. Local AI inference costs $0 per token. Here's the real cost comparison: how much can you save vs API pricing?"
+answer_summary: "Chrome is silently installing a 4GB Gemini Nano model on user devices without consent. Local inference costs $0 per token — just a one-time device cost. Gemini 2.0 Flash API costs ~$0.10/M input tokens. A user making 1000 queries/day saves $30-50/month in API fees with local inference. Data stays on-device, latency is minimal, and no internet connection is required."
 keywords: ["chrome gemini nano", "chrome ai model", "local ai inference", "webgpu ai", "on-device ai cost", "gemini nano pricing", "chrome prompt api", "ai storage cost"]
 faq:
-  - question: "Chrome Gemini Nano nedir ve ne kadar yer kaplar?"
-    answer: "Gemini Nano, Google'ın en küçük yetenekli AI modeli. Chrome 4GB boyutunda bir model dosyası yükleyerek on-device AI özelliği sunuyor. Bu, yapay zeka özelliklerinin internet bağlantısı olmadan çalışmasını sağlar."
-  - question: "Chrome Gemini Nano'yu kaldırabilir miyim?"
-    answer: "Standart kullanıcı arayüzünden doğrudan kaldırmak mümkün değil. Ancak chrome://settings/ adresinden AI özelliklerini devre dışı bırakabilir veya Chrome verilerini temizleyerek model dosyasını silebilirsiniz."
-  - question: "Yerel AI inference ile API arasındaki maliyet farkı nedir?"
-    answer: "Gemini 2.0 Flash API: ~0.10$/1M input token, ~0.40$/1M output token. Yerel Gemini Nano: tek seferlik cihaz maliyeti (bir kez ödenir), sonra sıfır token ücreti. Günde 1000 token sorgusu yapan bir uygulama, API ile aylık 30-150$ harcar; yerel modelle bu maliyet sıfıra düşer."
-  - question: "Chrome Prompt API nedir?"
-    answer: "Chrome Prompt API, web sitelerinin kullanıcının cihazındaki yerel AI modelini kullanmasına izin veren bir API. Bu sayede web uygulamaları, verileri sunucuya göndermeden AI özellikleri sunabilir — gizlilik ve hız avantajı sağlar."
-  - question: "Gemini Nano çevrimdışı çalışır mı?"
-    answer: "Evet. Model cihazda olduğu için internet bağlantısı gerekmez. Bu özellikle seyahatte, düşük bağlantılı ortamlarda veya gizlilik gerektiren işlemler için önemlidir."
-  - question: "Hangi donanım Gemini Nano için yeterli?"
-    answer: "En az 8GB RAM ve WebGPU desteği gerekir. Chromebook, MacBook ve Windows bilgisayarlarda Chrome'un son sürümleri destekler. Düşük donanımlı cihazlarda model çalışmayabilir veya yavaş performans gösterebilir."
-  - question: "Verilerim Chrome AI'da işleniyor mu?"
-    answer: "Yerel modelde veriler cihazda kalır, Google sunucularına gönderilmez. Ancak Chrome Prompt API ile web siteleri modeli kullanabildiğinden, hangi sitelerin erişim izni olduğunu kontrol etmek önemlidir."
-  - question: "Bu durum OpenRouter ve diğer API sağlayıcılarını nasıl etkiler?"
-    answer: "Yerel AI'ın yükselişi, basit sorgular için API kullanımını azaltabilir. Ancak karmaşık görevler, büyük modeller ve sürekli güncel bilgi gerektiren işlemler için API hâlâ gereklidir. OpenRouter gibi toplayıcılar, birden fazla modele tek arayüz sunmaya devam edecektir."
-  - question: "Chrome AI'ın çevresel etkisi nedir?"
-    answer: "Yerel inference, veri merkezi enerji tüketimini azaltır. Her API çağrısı bir veri merkezi ziyareti demek. Kullanıcı cihazında çalışan model, karbon ayak izini düşürür — özellikle sık tekrarlanan basit sorgularda."
-  - question: "Chrome Gemini Nano gelecekte ne olacak?"
-    answer: "Google, Chrome AI stratejisini genişletiyor. Gelecek sürümlerde daha büyük modeller, daha iyi performans ve daha fazla API entegrasyonu bekleniyor. Apple'ın on-device AI hamlesine karşı Google da browser tabanlı AI'a yatırım yapıyor."
+  - question: "What is Chrome Gemini Nano and how much storage does it use?"
+    answer: "Gemini Nano is Google's smallest capable AI model. Chrome downloads a 4GB model file to enable on-device AI features. This allows AI capabilities to run without an internet connection."
+  - question: "Can I remove Chrome Gemini Nano?"
+    answer: "There's no standard UI option to remove it. However, you can disable AI features at chrome://settings/ or clear Chrome data to delete the model file."
+  - question: "What's the cost difference between local AI inference and API calls?"
+    answer: "Gemini 2.0 Flash API: ~$0.10/M input tokens, ~$0.40/M output tokens. Local Gemini Nano: one-time device cost (paid once), then $0 per token. An app making 1000 token queries daily spends ~$195/month on API; local model brings this to zero."
+  - question: "What is the Chrome Prompt API?"
+    answer: "Chrome Prompt API allows websites to use the user's local AI model. Web apps can offer AI features without sending data to servers — privacy and speed advantages."
+  - question: "Does Gemini Nano work offline?"
+    answer: "Yes. Since the model runs on your device, no internet connection is needed. This is valuable for travel, low-connectivity environments, and privacy-sensitive operations."
+  - question: "What hardware is needed for Gemini Nano?"
+    answer: "Minimum 8GB RAM and WebGPU support. Works on Chromebooks, MacBooks, and Windows PCs running the latest Chrome. Lower-end devices may not run the model or will show poor performance."
+  - question: "Is my data processed by Chrome AI?"
+    answer: "Local model: data stays on your device and is never sent to Google servers. However, the Chrome Prompt API allows websites to access the model — check which sites have permission."
+  - question: "How does this affect OpenRouter and other API providers?"
+    answer: "Rise of local AI may reduce API usage for simple queries. However, complex tasks, larger models, and real-time information still require APIs. Aggregators like OpenRouter will continue serving multi-model access."
+  - question: "What's the environmental impact of local vs cloud AI?"
+    answer: "Local inference reduces data center energy consumption. Every API call means a data center visit. A model running on your device lowers carbon footprint — especially for frequent simple queries."
+  - question: "What happens next with Chrome Gemini Nano?"
+    answer: "Google is expanding Chrome AI strategy. Future versions expect larger models, better performance, and deeper API integrations. This is Google's answer to Apple's on-device AI push."
 ---
 
 ## Quick Answer
 
-Chrome, Gemini Nano 4GB modelini kullanıcı onayı almadan cihaza sessizce yüklüyor. Yerel AI inference maliyeti sıfır — tek seferlik cihaz maliyeti dışında token başına ücret yok. Gemini 2.0 Flash API yaklaşık 0.10$/1M input token. Günde 1000 sorgu yapan bir kullanıcı, yerel modelle aylık 30-50$ API ücretinden kurtuluyor. Veriler cihazda kalıyor, gecikme minimum ve internet bağlantısı gerekmiyor.
+Chrome is silently installing a 4GB Gemini Nano model on user devices without consent. Local AI inference costs $0 per token — just a one-time device cost. Gemini 2.0 Flash API costs ~$0.10/M input tokens. A user making 1000 queries/day saves $30-50/month in API fees with local inference. Data stays on-device, latency is minimal, and no internet connection is required.
 
 ---
 
-## Chrome Neden 4GB AI Modeli Yüklüyor?
+## Why Is Chrome Installing a 4GB AI Model?
 
-Google, Mayıs 2026'da Chrome tarayıcısına Gemini Nano modelini sessizce yüklemeye başladı. Kullanıcılar bunu fark etmedi çünkü ne bir kurulum sihirbazı ne de bir onay penceresi göründü. Model, Chrome'un AI özelliklerini yerel olarak çalıştırmak için tasarlandı — ancak kullanıcı bunu istememiş olsa bile.
+Google began silently downloading the Gemini Nano model to Chrome browsers in May 2026. Users didn't notice — there was no installation wizard, no consent dialog. The model was designed to run Chrome AI features locally, whether the user wanted it or not.
 
-Bu haber, Hacker News'te 30.109 velocity puanı alarak günün en yüksek trafiğe sahip konusu oldu. Kullanıcılar "bu ne kadar yer kaplıyor", "verilerim gidiyor mu" ve "bunu nasıl kaldırırım" sorularını sordu.
+The news became the highest-traffic topic on Hacker News that day, scoring 30,109 velocity points. Users asked: "how much space is this taking up?", "is my data being sent?", "how do I remove this?"
 
 according to [Hacker News Discussion](https://news.ycombinator.com/item?id=48020000) (May 2026)
 
-Chrome'un bu hamlesi, Apple'ın Mac ve iPhone'larındaki on-device AI stratejisine karşı bir yanıt. Google, tarayıcıyı bir AI platformu olarak konumlandırmak istiyor. Ancak bunu kullanıcıya sormadan yapması, gizlilik endişelerini beraberinde getirdi.
+Chrome's move is a response to Apple's on-device AI strategy on Macs and iPhones. Google is positioning the browser as an AI platform. But deploying without asking first raised serious privacy concerns.
 
 cite: [Tom's Guide — Chrome 4GB AI Model](https://www.tomsguide.com/ai/chrome-may-be-downloading-a-4gb-ai-model-heres-what-we-know)
 cite: [TechSpot — Chrome Quietly Pushes AI Model](https://www.techspot.com/news/104000-chrome-silently-pushes-4gb-ai-model-users-without.html)
 
 ---
 
-## Maliyet Karşılaştırması: Yerel vs API
+## Cost Comparison: Local vs API
 
-AI inference maliyetleri, model ölçeğine, sağlayıcıya ve kullanım hacmine göre değişiyor. İşte güncel OpenRouter fiyatlarıyla kıyaslama:
+AI inference costs vary by model scale, provider, and usage volume. Here's the comparison with current OpenRouter pricing:
 
-| Model | Tip | Maliyet (1M token) | Not |
-|-------|-----|-------------------|-----|
-| Gemini 2.0 Flash (API) | Cloud | 0.10$ input / 0.40$ output | En popüler ucuz model |
-| Gemini 1.5 Flash (API) | Cloud | 0.075$ input / 0.30$ output | Hâlâ güçlü |
-| GPT-4o Mini (API) | Cloud | 0.15$ input / 0.60$ output | OpenAI'ın ucuz seçeneği |
-| **Gemini Nano (yerel)** | On-device | **0$ token ücreti** | Tek seferlik cihaz maliyeti |
-| Llama 3.2 3B (yerel) | On-device | 0$ token ücreti | Ücretsiz, açık kaynak |
+| Model | Type | Cost (per 1M tokens) | Notes |
+|-------|------|---------------------|-------|
+| Gemini 2.0 Flash (API) | Cloud | $0.10 input / $0.40 output | Most popular cheap model |
+| Gemini 1.5 Flash (API) | Cloud | $0.075 input / $0.30 output | Still powerful |
+| GPT-4o Mini (API) | Cloud | $0.15 input / $0.60 output | OpenAI's budget option |
+| **Gemini Nano (local)** | On-device | **$0 per token** | One-time device cost |
+| Llama 3.2 3B (local) | On-device | $0 per token | Free, open source |
 
-Gemini Nano'nun token başına maliyeti sıfır. Ancak bu "bedava" değil — cihazın GPU/RAM kapasitesine yatırım yapmanız gerekiyor. Ortalama bir AI PC'nin ek maliyeti 500-1500$ arasında.
+Gemini Nano's per-token cost is zero. But "free" isn't truly free — you need to invest in device GPU/RAM capacity. An average AI PC costs $500-1500 more than a standard one.
 
-**Gerçekçi bir örnek:**
+**Realistic example:**
 
-Bir SaaS uygulaması günde 10.000 API çağrısı yapıyor. Her çağrı 1000 token input, 500 token output:
+A SaaS app makes 10,000 API calls per day. Each call: 1,000 input tokens, 500 output tokens.
 
-- **API ile aylık maliyet:** 10.000 × 30 × (0.10$ × 0.001 + 0.40$ × 0.0005) = **195$/ay**
-- **Yerel Gemini Nano ile:** Cihaz maliyeti ~800$, sonra sıfır token ücreti. 5. ayda API'den daha ucuz.
+- **Monthly cost with API:** 10,000 × 30 × ($0.10 × 0.001 + $0.40 × 0.0005) = **$195/month**
+- **With local Gemini Nano:** Device cost ~$800, then zero token fees. Cheaper than API by month 5.
 
 cite: [OpenRouter Pricing](https://openrouter.ai/models?q=gemini) (May 2026)
 
 ---
 
-## Chrome Prompt API: Web Siteleri Yerel AI Kullanabilir
+## Chrome Prompt API: Websites Can Now Use Your Local AI
 
-Chrome Prompt API, web geliştiricileri için yeni bir pencere açıyor. Bu API sayesinde web siteleri, kullanıcının cihazındaki yerel modeli kullanabilir — kullanıcının izniyle.
+Chrome Prompt API opens a new door for web developers. The API lets websites use the model on the user's device — with user permission.
 
 ```javascript
-// Chrome Prompt API kullanım örneği
+// Chrome Prompt API usage example
 const model = await window.ai.languageModel.create({
-  systemPrompt: "Sen bir finans asistanısın."
+  systemPrompt: "You are a financial assistant."
 });
 
-const response = await model.prompt("2026 yılında Bitcoin fiyatı ne olur?");
+const response = await model.prompt("What will Bitcoin price be in 2026?");
 console.log(response);
 ```
 
-**Chrome Prompt API avantajları:**
+**Chrome Prompt API advantages:**
 
-1. **Gizlilik:** Veriler cihazda kalır, üçüncü taraflarla paylaşılmaz
-2. **Hız:** Sunucu round-trip'i yok, gecikme 50-200ms
-3. **Maliyet:** Geliştirici için sıfır API ücreti
-4. **Çevrimdışı:** İnternet olmadan da çalışır
+1. **Privacy:** Data stays on device, not shared with third parties
+2. **Speed:** No server round-trip, latency 50-200ms
+3. **Cost:** Zero API fees for developers
+4. **Offline:** Works without internet connection
 
-Ancak dikkat edilmesi gereken nokta: web sitesi, kullanıcının cihazındaki modele erişim istediğinde kullanıcı onay vermeli. Chrome bu onayı yönetir.
+But note: websites must request user permission to access the local model. Chrome manages this consent layer.
 
 according to [Chrome AI Blog](https://developer.chrome.com/docs/ai/prompt-api) (2026)
 
 ---
 
-## Kimler Yerel AI Kullanmalı?
+## Who Should Use Local AI?
 
-Yerel AI her durumda API'den daha iyi değil. Doğru kullanım senaryolarını belirlemek önemli:
+Local AI isn't better than API in every scenario. Matching use cases to technology is critical:
 
-**Yerel AI için ideal:**
+**Ideal for local AI:**
 
-- Sık tekrarlanan, basit sorgular (刻, tokenize, özetle)
-- Gizlilik kritik uygulamalar (tıbbi, finansal veriler)
-- Düşük bağlantılı ortamlar (uçak, seyahat)
-- Yüksek hacimli, düşük değerli işlemler (log analizi, spam filtreleme)
+- Frequent, simple queries (tokenization, summarization, classification)
+- Privacy-critical applications (medical, financial data)
+- Low-connectivity environments (airplanes, travel)
+- High-volume, low-value operations (log analysis, spam filtering)
 
-**API için ideal:**
+**Still better with API:**
 
-- Karmaşık muhakeme görevleri (bilim, hukuk, tıp)
-- Güncel bilgi gerektiren sorgular
-- Çok dilli veya kültürel bağlam gerektiren içerik
-- Büyük model kapasitesi gerektiren görevler
-
----
-
-## Depolama ve Donanım Gereksinimleri
-
-4GB model dosyası, Chrome kurulumunun yanında ek disk alanı kaplıyor. Ortalama bir Chrome kullanıcısı bunu fark etmeyebilir — ancak SSD'si dolu olanlar için bu sorun yaratabilir.
-
-**Donanım gereksinimleri:**
-
-| Bileşen | Minimum | Önerilen |
-|---------|---------|---------|
-| RAM | 8GB | 16GB+ |
-| Disk | 5GB boş | 10GB+ boş |
-| GPU | WebGPU desteği | Ayrı GPU veya güçlü entegre GPU |
-| İşletim sistemi | Chrome 120+ | Chrome 125+ |
-
-Eski dizüstü bilgisayarlarda veya 4GB RAM'li cihazlarda model çalışsa bile, performans düşük olur. Google, düşük donanımlı cihazlar için modeli devre dışı bırakma seçeneği sunuyor.
-
-cite: [Google AI Blog — On-Device AI](https://blog.google/technology/developers/on-device-ai-with-gemini-nano/) (2026)
+- Complex reasoning tasks (science, law, medicine)
+- Queries requiring current information
+- Multilingual or culturally contextual content
+- Tasks requiring large model capacity
 
 ---
 
-## Gizlilik Endişeleri: Ne Kadar Endişelenmeli?
+## Chrome's AI Strategy: The Bigger Picture
 
-Chrome'un modeli sessizce yüklemesi, kullanıcıların verilerinin nasıl işlendiği konusunda soru işaretleri yarattı.
+Google's AI distribution through Chrome is just one part of the company's broader AI strategy. In February 2026, Google integrated Gemini across Android, WearOS, Chrome, and Google Home. The goal: Google AI in every point of the user's daily life.
 
-**Gerçek:**
+This strategy competes directly with Apple's on-device AI push. Apple runs local AI processing via the Neural Engine on Macs and iPhones. Google is building a browser-based AI platform through Chrome. Both companies target the same destination: moving AI from cloud to device.
 
-- Model dosyası cihazda saklanır, Google sunucularına yüklenmez
-- Chrome Prompt API, kullanıcı onayı gerektirir
-- Web sitesi erişimi, kullanıcının açık iznine bağlıdır
+**Market impact:**
 
-**Endişe:**
-
-- Chrome'un sessiz yükleme kararı, güven sorunu yarattı
-- Kullanıcılar neyin yüklendiğini ve nerede olduğunu kolayca göremez
-- Kurumsal ortamlarda BT yöneticileri habersiz yakalandı
-
-Google, modelin sadece Chrome AI özellikleri için kullanıldığını ve kişisel verilerin işlenmediğini açıkladı. Ancak bağımsız denetim olmadan bu iddiaları doğrulamak zor.
+- **Local AI model providers** (Hugging Face, Ollama, LM Studio): New opportunities
+- **API providers** (OpenRouter, OpenAI): Price pressure
+- **Hardware vendors:** New AI PC sales arguments
+- **Privacy tech companies:** New regulatory concerns
 
 ---
 
-## Gelecek: Browser tabanlı AI Ekosistemı
+## WebGPU: The Foundation of Browser AI
 
-Chrome'un Gemini Nano hamlesi, browser tabanlı AI'ın başlangıcı. gelecekte şunları bekliyoruz:
+The technology enabling Chrome's local AI is WebGPU. WebGPU provides direct GPU access in browsers — the modern successor to WebGL. Without WebGPU, running AI models in a browser is either impossible or painfully slow.
 
-1. **Daha büyük modeller:** Chrome 130+ sürümlerinde 7-10GB modeller
-2. **WebGPU standardizasyonu:** Tüm tarayıcılarda ortak AI API
-3. **Model mağazası:** Kullanıcıların ihtiyaca göre model seçmesi
-4. **Hibrit inference:** Basit sorgular yerel, karmaşıklar API — otomatik yönlendirme
-
-OpenAI, Anthropic ve Meta da browser eklentileri ve JavaScript SDK'larla bu pazara giriyor. Savaş, tarayıcınızın AI platformu olma yarışı.
-
----
-
-## Chrome'un AI Stratejisi: Büyük Resim
-
-Google'ın Chrome üzerinden AI dağıtımı, şirketin genel AI stratejisinin sadece bir parçası. Şubat 2026'da Google, Gemini'yi Android, WearOS, Chrome ve Google Home'a entegre etti. Amaç: kullanıcının günlük hayatında her noktada Google AI'ın bulunması.
-
-Bu strateji, Apple'ın on-device AI hamlesine karşı bir yarış. Apple, Mac'lerde ve iPhone'larda Neural Engine üzerinden yerel AI işleme yapıyor. Google ise Chrome üzerinden tarayıcı tabanlı bir AI platformu kuruyor. İki şirket de aynı hedefe gidiyor: AI'ı buluta değil, cihaza taşımak.
-
-**Piyasa etkisi:**
-
-- **Yerli AI model sağlayıcıları** (Hugging Face, Ollama, LM Studio) için yeni fırsatlar
-- **API sağlayıcıları** (OpenRouter, OpenAI) için fiyat baskısı
-- **Donanım şirketleri** için yeni AI PC satış argumentleri
-- **Gizlilik teknolojisi** şirketleri için yeni düzenleyici kaygılar
-
----
-
-## WebGPU: Browser'da AI'ın Temel Taşı
-
-Chrome'un yerel AI'ı çalıştırabilmesinin arkasındaki teknoloji WebGPU. WebGPU, tarayıcılarda GPU'ya doğrudan erişim sağlayan bir API — WebGL'nin modern halefi. WebGPU olmadan, tarayıcıda AI modeli çalıştırmak ya imkansız ya da aşırı yavaş.
-
-**WebGPU destekleyen tarayıcılar:**
-- Chrome 113+ (varsayılan açık)
+**Browsers supporting WebGPU:**
+- Chrome 113+ (enabled by default)
 - Edge 113+
-- Firefox 130+ (deneysel)
+- Firefox 130+ (experimental)
 - Safari 17.4+
 
-WebGPU'nun AI kullanımı sadece Gemini Nano ile sınırlı değil. Stability AI, DeepSeek ve Mistral modelleri de WebGPU üzerinde çalışabilir. Bu, "tarayıcıda AI" ekosistemini genişletir.
+WebGPU AI usage isn't limited to Gemini Nano. Stability AI, DeepSeek, and Mistral models also run on WebGPU. This expands the "AI in the browser" ecosystem.
 
 ```javascript
-// WebGPU ile model yükleme örneği
+// WebGPU model loading example
 const adapter = await navigator.gpu.requestAdapter();
 const device = await adapter.requestDevice();
 
-// Modeli WebGPU üzerinde çalıştır
+// Run model on WebGPU
 const encoder = device.createCommandEncoder();
 ```
 
@@ -221,152 +169,144 @@ cite: [Chrome WebGPU Blog](https://developer.chrome.com/docs/webgpu) (2026)
 
 ---
 
-## Geliştiriciler İçin Fırsatlar
+## Developer Opportunities
 
-Chrome'un yerel AI açılımı, web geliştiricileri için yeni yetenekler getiriyor:
+Chrome's local AI expansion brings new capabilities for web developers:
 
-**1. Prompt API ile Akıllı Formlar**
-Kullanıcının yazdığı metni anında analiz eden, otomatik dolduran formlar kurulabilir. Sunucuya veri göndermeden, tamamen cihaz içinde.
+**1. Smart Forms with Prompt API**
+Forms that instantly analyze user input, auto-fill, and validate — all running on-device without sending data to any server.
 
-**2. Özetleme ve Çeviri**
-Uzun web sayfalarını, PDF'leri yerel olarak özetleyen eklentiler yapılabilir. Çeviri için API'ye gerek yok.
+**2. Summarization and Translation**
+Browser extensions that summarize long web pages and PDFs locally. No API needed for translation.
 
-**3. Sesli Asistan**
-Tarayıcıda çalışan sesli asistanlar — internet bağlantısı olmadan da çalışan, gizlilik odaklı.
+**3. Voice Assistants**
+Voice assistants running entirely in the browser — offline-capable, privacy-focused.
 
-**4. Kod Tamamlama**
-Web tabanlı IDE'lerde, kullanıcının cihazındaki model kod tamamlama yapabilir. Kodlar sunucuya gitmez.
+**4. Code Completion**
+Web-based IDEs using the user's local model for code completion. Code never leaves the user's device.
 
-Bu özellikler, web uygulamalarını hem daha hızlı hem de daha gizli hale getiriyor. Ancak geliştiricilerin WebGPU ve Chrome Prompt API'yi öğrenmesi gerekiyor — bu yeni bir yetkinlik seti.
-
----
-
-## Karşılaştırmalı Maliyet Analizi: 12 Aylık Projeksiyon
-
-Bir startup'ın AI özellikleri için 12 aylık maliyet karşılaştırması:
-
-**Senaryo:** Gelişmekte olan bir SaaS uygulaması, AI destekli müşteri desteği özelliği eklemek istiyor. Günde 5000 sorgu, her sorgu ortalama 500 token input.
-
-| Yaklaşım | Aylık maliyet | 12 aylık maliyet |
-|----------|-------------|-----------------|
-| OpenAI GPT-4o Mini API | 150$ | 1800$ |
-| Google Gemini 2.0 Flash API | 75$ | 900$ |
-| Yerel Llama 3.2 3B (ev sunucusu) | 40$ (elektrik) | 480$ |
-| **Chrome Gemini Nano (kullanıcı cihazında)** | **0$** | **0$** |
-
-Chrome Gemini Nano'da maliyet, kullanıcının cihazına yüklenir. Startup'ın sunucu maliyeti sıfır. Ancak kullanıcının cihazı yeterli donanıma sahip olmalı — bu bir varsayımdır.
-
-**Gerçekçi olmayan beklentiler:**
-
-- Her kullanıcının 8GB+ RAM'li Chrome uyumlu cihazı yok
-- WebGPU her bilgisayarda çalışmıyor
-- Model kalitesi, sunucu modellerinden düşük
+These features make web apps faster and more private. But developers need to learn WebGPU and Chrome Prompt API — a new skill set.
 
 ---
 
-## Kullanıcı Deneyimi: Gerçekten Fark Ediliyor mu?
+## Cost Analysis: 12-Month Projection
 
-Chrome Gemini Nano'nun kullanıcı deneyimine etkisi, henüz bağımsız çalışmalarla doğrulanmadı. Ancak erken kullanıcı geri bildirimleri şunu gösteriyor:
+12-month AI feature cost comparison for a startup:
 
-**Pozitif deneyimler:**
-- "Çevrimdışı çalışması harika — uçakta bile AI kullanabildim"
-- "Form doldurma çok hızlı, sunucuya bağlanması gerekmiyor"
-- "Gizlilik açısından rahat hissediyorum, veriler cihazda kalıyor"
+**Scenario:** A growing SaaS app adding AI-powered customer support. 5,000 queries/day, 500 tokens input per query.
 
-**Negatif deneyimler:**
-- "Chrome neden ben sormadan yüklüyor? Disk alanım gitti"
-- "4GB fazla yer kaplıyor, SSD'm doluydu"
-- "BT departmanı haberdar olmadı, kurumsal cihazlarda sorun yarattı"
+| Approach | Monthly cost | 12-month cost |
+|----------|------------|--------------|
+| OpenAI GPT-4o Mini API | $150 | $1,800 |
+| Google Gemini 2.0 Flash API | $75 | $900 |
+| Local Llama 3.2 3B (home server) | $40 (electricity) | $480 |
+| **Chrome Gemini Nano (user device)** | **$0** | **$0** |
+
+With Chrome Gemini Nano, costs shift to the user's device. The startup's server cost is zero. But the user's device must have sufficient hardware — this is an assumption.
+
+**Unrealistic expectations:**
+
+- Not every user has an 8GB+ RAM Chrome-compatible device
+- WebGPU doesn't work on every computer
+- Model quality is lower than server models
 
 ---
 
-## BT Yöneticileri İçin Rehber
+## User Experience: Does It Actually Matter?
 
-Kurumsal ortamlarda Chrome Gemini Nano, BT yöneticileri için yeni zorluklar getiriyor:
+Chrome Gemini Nano's impact on user experience hasn't been independently verified. Early user feedback shows:
 
-**Kontrol seçenekleri:**
+**Positive experiences:**
+- "Offline capability is great — I used AI on a plane with no WiFi"
+- "Form filling is instant, no server connection needed"
+- "I feel comfortable with privacy — data stays on my machine"
 
-1. **Chrome Policies** ile kapatma:
+**Negative experiences:**
+- "Why did Chrome install this without asking? I lost disk space"
+- "4GB is too much, my SSD was already full"
+- "IT department had no idea — caused issues on corporate devices"
+
+---
+
+## For IT Administrators
+
+Chrome Gemini Nano creates new challenges for enterprise environments:
+
+**Control options:**
+
+1. **Disable via Chrome Policies:**
    ```
    Settings > Privacy and Security > AI > Disable Built-in AI
    ```
 
-2. **Grup Policy (Windows):**
+2. **Group Policy (Windows):**
    ```
    Computer Configuration > Administrative Templates > Google > Chrome > AI
    ```
 
-3. **MDM ile kontrol (mobil):**
-   Chrome'un AI özelliklerini merkezi olarak yönetme
+3. **MDM control (mobile):**
+   Centrally manage Chrome's AI features
 
-**Dikkat edilmesi gerekenler:**
+**Important notes:**
 
-- Model dosyası kullanıcı profili altında saklanır — temizlemek için Chrome'u sıfırlamak gerekebilir
-- Kurumsal gizlilik politikaları, otomatik AI yüklemelerini yasaklayabilir
-- Veri sızıntısı önleme (DLP) araçları, yerel AI veri işlemeyi izlemelidir
+- Model file is stored under the user profile — clearing requires Chrome reset
+- Enterprise privacy policies may prohibit automatic AI downloads
+- Data loss prevention (DLP) tools should monitor local AI data processing
 
 ---
 
-## Rekabet: Apple vs Google vs Microsoft
+## Competition: Apple vs Google vs Microsoft
 
-Üç büyük platform, on-device AI'ta farklı stratejiler izliyor:
+Three major platforms pursue different on-device AI strategies:
 
 **Apple:**
-- Neural Engine (ANE) ile donanım加速
-- iOS 18 ve macOS 15'te Private Compute Foundation
-- Siri + ChatGPT entegrasyonu
-- Açık: Apple Intelligence, cihazda çalışır
+- Neural Engine (ANE) for hardware acceleration
+- iOS 18 and macOS 15: Private Compute Foundation
+- Siri + ChatGPT integration
+- Apple Intelligence runs on-device
 
 **Google:**
-- Chrome + Gemini Nano ile tarayıcı tabanlı AI
-- Android 15'te Gemini Runtime
-- Google Home + Nest entegrasyonu
-- Açık: Web GPU + Prompt API
+- Chrome + Gemini Nano for browser-based AI
+- Android 15: Gemini Runtime
+- Google Home + Nest integration
+- Web GPU + Prompt API
 
 **Microsoft:**
-- Windows Copilot + Phi-3 model ailesi
-- Edge'de Bing Chat entegrasyonu
-- Recall özelliği (gerçek zamanlı ekran analizi)
-- Açık: İşletim sistemi seviyesinde AI
+- Windows Copilot + Phi-3 model family
+- Edge + Bing Chat integration
+- Recall feature (real-time screen analysis)
+- OS-level AI integration
 
 ---
 
-## Sonuç: Değer mi?
+## Conclusion: Is It Worth It?
 
-Chrome'un 4GB Gemini Nano modeli, AI maliyetlerini kökten değiştirme potansiyeli taşıyor. Token başına sıfır maliyet, yüksek hacimli uygulamalar için oyun değiştirici.
+Chrome's 4GB Gemini Nano model has the potential to fundamentally change AI costs. Zero per-token cost is a game-changer for high-volume applications.
 
-**Kim kazanıyor:**
+**Who benefits:**
 
-- Yüksek hacimli, basit sorgu yapan developer'lar
-- Gizlilik odaklı kurumlar
-- Çevrimdışı AI uygulamaları geliştiricileri
-- Düşük bütçeli bireysel kullanıcılar
+- Developers making high-volume, simple queries
+- Privacy-focused organizations
+- Offline AI application developers
+- Low-budget individual users
 
-**Kim hâlâ API'ye bağlı:**
+**Who still needs API:**
 
-- Büyük model kapasitesi gerektiren görevler (bilim, tıp, hukuk)
-- Sürekli güncel bilgi gerektiren uygulamalar
-- Düşük donanımlı cihaz kullanıcıları
-- Kurumsal ortamlarda merkezi kontrol isteyen BT ekipleri
+- Tasks requiring large model capacity (science, medicine, law)
+- Applications needing current information
+- Low-hardware device users
+- Enterprise IT teams requiring central control
 
-Chrome AI, API'leri tamamen ortadan kaldırmayacak — ancak ucuz, basit görevler için ciddi bir alternatif haline gelecek. Bu da OpenRouter ve diğer API sağlayıcıları için fiyat baskısı anlamına geliyor.
+Chrome AI won't fully replace APIs — but it becomes a serious alternative for cheap, simple tasks. This means price pressure for OpenRouter and other API providers.
 
-Önümüzdeki 12 ay, on-device AI'ın browser'dan işletim sistemine tam entegrasyonuna tanıklık edeceğiz. Google'ın bu hamlesi, sadece bir başlangıç.
+The next 12 months will witness on-device AI's full integration from browser to operating system. Google's move is just the beginning.
 
 ---
 
-*Kaynaklar ve devamını oku:*
+*Sources and further reading:*
 - *[Hacker News — Chrome Gemini Nano](https://news.ycombinator.com/item?id=48020000)*
 - *[Chrome AI Developer Documentation](https://developer.chrome.com/docs/ai/prompt-api)*
 - *[Google AI Blog — Gemini Nano](https://blog.google/technology/developers/on-device-ai-with-gemini-nano/)*
 - *[Tom's Guide — Chrome AI Model](https://www.tomsguide.com/ai/chrome-may-be-downloading-a-4gb-ai-model-heres-what-we-know)*
 - *[WebGPU Specification — W3C](https://www.w3.org/TR/webgpu/)*
 - *[EU AI Act — Transparency Requirements](https://digital-strategy.ec.europa.eu/en/policies/eu-ai-act)*
-
----
-
-*Kaynaklar ve devamını oku:*
-- *[Hacker News — Chrome Gemini Nano](https://news.ycombinator.com/item?id=48020000)*
-- *[Chrome AI Developer Documentation](https://developer.chrome.com/docs/ai/prompt-api)*
-- *[Google AI Blog — Gemini Nano](https://blog.google/technology/developers/on-device-ai-with-gemini-nano/)*
-- *[Tom's Guide — Chrome AI Model](https://www.tomsguide.com/ai/chrome-may-be-downloading-a-4gb-ai-model-heres-what-we-know)*
