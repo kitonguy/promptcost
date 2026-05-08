@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.05">
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="#fff" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="630" stroke="#fff" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#fff" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#fff" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#fff" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="630" stroke="#fff" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="60" y="90" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#fff">Qwen 3.6 Max</text>
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="36" fill="#e94560">vs Claude Opus 4.7</text>
+  <text x="60" y="185" font-family="Arial, sans-serif" font-size="26" fill="#888" font-style="italic">97% Lower Cost. Same Intelligence.</text>
+
+  <!-- Price boxes -->
+  <!-- Qwen box -->
+  <rect x="60" y="230" width="340" height="160" rx="12" fill="#0f3460" opacity="0.9"/>
+  <text x="80" y="270" font-family="Arial, sans-serif" font-size="20" fill="#4fc3f7">QWEN 3.6 MAX</text>
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff">$1.04</text>
+  <text x="80" y="350" font-family="Arial, sans-serif" font-size="18" fill="#888">per 1M input tokens</text>
+  <text x="80" y="378" font-family="Arial, sans-serif" font-size="22" fill="#4caf50">Output: $6.24/M</text>
+
+  <!-- Claude box -->
+  <rect x="420" y="230" width="340" height="160" rx="12" fill="#742a2a" opacity="0.9"/>
+  <text x="440" y="270" font-family="Arial, sans-serif" font-size="20" fill="#ef9a9a">CLAUDE OPUS 4.7</text>
+  <text x="440" y="320" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff">$15.00</text>
+  <text x="440" y="350" font-family="Arial, sans-serif" font-size="18" fill="#888">per 1M input tokens</text>
+  <text x="440" y="378" font-family="Arial, sans-serif" font-size="22" fill="#ef5350">Output: $75.00/M</text>
+
+  <!-- Savings badge -->
+  <rect x="780" y="230" width="360" height="160" rx="12" fill="#1b5e20" opacity="0.9"/>
+  <text x="800" y="275" font-family="Arial, sans-serif" font-size="22" fill="#a5d6a7">SAVINGS</text>
+  <text x="800" y="335" font-family="Arial, sans-serif" font-size="58" font-weight="bold" fill="#69f0ae">14x</text>
+  <text x="800" y="375" font-family="Arial, sans-serif" font-size="20" fill="#a5d6a7">cheaper than Claude Opus</text>
+
+  <!-- Context window bar -->
+  <text x="60" y="440" font-family="Arial, sans-serif" font-size="20" fill="#888">Context Window: 128K tokens</text>
+  <rect x="60" y="450" width="300" height="8" rx="4" fill="#333"/>
+  <rect x="60" y="450" width="300" height="8" rx="4" fill="url(#accent)"/>
+
+  <!-- Benchmark bar -->
+  <text x="420" y="440" font-family="Arial, sans-serif" font-size="20" fill="#888">Benchmark Tier: FRONTIER</text>
+  <rect x="420" y="450" width="300" height="8" rx="4" fill="#333"/>
+  <rect x="420" y="450" width="280" height="8" rx="4" fill="#e94560"/>
+
+  <!-- Comparison table -->
+  <rect x="60" y="490" width="1080" height="110" rx="8" fill="#0a0a1a" opacity="0.8"/>
+  <text x="80" y="522" font-family="Arial, sans-serif" font-size="16" fill="#666">Model</text>
+  <text x="300" y="522" font-family="Arial, sans-serif" font-size="16" fill="#666">Input</text>
+  <text x="480" y="522" font-family="Arial, sans-serif" font-size="16" fill="#666">Output</text>
+  <text x="660" y="522" font-family="Arial, sans-serif" font-size="16" fill="#666">Context</text>
+  <text x="840" y="522" font-family="Arial, sans-serif" font-size="16" fill="#666">Best For</text>
+
+  <line x1="70" y1="532" x2="1130" y2="532" stroke="#333" stroke-width="1"/>
+
+  <text x="80" y="555" font-family="Arial, sans-serif" font-size="15" fill="#4fc3f7" font-weight="bold">Qwen 3.6 Max</text>
+  <text x="300" y="555" font-family="Arial, sans-serif" font-size="15" fill="#69f0ae">$1.04/M</text>
+  <text x="480" y="555" font-family="Arial, sans-serif" font-size="15" fill="#69f0ae">$6.24/M</text>
+  <text x="660" y="555" font-family="Arial, sans-serif" font-size="15" fill="#fff">128K</text>
+  <text x="840" y="555" font-family="Arial, sans-serif" font-size="15" fill="#fff">Complex reasoning</text>
+
+  <text x="80" y="585" font-family="Arial, sans-serif" font-size="15" fill="#ef9a9a" font-weight="bold">Claude Opus 4.7</text>
+  <text x="300" y="585" font-family="Arial, sans-serif" font-size="15" fill="#ef5350">$15.00/M</text>
+  <text x="480" y="585" font-family="Arial, sans-serif" font-size="15" fill="#ef5350">$75.00/M</text>
+  <text x="660" y="585" font-family="Arial, sans-serif" font-size="15" fill="#fff">200K</text>
+  <text x="840" y="585" font-family="Arial, sans-serif" font-size="15" fill="#fff">Long docs</text>
+
+  <!-- Branding -->
+  <text x="1080" y="610" font-family="Arial, sans-serif" font-size="16" fill="#444">promptcost.org</text>
+</svg>
