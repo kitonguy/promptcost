@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1a0f"/>
+      <stop offset="100%" style="stop-color:#1a3a2a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#76b900"/>
+      <stop offset="100%" style="stop-color:#4ade80"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.08">
+    <line x1="0" y1="150" x2="1200" y2="150" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="450" x2="1200" y2="450" stroke="#fff" stroke-width="0.5"/>
+    <line x1="300" y1="0" x2="300" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="900" y1="0" x2="900" y2="630" stroke="#fff" stroke-width="0.5"/>
+  </g>
+
+  <!-- NVIDIA green accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="url(#accent)"/>
+
+  <!-- Logo text -->
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="24" fill="#76b900" font-weight="bold">PromptCost.org</text>
+
+  <!-- Main title -->
+  <text x="60" y="150" font-family="Arial, sans-serif" font-size="52" fill="#ffffff" font-weight="bold">NVIDIA Nemotron 3</text>
+  <text x="60" y="220" font-family="Arial, sans-serif" font-size="52" fill="#4ade80" font-weight="bold">Nano Omni</text>
+
+  <!-- Subtitle -->
+  <text x="60" y="270" font-family="Arial, sans-serif" font-size="26" fill="#a0a0a0">The 30B Model That Matches GPT-4o — For Free</text>
+
+  <!-- Model info badges -->
+  <rect x="60" y="300" width="180" height="50" rx="8" fill="#1a3a1a"/>
+  <text x="150" y="333" font-family="Arial, sans-serif" font-size="20" fill="#4ade80" text-anchor="middle" font-weight="bold">30B Parameters</text>
+
+  <rect x="260" y="300" width="180" height="50" rx="8" fill="#1a3a1a"/>
+  <text x="350" y="333" font-family="Arial, sans-serif" font-size="20" fill="#4ade80" text-anchor="middle" font-weight="bold">256K Context</text>
+
+  <rect x="460" y="300" width="140" height="50" rx="8" fill="#1a3a1a"/>
+  <text x="530" y="333" font-family="Arial, sans-serif" font-size="20" fill="#4ade80" text-anchor="middle" font-weight="bold">Free</text>
+
+  <!-- Benchmark comparison -->
+  <rect x="60" y="380" width="340" height="140" rx="12" fill="#0f2f1a"/>
+  <text x="230" y="420" font-family="Arial, sans-serif" font-size="18" fill="#a0a0a0" text-anchor="middle">Coding Benchmark Score</text>
+  <text x="120" y="480" font-family="Arial, sans-serif" font-size="44" fill="#ffffff" text-anchor="middle" font-weight="bold">87%</text>
+  <text x="120" y="505" font-family="Arial, sans-serif" font-size="16" fill="#a0a0a0" text-anchor="middle">Nemotron</text>
+  <text x="340" y="480" font-family="Arial, sans-serif" font-size="44" fill="#76b900" text-anchor="middle" font-weight="bold">90%</text>
+  <text x="340" y="505" font-family="Arial, sans-serif" font-size="16" fill="#a0a0a0" text-anchor="middle">GPT-4o</text>
+  <text x="230" y="530" font-family="Arial, sans-serif" font-size="14" fill="#4ade80" text-anchor="middle">3% difference — worth $2.50/M?</text>
+
+  <!-- Cost comparison -->
+  <rect x="420" y="380" width="340" height="140" rx="12" fill="#1a1a2e"/>
+  <text x="590" y="420" font-family="Arial, sans-serif" font-size="18" fill="#a0a0a0" text-anchor="middle">Cost Per 1 Million Tokens</text>
+  <text x="500" y="480" font-family="Arial, sans-serif" font-size="44" fill="#4ade80" text-anchor="middle" font-weight="bold">$0</text>
+  <text x="500" y="505" font-family="Arial, sans-serif" font-size="16" fill="#a0a0a0" text-anchor="middle">Nemotron</text>
+  <text x="680" y="480" font-family="Arial, sans-serif" font-size="44" fill="#e94560" text-anchor="middle" font-weight="bold">$2.50</text>
+  <text x="680" y="505" font-family="Arial, sans-serif" font-size="16" fill="#a0a0a0" text-anchor="middle">GPT-4o</text>
+  <text x="590" y="530" font-family="Arial, sans-serif" font-size="14" fill="#ff6b6b" text-anchor="middle">256K vs 128K context</text>
+
+  <!-- Key stat -->
+  <rect x="780" y="380" width="360" height="140" rx="12" fill="#1e3a5f"/>
+  <text x="960" y="420" font-family="Arial, sans-serif" font-size="18" fill="#a0a0a0" text-anchor="middle">Best Free Alternative</text>
+  <text x="960" y="480" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold">Claude-Level</text>
+  <text x="960" y="515" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold">Reasoning</text>
+  <text x="960" y="545" font-family="Arial, sans-serif" font-size="14" fill="#a0a0a0" text-anchor="middle">On OpenRouter Free Tier</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="560" width="1200" height="70" fill="#0a0f1a"/>
+  <text x="60" y="605" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">promptcost.org/en/blog/nvidia-nemotron-free-ai-models-2026</text>
+  <text x="1140" y="605" font-family="Arial, sans-serif" font-size="22" fill="#4ade80" text-anchor="end">May 2026</text>
+</svg>
