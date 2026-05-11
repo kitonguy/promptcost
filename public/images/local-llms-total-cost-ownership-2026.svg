@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+    <linearGradient id="local" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="473" x2="1200" y2="473"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="60" y="80" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#ffffff">
+    Local LLMs in 2026
+  </text>
+  <text x="60" y="125" font-family="system-ui, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">
+    Total Cost of Ownership vs Cloud API
+  </text>
+  
+  <!-- Cloud API Cost -->
+  <rect x="60" y="170" width="500" height="200" rx="12" fill="#1e293b"/>
+  <text x="80" y="210" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#f97316">Cloud API</text>
+  <text x="80" y="260" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#f97316">$2,840</text>
+  <text x="80" y="295" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">per month / 10M tokens</text>
+  <text x="80" y="340" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">+ API calls + data transfer</text>
+  
+  <!-- Local Cost -->
+  <rect x="640" y="170" width="500" height="200" rx="12" fill="#1e293b"/>
+  <text x="660" y="210" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#22c55e">Local Deployment</text>
+  <text x="660" y="260" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="#22c55e">$180</text>
+  <text x="660" y="295" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">RTX 4090 rental / month</text>
+  <text x="660" y="340" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">Unlimited inference, one-time GPU</text>
+  
+  <!-- Savings Badge -->
+  <rect x="520" y="230" width="160" height="80" rx="40" fill="#22c55e"/>
+  <text x="600" y="275" font-family="system-ui, sans-serif" font-size="32" font-weight="700" text-anchor="middle" fill="#ffffff">94%</text>
+  <text x="600" y="300" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle" fill="#ffffff">SAVINGS</text>
+  
+  <!-- Bottom stats -->
+  <g font-family="system-ui, sans-serif">
+    <text x="60" y="450" font-size="16" fill="#64748b">Setup Time</text>
+    <text x="60" y="480" font-size="24" font-weight="600" fill="#ffffff">5 min</text>
+    
+    <text x="250" y="450" font-size="16" fill="#64748b">Data Privacy</text>
+    <text x="250" y="480" font-size="24" font-weight="600" fill="#ffffff">100%</text>
+    
+    <text x="440" y="450" font-size="16" fill="#64748b">Latency</text>
+    <text x="440" y="480" font-size="24" font-weight="600" fill="#ffffff">~20ms</text>
+    
+    <text x="630" y="450" font-size="16" fill="#64748b">Models Available</text>
+    <text x="630" y="480" font-size="24" font-weight="600" fill="#ffffff">50+</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="60" y="590" font-family="system-ui, sans-serif" font-size="18" fill="#64748b">promptcost.org</text>
+  <text x="1140" y="590" font-family="system-ui, sans-serif" font-size="18" fill="#64748b" text-anchor="end">2026</text>
+</svg>
