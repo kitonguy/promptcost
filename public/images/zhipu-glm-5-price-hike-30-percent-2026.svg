@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="up" x1="0%" y1="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
+    </linearGradient>
+    <linearGradient id="stable" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#4ade80"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.08">
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="#fff" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="1000" y1="0" x2="1000" y2="630" stroke="#fff" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Alert badge -->
+  <rect x="60" y="50" width="200" height="36" rx="18" fill="url(#up)"/>
+  <text x="160" y="74" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">MAY 2026 UPDATE</text>
+  
+  <!-- Main Title -->
+  <text x="60" y="160" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff">
+    <tspan>Zhipu GLM-5</tspan>
+  </text>
+  
+  <!-- Headline -->
+  <text x="60" y="225" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#ef4444">
+    <tspan>+30% Price Increase</tspan>
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="280" font-family="Arial, sans-serif" font-size="22" fill="#888">
+    <tspan>Why China's Budget AI Golden Age Is Ending</tspan>
+  </text>
+  
+  <!-- Arrow up visual -->
+  <g transform="translate(900, 120)">
+    <polygon points="50,0 100,60 75,60 75,120 25,120 25,60 0,60" fill="url(#up)" opacity="0.8"/>
+    <text x="50" y="145" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ef4444" text-anchor="middle">+30%</text>
+  </g>
+  
+  <!-- Stats boxes -->
+  <g transform="translate(60, 340)">
+    <!-- Stat 1 - GLM-5 -->
+    <rect x="0" y="0" width="260" height="110" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="130" y="35" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">ZHIPU GLM-5</text>
+    <text x="130" y="70" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ef4444" text-anchor="middle">+30%</text>
+    <text x="130" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">PRICE INCREASE</text>
+    
+    <!-- Stat 2 - DeepSeek -->
+    <rect x="280" y="0" width="260" height="110" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="410" y="35" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">DEEPSEEK V3</text>
+    <text x="410" y="70" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#22c55e" text-anchor="middle">$0.01</text>
+    <text x="410" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">PER 1M TOKENS</text>
+    
+    <!-- Stat 3 - Qwen -->
+    <rect x="560" y="0" width="260" height="110" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="690" y="35" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">QWEN 3.5</text>
+    <text x="690" y="70" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#4ade80" text-anchor="middle">FREE</text>
+    <text x="690" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">TIER AVAILABLE</text>
+    
+    <!-- Stat 4 - Stock -->
+    <rect x="840" y="0" width="260" height="110" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="970" y="35" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">ZHIPU STOCK</text>
+    <text x="970" y="70" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#f97316" text-anchor="middle">+32%</text>
+    <text x="970" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">AFTER GLM-5 LAUNCH</text>
+  </g>
+  
+  <!-- Key insight -->
+  <rect x="60" y="480" width="1080" height="60" rx="8" fill="#1e3a5f" opacity="0.5"/>
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="18" fill="#fff" text-anchor="middle">
+    <tspan>The era of "printing money" with cheap Chinese AI is over. Adapt your strategy now.</tspan>
+  </text>
+  
+  <!-- Footer -->
+  <line x1="60" y1="570" x2="1140" y2="570" stroke="#333" stroke-width="1"/>
+  <text x="60" y="600" font-family="Arial, sans-serif" font-size="16" fill="#666">promptcost.org</text>
+  <text x="1140" y="600" font-family="Arial, sans-serif" font-size="16" fill="#666" text-anchor="end">AI Cost Optimization</text>
+</svg>

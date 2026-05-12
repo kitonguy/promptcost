@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="#fff" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="#fff" stroke-width="0.5"/>
+    <line x1="200" y1="0" x2="200" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#fff" stroke-width="0.5"/>
+    <line x1="1000" y1="0" x2="1000" y2="630" stroke="#fff" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Badge -->
+  <rect x="60" y="50" width="180" height="36" rx="18" fill="url(#accent)"/>
+  <text x="150" y="74" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">2026 ANALYSIS</text>
+  
+  <!-- Main Title -->
+  <text x="60" y="160" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#fff">
+    <tspan>Baidu Ernie 5.1</tspan>
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="60" y="220" font-family="Arial, sans-serif" font-size="32" fill="#e94560">
+    <tspan>94% Training Cost Reduction</tspan>
+  </text>
+  
+  <!-- Description -->
+  <text x="60" y="280" font-family="Arial, sans-serif" font-size="22" fill="#aaa">
+    <tspan>The 4th-ranked global model that</tspan>
+  </text>
+  <text x="60" y="310" font-family="Arial, sans-serif" font-size="22" fill="#aaa">
+    <tspan>changes AI economics forever</tspan>
+  </text>
+  
+  <!-- Stats boxes -->
+  <g transform="translate(60, 360)">
+    <!-- Stat 1 -->
+    <rect x="0" y="0" width="240" height="100" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="120" y="35" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#e94560" text-anchor="middle">94%</text>
+    <text x="120" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">TRAINING COST</text>
+    <text x="120" y="82" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">REDUCTION</text>
+    
+    <!-- Stat 2 -->
+    <rect x="260" y="0" width="240" height="100" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="380" y="35" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#4ecdc4" text-anchor="middle">#4</text>
+    <text x="380" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">GLOBAL RANKING</text>
+    <text x="380" y="82" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">ABOVE GPT-4</text>
+    
+    <!-- Stat 3 -->
+    <rect x="520" y="0" width="240" height="100" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="640" y="35" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffe66d" text-anchor="middle">200M</text>
+    <text x="640" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">MONTHLY USERS</text>
+    <text x="640" y="82" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">ON ERNIE BOT</text>
+    
+    <!-- Stat 4 -->
+    <rect x="780" y="0" width="240" height="100" rx="8" fill="#2a2a4a" opacity="0.8"/>
+    <text x="900" y="35" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#a8e6cf" text-anchor="middle">$0.50</text>
+    <text x="900" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">EST. API COST</text>
+    <text x="900" y="82" font-family="Arial, sans-serif" font-size="14" fill="#888" text-anchor="middle">PER 1M TOKENS</text>
+  </g>
+  
+  <!-- Footer -->
+  <line x1="60" y1="520" x2="1140" y2="520" stroke="#333" stroke-width="1"/>
+  <text x="60" y="560" font-family="Arial, sans-serif" font-size="18" fill="#666">promptcost.org</text>
+  <text x="1140" y="560" font-family="Arial, sans-serif" font-size="18" fill="#666" text-anchor="end">AI Cost Optimization Guide</text>
+  
+  <!-- Decorative element -->
+  <circle cx="1100" cy="150" r="80" fill="url(#accent)" opacity="0.1"/>
+  <circle cx="1100" cy="150" r="50" fill="url(#accent)" opacity="0.15"/>
+</svg>
