@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e67e22"/>
+      <stop offset="100%" style="stop-color:#f39c12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#2c3e50" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="473" x2="1200" y2="473"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Logo text -->
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="22" fill="#888" font-weight="bold">PromptCost.org</text>
+
+  <!-- Title -->
+  <text x="60" y="140" font-family="Arial, sans-serif" font-size="52" fill="#ffffff" font-weight="bold">Claude API Billing</text>
+  <text x="60" y="205" font-family="Arial, sans-serif" font-size="52" fill="#ffffff" font-weight="bold">Change 2026</text>
+
+  <!-- Subtitle -->
+  <text x="60" y="260" font-family="Arial, sans-serif" font-size="26" fill="#e67e22">Subscriptions separated from API usage</text>
+  <text x="60" y="300" font-family="Arial, sans-serif" font-size="22" fill="#95a5a6">June 15, 2026</text>
+
+  <!-- Key metrics boxes -->
+  <rect x="60" y="350" width="340" height="130" rx="10" fill="#0f3460" opacity="0.8"/>
+  <text x="80" y="390" font-family="Arial, sans-serif" font-size="18" fill="#e67e22" font-weight="bold">PRO PLAN</text>
+  <text x="80" y="425" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="bold">$20/month</text>
+  <text x="80" y="460" font-family="Arial, sans-serif" font-size="16" fill="#95a5a6">+ $20 API credit</text>
+
+  <rect x="430" y="350" width="340" height="130" rx="10" fill="#0f3460" opacity="0.8"/>
+  <text x="450" y="390" font-family="Arial, sans-serif" font-size="18" fill="#e67e22" font-weight="bold">TEAM PLAN</text>
+  <text x="450" y="425" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" font-weight="bold">$100-200/month</text>
+  <text x="450" y="460" font-family="Arial, sans-serif" font-size="16" fill="#95a5a6">+ API credits</text>
+
+  <rect x="800" y="350" width="340" height="130" rx="10" fill="#1a3a2a" opacity="0.9"/>
+  <text x="820" y="390" font-family="Arial, sans-serif" font-size="18" fill="#2ecc71" font-weight="bold">AFTER CREDIT</text>
+  <text x="820" y="425" font-family="Arial, sans-serif" font-size="28" fill="#ffffff" font-weight="bold">$3.00/M input</text>
+  <text x="820" y="460" font-family="Arial, sans-serif" font-size="28" fill="#ffffff" font-weight="bold">$15.00/M output</text>
+
+  <!-- Bottom tagline -->
+  <text x="60" y="570" font-family="Arial, sans-serif" font-size="20" fill="#7f8c8d">Compare all models at promptcost.org/en/</text>
+</svg>
