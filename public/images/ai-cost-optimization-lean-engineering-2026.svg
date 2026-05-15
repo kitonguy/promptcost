@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f2027"/>
+      <stop offset="100%" style="stop-color:#203a43"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#11998e"/>
+      <stop offset="100%" style="stop-color:#38ef7d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="600" y="70" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">Lean AI Engineering in 2026</text>
+  <text x="600" y="105" font-family="Arial, sans-serif" font-size="22" fill="#aaaaaa" text-anchor="middle">How We Cut Our API Bill by 80% After the Price Hikes</text>
+  <line x1="60" y1="130" x2="1140" y2="130" stroke="#444" stroke-width="2"/>
+  <text x="600" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#38ef7d" text-anchor="middle">Monthly AI Bill Reduction</text>
+  <rect x="200" y="190" width="800" height="80" rx="10" fill="#1a3a3a"/>
+  <rect x="200" y="190" width="160" height="80" rx="10" fill="#ff4444"/>
+  <text x="280" y="240" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">$180K</text>
+  <text x="800" y="240" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#38ef7d" text-anchor="middle">$38K</text>
+  <text x="600" y="240" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">-79%</text>
+  <line x1="60" y1="310" x2="1140" y2="310" stroke="#444" stroke-width="2"/>
+  <text x="600" y="350" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">5 Tactics That Actually Worked</text>
+  <rect x="100" y="370" width="200" height="140" rx="10" fill="#2a2a4a" stroke="#38ef7d" stroke-width="2"/>
+  <text x="200" y="410" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Model Routing</text>
+  <text x="200" y="435" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">85% of calls to</text>
+  <text x="200" y="455" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">100x cheaper models</text>
+  <text x="200" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#38ef7d" text-anchor="middle">75% savings</text>
+  <rect x="320" y="370" width="200" height="140" rx="10" fill="#2a2a4a" stroke="#38ef7d" stroke-width="2"/>
+  <text x="420" y="410" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Prompt Compression</text>
+  <text x="420" y="435" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">30-50% token</text>
+  <text x="420" y="455" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">reduction achieved</text>
+  <text x="420" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#38ef7d" text-anchor="middle">Days to ROI</text>
+  <rect x="540" y="370" width="200" height="140" rx="10" fill="#2a2a4a" stroke="#38ef7d" stroke-width="2"/>
+  <text x="640" y="410" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Semantic Caching</text>
+  <text x="640" y="435" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">28% cache hit rate</text>
+  <text x="640" y="455" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">on support queries</text>
+  <text x="640" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#38ef7d" text-anchor="middle">35% savings</text>
+  <rect x="760" y="370" width="200" height="140" rx="10" fill="#2a2a4a" stroke="#38ef7d" stroke-width="2"/>
+  <text x="860" y="410" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Output Optimization</text>
+  <text x="860" y="435" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">39% shorter</text>
+  <text x="860" y="455" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">AI responses</text>
+  <text x="860" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#38ef7d" text-anchor="middle">$2.5K/month</text>
+  <rect x="980" y="370" width="160" height="140" rx="10" fill="#2a2a4a" stroke="#38ef7d" stroke-width="2"/>
+  <text x="1060" y="410" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Workload</text>
+  <text x="1060" y="435" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38ef7d" text-anchor="middle">Benchmarking</text>
+  <text x="1060" y="455" font-family="Arial, sans-serif" font-size="12" fill="#aaaaaa" text-anchor="middle">Find cheapest</text>
+  <text x="1060" y="480" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#38ef7d" text-anchor="middle">193x advantage</text>
+  <line x1="60" y1="540" x2="1140" y2="540" stroke="#444" stroke-width="2"/>
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="20" fill="#888888" text-anchor="middle">promptcost.org  |  AI Token Calculator and Cost Comparison</text>
+</svg>

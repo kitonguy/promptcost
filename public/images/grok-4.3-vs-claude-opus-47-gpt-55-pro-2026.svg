@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="grok" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35"/>
+      <stop offset="100%" style="stop-color:#ff8c42"/>
+    </linearGradient>
+    <linearGradient id="claude" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cc785c"/>
+      <stop offset="100%" style="stop-color:#e8a87c"/>
+    </linearGradient>
+    <linearGradient id="gpt" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10a37f"/>
+      <stop offset="100%" style="stop-color:#1abc9c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">Grok 4.3 vs Claude Opus 4.7 vs GPT-5.5 Pro</text>
+  <text x="60" y="105" font-family="Arial, sans-serif" font-size="20" fill="#aaaaaa">API Cost Comparison 2026</text>
+  <line x1="60" y1="130" x2="1140" y2="130" stroke="#333" stroke-width="2"/>
+  <rect x="60" y="160" width="340" height="200" rx="12" fill="#2a2a4a" stroke="#ff6b35" stroke-width="3"/>
+  <text x="230" y="195" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ff6b35" text-anchor="middle">Grok 4.3</text>
+  <text x="230" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">$1.25</text>
+  <text x="230" y="260" font-family="Arial, sans-serif" font-size="18" fill="#aaaaaa" text-anchor="middle">per 1M input tokens</text>
+  <text x="230" y="290" font-family="Arial, sans-serif" font-size="16" fill="#66ff66" text-anchor="middle">1M context window</text>
+  <text x="230" y="315" font-family="Arial, sans-serif" font-size="14" fill="#66ff66" text-anchor="middle">24x cheaper than competition</text>
+  <rect x="430" y="160" width="340" height="200" rx="12" fill="#2a2a4a" stroke="#cc785c" stroke-width="3"/>
+  <text x="600" y="195" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#cc785c" text-anchor="middle">Claude Opus 4.7</text>
+  <text x="600" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">$30.00</text>
+  <text x="600" y="260" font-family="Arial, sans-serif" font-size="18" fill="#aaaaaa" text-anchor="middle">per 1M input tokens</text>
+  <text x="600" y="290" font-family="Arial, sans-serif" font-size="16" fill="#ff6666" text-anchor="middle">200K context window</text>
+  <rect x="800" y="160" width="340" height="200" rx="12" fill="#2a2a4a" stroke="#10a37f" stroke-width="3"/>
+  <text x="970" y="195" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#10a37f" text-anchor="middle">GPT-5.5 Pro</text>
+  <text x="970" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">$30.00</text>
+  <text x="970" y="260" font-family="Arial, sans-serif" font-size="18" fill="#aaaaaa" text-anchor="middle">per 1M input tokens</text>
+  <text x="970" y="290" font-family="Arial, sans-serif" font-size="16" fill="#ff6666" text-anchor="middle">200K context window</text>
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">Savings: $1.175 per API call (98% less)</text>
+  <text x="600" y="460" font-family="Arial, sans-serif" font-size="18" fill="#aaaaaa" text-anchor="middle">Equivalent workload: 10,000 input + 5,000 output tokens</text>
+  <line x1="60" y1="490" x2="1140" y2="490" stroke="#333" stroke-width="2"/>
+  <text x="600" y="530" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#66ff66" text-anchor="middle">Use Grok 4.3 for long-context tasks. Claude/GPT-5.5 for complex reasoning.</text>
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">promptcost.org  |  AI Token Calculator and Cost Comparison</text>
+</svg>
