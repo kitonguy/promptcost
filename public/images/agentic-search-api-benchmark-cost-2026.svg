@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Grid -->
+  <g opacity="0.06" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+  <!-- Title -->
+  <text x="600" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="58" font-weight="700" fill="#ffffff" text-anchor="middle">Agentic Search API</text>
+  <text x="600" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="40" font-weight="400" fill="url(#blue)" text-anchor="middle">Benchmark &amp; Cost Comparison 2026</text>
+  <!-- Divider -->
+  <rect x="450" y="210" width="300" height="3" rx="1.5" fill="url(#blue)" opacity="0.5"/>
+  <!-- Model cards -->
+  <g transform="translate(100, 260)">
+    <rect width="240" height="160" rx="12" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <text x="120" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">Perplexity Sonar</text>
+    <text x="120" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#3b82f6" text-anchor="middle">$3/M</text>
+    <text x="120" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#888888" text-anchor="middle">input tokens</text>
+    <text x="120" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#666666" text-anchor="middle">Pro Search</text>
+  </g>
+  <g transform="translate(370, 260)">
+    <rect width="240" height="160" rx="12" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <text x="120" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">GPT-4o Search</text>
+    <text x="120" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#10b981" text-anchor="middle">$2.50/M</text>
+    <text x="120" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#888888" text-anchor="middle">input tokens</text>
+    <text x="120" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#666666" text-anchor="middle">Preview</text>
+  </g>
+  <g transform="translate(640, 260)">
+    <rect width="240" height="160" rx="12" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <text x="120" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">o3 Deep Research</text>
+    <text x="120" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#f59e0b" text-anchor="middle">$10/M</text>
+    <text x="120" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#888888" text-anchor="middle">input tokens</text>
+    <text x="120" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#666666" text-anchor="middle">Full Reasoning</text>
+  </g>
+  <g transform="translate(910, 260)">
+    <rect width="240" height="160" rx="12" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <text x="120" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">o4-mini Deep</text>
+    <text x="120" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="#8b5cf6" text-anchor="middle">$2/M</text>
+    <text x="120" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#888888" text-anchor="middle">input tokens</text>
+    <text x="120" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#666666" text-anchor="middle">Research</text>
+  </g>
+  <!-- Key insight bar -->
+  <g transform="translate(100, 470)">
+    <rect width="1000" height="60" rx="10" fill="#3b82f6" opacity="0.12"/>
+    <text x="30" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" fill="#93c5fd">Key Finding:</text>
+    <text x="260" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#ffffff">Search APIs vary 5x in cost. o3 Deep Research is 10x more expensive than</text>
+    <text x="750" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#10b981">GPT-4o Search.</text>
+  </g>
+  <!-- Footer -->
+  <text x="600" y="600" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#475569" text-anchor="middle">promptcost.org — AI Cost Optimization Guide</text>
+</svg>
