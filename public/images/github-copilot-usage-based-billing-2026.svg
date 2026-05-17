@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#0f1f3d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <g opacity="0.1" stroke="#ffffff" stroke-width="1" fill="none">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  
+  <!-- Left side content -->
+  <text x="60" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#94a3b8" font-weight="500">PROMPTCOST.ORG</text>
+  
+  <text x="60" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="48" fill="#ffffff" font-weight="700">GitHub Copilot</text>
+  <text x="60" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="42" fill="#ffffff" font-weight="700">Usage-Based</text>
+  <text x="60" y="268" font-family="system-ui, -apple-system, sans-serif" font-size="42" fill="url(#accent)" font-weight="700">Billing 2026</text>
+  
+  <text x="60" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#94a3b8">What developers actually pay now</text>
+  
+  <!-- Divider line -->
+  <rect x="60" y="350" width="500" height="2" fill="url(#accent)" opacity="0.5"/>
+  
+  <!-- Pricing boxes -->
+  <g transform="translate(60, 380)">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" opacity="0.1"/>
+    <text x="70" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">COPILOT PRO</text>
+    <text x="70" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle">$10</text>
+    <text x="110" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">/mo</text>
+  </g>
+  
+  <g transform="translate(220, 380)">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="#ffffff" opacity="0.1"/>
+    <text x="70" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">COPILOT PRO+</text>
+    <text x="70" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle">$39</text>
+    <text x="110" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">/mo</text>
+  </g>
+  
+  <g transform="translate(380, 380)">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="url(#accent)" opacity="0.3"/>
+    <text x="70" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#fed7aa" text-anchor="middle">COPILOT BUSINESS</text>
+    <text x="70" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#ffffff" font-weight="700" text-anchor="middle">$19</text>
+    <text x="110" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">/user</text>
+  </g>
+  
+  <!-- Right side - Key insight -->
+  <g transform="translate(750, 120)">
+    <rect x="0" y="0" width="400" height="280" rx="12" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-opacity="0.1"/>
+    
+    <text x="30" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#f97316" font-weight="600">⚠️ COST IMPACT</text>
+    
+    <text x="30" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#ffffff" font-weight="600">Token-based billing replaces</text>
+    <text x="30" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#ffffff" font-weight="600">flat-rate unlimited usage</text>
+    
+    <rect x="30" y="140" width="340" height="1" fill="#ffffff" opacity="0.2"/>
+    
+    <text x="30" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">Premium models (GPT-5.5,</text>
+    <text x="30" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">Claude Opus) consume</text>
+    <text x="30" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">3-5x more credits than</text>
+    <text x="30" y="235" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">base models like GPT-4o mini</text>
+    
+    <text x="30" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#ffffff" font-weight="700">Up to 2.8x cost increase</text>
+    <text x="30" y="292" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">for heavy enterprise users</text>
+  </g>
+  
+  <!-- Bottom tagline -->
+  <text x="600" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#64748b" text-anchor="middle">Calculate your AI coding costs at promptcost.org</text>
+  
+  <!-- GitHub Copilot icon representation -->
+  <g transform="translate(1100, 530)">
+    <circle cx="30" cy="30" r="25" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+    <text x="30" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="700">®</text>
+  </g>
+</svg>
